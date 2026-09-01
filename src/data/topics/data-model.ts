@@ -5,6 +5,9 @@ export const dataModelTopics: Topic[] = [
     slug: "data-loading",
     title: "Data Loading & Imports",
     category: "data-model",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "Getting data in and out at volume — Import Wizard, Data Loader, and the order-of-operations discipline that makes loads succeed.",
     mentalModel: [
@@ -52,6 +55,9 @@ export const dataModelTopics: Topic[] = [
     slug: "reports-dashboards",
     title: "Reports & Dashboards",
     category: "data-model",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "The analytics layer users actually touch — report types define what's possible, filters define what's true.",
     mentalModel: [
@@ -99,6 +105,9 @@ export const dataModelTopics: Topic[] = [
     slug: "objects-and-fields",
     title: "Objects & Fields",
     category: "data-model",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "Objects are your database tables, fields are the columns — everything else in Salesforce is built on top of them.",
     mentalModel: [
@@ -153,6 +162,9 @@ export const dataModelTopics: Topic[] = [
     slug: "relationships",
     title: "Relationships (Lookup & Master-Detail)",
     category: "data-model",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "How records point at each other — and the one choice (lookup vs master-detail) that decides deletion, security, and rollups.",
     mentalModel: [
@@ -206,6 +218,9 @@ export const dataModelTopics: Topic[] = [
     slug: "record-types",
     title: "Record Types & Page Layouts",
     category: "data-model",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "One object, multiple flavors: record types let the same object behave differently for different business processes.",
     mentalModel: [

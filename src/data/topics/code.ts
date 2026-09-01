@@ -5,6 +5,9 @@ export const codeTopics: Topic[] = [
     slug: "apex",
     title: "Apex",
     category: "code",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "Salesforce's server-side language — Java-flavored, database-aware, and always running inside the platform's rules.",
     mentalModel: [
@@ -59,6 +62,9 @@ export const codeTopics: Topic[] = [
     slug: "soql",
     title: "SOQL & SOSL",
     category: "code",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "The query languages of Salesforce: SOQL for precise record retrieval, SOSL for fuzzy text search across objects.",
     mentalModel: [
@@ -106,6 +112,9 @@ export const codeTopics: Topic[] = [
     slug: "governor-limits",
     title: "Governor Limits",
     category: "code",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "The hard caps on every transaction — not obstacles, but the design constraints that shape all good Salesforce code.",
     mentalModel: [
@@ -153,6 +162,9 @@ export const codeTopics: Topic[] = [
     slug: "apex-testing",
     title: "Apex Testing",
     category: "code",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "Salesforce won't let untested code into production: 75% coverage is the gate, but good tests are the actual goal.",
     mentalModel: [
