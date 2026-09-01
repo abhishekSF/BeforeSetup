@@ -5,6 +5,9 @@ export const devopsTopics: Topic[] = [
     slug: "custom-metadata",
     title: "Custom Metadata Types & Custom Settings",
     category: "devops",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "Configuration as deployable records — the end of hardcoded values and org-specific magic numbers.",
     mentalModel: [
@@ -52,6 +55,10 @@ export const devopsTopics: Topic[] = [
     slug: "sandboxes",
     title: "Sandboxes & Environments",
     category: "devops",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "edition-gated",
+    editionNote: "Sandbox counts and types vary by edition; Full Copy is not in every contract.",
     tagline:
       "Copies of your org for building and testing — the environment strategy that keeps production safe.",
     mentalModel: [
@@ -99,6 +106,9 @@ export const devopsTopics: Topic[] = [
     slug: "sfdx-cli",
     title: "Salesforce CLI & Source-Driven Development",
     category: "devops",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "The command line for Salesforce — pull metadata into files, put it in git, and treat your org like a codebase.",
     mentalModel: [
@@ -146,6 +156,9 @@ export const devopsTopics: Topic[] = [
     slug: "deployments",
     title: "Deployments & Release Management",
     category: "devops",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "Moving changes safely to production — change sets, CLI pipelines, or DevOps Center, plus the discipline around them.",
     mentalModel: [

@@ -5,6 +5,9 @@ export const securityTopics: Topic[] = [
     slug: "identity-sso",
     title: "Identity, SSO & Connected Apps",
     category: "security",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "Who is this user and how do we know: My Domain, single sign-on, MFA, and the OAuth apps that connect everything else.",
     mentalModel: [
@@ -52,6 +55,9 @@ export const securityTopics: Topic[] = [
     slug: "profiles-permission-sets",
     title: "Profiles & Permission Sets",
     category: "security",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "What a user is allowed to do: object access, field access, and system permissions — now built around permission sets.",
     mentalModel: [
@@ -99,6 +105,9 @@ export const securityTopics: Topic[] = [
     slug: "sharing-and-visibility",
     title: "Sharing & Record Visibility",
     category: "security",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "Which records a user can see: org-wide defaults set the floor, then roles, rules, and manual shares open doors upward.",
     mentalModel: [

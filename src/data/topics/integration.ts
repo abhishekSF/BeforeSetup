@@ -5,6 +5,9 @@ export const integrationTopics: Topic[] = [
     slug: "rest-apis",
     title: "REST & Platform APIs",
     category: "integration",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "Everything in Salesforce is reachable over an API — the same objects, queries, and metadata you see in the UI.",
     mentalModel: [
@@ -59,6 +62,9 @@ export const integrationTopics: Topic[] = [
     slug: "platform-events",
     title: "Platform Events & Change Data Capture",
     category: "integration",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "Salesforce's event bus — publish messages when things happen and let subscribers react, inside or outside the org.",
     mentalModel: [
@@ -106,6 +112,9 @@ export const integrationTopics: Topic[] = [
     slug: "integration-patterns",
     title: "Integration Patterns",
     category: "integration",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "The recurring shapes of Salesforce integrations — and how to pick between request-reply, fire-and-forget, batch, and virtualization.",
     mentalModel: [
