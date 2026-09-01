@@ -5,6 +5,9 @@ export const automationTopics: Topic[] = [
     slug: "validation-rules",
     title: "Validation Rules",
     category: "automation",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "Formulas that block bad data at save time — the cheapest data quality tool on the platform, and the easiest to overdo.",
     mentalModel: [
@@ -52,6 +55,9 @@ export const automationTopics: Topic[] = [
     slug: "flow",
     title: "Flow",
     category: "automation",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "Salesforce's declarative automation engine — the default answer to 'make something happen automatically' without code.",
     mentalModel: [
@@ -106,6 +112,9 @@ export const automationTopics: Topic[] = [
     slug: "apex-triggers",
     title: "Apex Triggers",
     category: "automation",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "Code that runs automatically when records change — maximum power, and maximum responsibility for order and bulk safety.",
     mentalModel: [
@@ -159,6 +168,9 @@ export const automationTopics: Topic[] = [
     slug: "approvals",
     title: "Approval Processes",
     category: "automation",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "Structured sign-off chains — who must approve a record, in what order, and what happens at each step.",
     mentalModel: [
@@ -206,6 +218,9 @@ export const automationTopics: Topic[] = [
     slug: "async-apex",
     title: "Asynchronous Apex",
     category: "automation",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "Work that runs later, in its own transaction, with bigger limits — Queueable, Batch, Scheduled, and Future.",
     mentalModel: [

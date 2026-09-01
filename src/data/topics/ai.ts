@@ -5,6 +5,10 @@ export const aiTopics: Topic[] = [
     slug: "agentforce",
     title: "Agentforce & the 360 Rebrand",
     category: "ai",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "consumption",
+    editionNote: "Consumption-priced (per conversation/action). Not included in any edition by default.",
     tagline:
       "Salesforce's platform for autonomous AI agents — and the umbrella brand that renamed half the product line around it.",
     mentalModel: [
@@ -59,6 +63,10 @@ export const aiTopics: Topic[] = [
     slug: "data-360",
     title: "Data 360 (formerly Data Cloud)",
     category: "ai",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "consumption",
+    editionNote: "Credit-based consumption pricing, contracted separately. GA, but do not assume it is in your org.",
     tagline:
       "Salesforce's unified data layer — on its sixth name, and now positioned as the non-optional foundation under every AI feature.",
     mentalModel: [
@@ -106,6 +114,10 @@ export const aiTopics: Topic[] = [
     slug: "headless-360",
     title: "Headless 360 & Hosted MCP Servers",
     category: "ai",
+    updatedOn: "2026-08-31",
+    lifecycle: "beta",
+    packaging: "core",
+    editionNote: "The hosted MCP server is Beta as of mid-2026; API-first surfaces themselves are core platform.",
     tagline:
       "The platform without the browser: every Salesforce capability exposed as APIs, MCP tools, and CLI commands that AI agents call directly.",
     mentalModel: [
@@ -153,6 +165,10 @@ export const aiTopics: Topic[] = [
     slug: "claudeforce",
     title: "Claudeforce & AIforce",
     category: "ai",
+    updatedOn: "2026-08-31",
+    lifecycle: "pilot",
+    packaging: "consumption",
+    editionNote: "Pilot program. Consumption-priced and contracted separately; expect terms to shift before GA.",
     tagline:
       "The Salesforce–Anthropic partnership (Aug 2026): Claude inside Salesforce, Salesforce inside Claude, and the AIforce harness underneath.",
     mentalModel: [
