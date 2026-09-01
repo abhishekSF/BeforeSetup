@@ -7,8 +7,10 @@ import {
   XCircle,
   AlertTriangle,
   ExternalLink,
+  Scale,
 } from "lucide-react";
 import { topics, getTopic, relatedTopics } from "@/data/topics";
+import { versusForTopic } from "@/data/versus";
 import { categoryById } from "@/data/categories";
 import { categoryBadgeClass } from "@/lib/category-colors";
 import { Badge } from "@/components/ui/badge";
@@ -31,6 +33,12 @@ export async function generateMetadata({
   return { title: topic.title, description: topic.tagline };
 }
 
+const packagingLabels: Record<string, string> = {
+  "edition-gated": "Edition-gated",
+  "add-on": "Add-on SKU",
+  consumption: "Consumption-priced",
+};
+
 const levelStyles: Record<ResourceLevel, string> = {
   intro: "bg-green-500/10 text-green-700 dark:text-green-300 border-green-500/30",
   practical: "bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/30",
@@ -47,6 +55,7 @@ export default async function TopicPage({
   if (!topic) notFound();
 
   const related = relatedTopics(topic);
+  const decisions = versusForTopic(topic.slug);
   const category = categoryById[topic.category];
 
   return (
@@ -59,18 +68,44 @@ export default async function TopicPage({
         Back to the map
       </Link>
 
-      <Badge
-        variant="outline"
-        className={cn("mb-3", categoryBadgeClass[topic.category])}
-      >
-        {category.label}
-      </Badge>
+      <div className="mb-3 flex flex-wrap items-center gap-2">
+        <Badge
+          variant="outline"
+          className={categoryBadgeClass[topic.category]}
+        >
+          {category.label}
+        </Badge>
+        {topic.lifecycle !== "ga" && (
+          <Badge
+            variant="outline"
+            className="border-amber-500/40 bg-amber-500/10 uppercase text-amber-700 dark:text-amber-300"
+          >
+            {topic.lifecycle}
+          </Badge>
+        )}
+        {topic.packaging !== "core" && (
+          <Badge
+            variant="outline"
+            className="border-sky-500/40 bg-sky-500/10 text-sky-700 dark:text-sky-300"
+          >
+            {packagingLabels[topic.packaging]}
+          </Badge>
+        )}
+      </div>
       <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
         {topic.title}
       </h1>
       <p className="mt-3 text-lg leading-relaxed text-muted-foreground">
         {topic.tagline}
       </p>
+      {topic.editionNote && (
+        <p className="mt-4 rounded-lg border border-sky-500/30 bg-sky-500/5 px-4 py-3 text-sm leading-relaxed text-muted-foreground">
+          <span className="font-medium text-foreground">
+            Licensing reality:
+          </span>{" "}
+          {topic.editionNote}
+        </p>
+      )}
 
       <Separator className="my-8" />
 
@@ -138,6 +173,34 @@ export default async function TopicPage({
         </ul>
       </section>
 
+      {decisions.length > 0 && (
+        <section className="mt-10">
+          <h2 className="flex items-center gap-2 text-xl font-semibold">
+            <Scale className="size-5 text-primary" />
+            Related decisions
+          </h2>
+          <ul className="mt-3 space-y-2">
+            {decisions.map((v) => (
+              <li key={v.slug}>
+                <Link
+                  href={`/versus/${v.slug}`}
+                  className="group flex items-start justify-between gap-3 rounded-lg border bg-card p-3.5 transition-colors hover:border-primary/40 hover:bg-accent/40"
+                >
+                  <div>
+                    <span className="text-sm font-medium group-hover:text-primary">
+                      {v.title}
+                    </span>
+                    <span className="mt-0.5 block text-xs text-muted-foreground">
+                      {v.question}
+                    </span>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       {related.length > 0 && (
         <section className="mt-10">
           <h2 className="text-xl font-semibold">Connected topics</h2>
@@ -196,6 +259,11 @@ export default async function TopicPage({
           ))}
         </ul>
       </section>
+
+      <p className="mt-10 text-xs text-muted-foreground">
+        Last reviewed {topic.updatedOn}. The platform moves; if this page has
+        drifted, the official docs above win.
+      </p>
     </article>
   );
 }
