@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { Map, Compass, Zap, BookOpen } from "lucide-react";
+import { Map, Compass, Zap, BookOpen, Scale } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TopicMap } from "@/components/topic-map";
 import { topics } from "@/data/topics";
 import { paths } from "@/data/paths";
+import { versusPages } from "@/data/versus";
 
 export default function Home() {
   return (
@@ -14,26 +15,63 @@ export default function Home() {
           Free · No sign-up · No badges
         </p>
         <h1 className="mx-auto max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
-          The map of the Salesforce platform
+          The five minutes before you touch Setup
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-          {topics.length} quick dives into the topics every Salesforce builder
-          needs — from objects and Apex to Agentforce, Data 360, Headless 360,
-          and Claudeforce. A plain-English mental model, when to use it, where
-          it bites, and the best links to go deeper. Orientation in five
-          minutes — then back to work.
+          A field guide to the Salesforce platform: {topics.length} quick
+          dives — from objects and Apex to Agentforce, Data 360, Headless 360,
+          and Claudeforce — plus the recurring decisions, answered straight. A
+          plain-English mental model, when to use it, where it bites, and the
+          best links to go deeper. Then back to work.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Button size="lg" asChild>
+            <Link href="/versus">
+              <Scale className="size-4" />
+              Start with a decision
+            </Link>
+          </Button>
+          <Button size="lg" variant="outline" asChild>
             <Link href="/map">
               <Map className="size-4" />
               Explore the map
             </Link>
           </Button>
-          <Button size="lg" variant="outline" asChild>
-            <Link href="/start">Start here paths</Link>
+        </div>
+      </section>
+
+      <section className="pb-12">
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight">
+              Start with a decision
+            </h2>
+            <p className="mt-1.5 text-muted-foreground">
+              The questions that show up in Slack. Each one commits to an
+              answer.
+            </p>
+          </div>
+          <Button variant="ghost" asChild className="hidden shrink-0 sm:inline-flex">
+            <Link href="/versus">All decisions →</Link>
           </Button>
         </div>
+        <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+          {versusPages.map((v) => (
+            <li key={v.slug}>
+              <Link
+                href={`/versus/${v.slug}`}
+                className="group flex h-full flex-col rounded-xl border bg-card p-4 transition-colors hover:border-primary/40 hover:bg-accent/40"
+              >
+                <h3 className="font-semibold group-hover:text-primary">
+                  {v.title}
+                </h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                  {v.question}
+                </p>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* The map itself */}
@@ -47,7 +85,7 @@ export default function Home() {
           <Compass className="mb-3 size-6 text-primary" />
           <h2 className="font-semibold">Orientation, not certification</h2>
           <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-            Trailhead teaches you how, step by step, with badges. OrgAtlas
+            Trailhead teaches you how, step by step, with badges. BeforeSetup
             answers the question that comes first: what is this thing, how does
             it connect, and do I even need it?
           </p>

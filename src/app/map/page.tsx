@@ -4,7 +4,7 @@ import { TopicMap } from "@/components/topic-map";
 export const metadata: Metadata = {
   title: "Topic map",
   description:
-    "An interactive map of the Salesforce platform: 36 topics across data model, automation, code, UI, security, integration, DevOps, AI & agents, and architecture & strategy — with the connections between them.",
+    "An interactive map of the topics BeforeSetup covers: data model, automation, code, UI, security, integration, DevOps, AI & agents, and architecture & strategy — with the connections between them.",
 };
 
 export default function MapPage() {

@@ -5,7 +5,7 @@ import { paths } from "@/data/paths";
 export const metadata: Metadata = {
   title: "Start here",
   description:
-    "Opinionated reading orders through the Salesforce topic map for admins and developers.",
+    "Opinionated reading orders through the BeforeSetup field guide for admins, developers, architects, consultants, and AI builders.",
 };
 
 export default function StartPage() {
