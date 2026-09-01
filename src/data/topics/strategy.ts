@@ -5,6 +5,9 @@ export const strategyTopics: Topic[] = [
     slug: "org-strategy",
     title: "Org Strategy & Well-Architected",
     category: "strategy",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "The decisions above any single feature: one org or many, who governs change, and what 'healthy' looks like at platform scale.",
     mentalModel: [
@@ -52,6 +55,9 @@ export const strategyTopics: Topic[] = [
     slug: "large-data-volumes",
     title: "Large Data Volumes & Performance",
     category: "strategy",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "What changes when objects hit millions of rows: skew, selectivity, archiving — the physics of the platform at scale.",
     mentalModel: [
@@ -99,6 +105,9 @@ export const strategyTopics: Topic[] = [
     slug: "licenses-editions",
     title: "Licenses & Editions",
     category: "strategy",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "What you're actually buying: editions set org capabilities, licenses set what each user can touch — and both quietly shape architecture.",
     mentalModel: [
@@ -146,6 +155,9 @@ export const strategyTopics: Topic[] = [
     slug: "appexchange",
     title: "AppExchange & Buy vs Build",
     category: "strategy",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "Salesforce's app store — and the recurring judgment call between installing someone's package and building it yourself.",
     mentalModel: [
@@ -194,6 +206,9 @@ export const strategyTopics: Topic[] = [
     slug: "implementation-lifecycle",
     title: "Running an Implementation",
     category: "strategy",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "The consultant's actual job: discovery to design to build to UAT to go-live — and the adoption work that decides whether any of it mattered.",
     mentalModel: [

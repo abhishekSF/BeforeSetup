@@ -5,6 +5,10 @@ export const uiTopics: Topic[] = [
     slug: "experience-cloud",
     title: "Experience Cloud",
     category: "ui",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "add-on",
+    editionNote: "External users need separate member- or login-based license SKUs.",
     tagline:
       "Salesforce for people outside your company — portals and sites where customers and partners work with your data under a stricter security model.",
     mentalModel: [
@@ -52,6 +56,9 @@ export const uiTopics: Topic[] = [
     slug: "lightning-app-builder",
     title: "Lightning App Builder & Dynamic Forms",
     category: "ui",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "The drag-and-drop page editor — how most Salesforce screens get built, no code required.",
     mentalModel: [
@@ -99,6 +106,9 @@ export const uiTopics: Topic[] = [
     slug: "lightning-web-components",
     title: "Lightning Web Components (LWC)",
     category: "ui",
+    updatedOn: "2026-08-31",
+    lifecycle: "ga",
+    packaging: "core",
     tagline:
       "Custom UI built with modern web standards — JavaScript, HTML templates, and a thin Salesforce layer on top.",
     mentalModel: [
