@@ -10,12 +10,15 @@ export function SiteHeader() {
           <span className="flex size-7 items-center justify-center rounded-md bg-primary text-primary-foreground">
             <Compass className="size-4" />
           </span>
-          OrgAtlas
+          BeforeSetup
           <span className="hidden text-xs font-normal text-muted-foreground sm:inline">
-            · the Salesforce topic map
+            · the Salesforce field guide
           </span>
         </Link>
         <nav className="flex items-center gap-1">
+          <Button variant="ghost" size="sm" asChild>
+            <Link href="/versus">Decisions</Link>
+          </Button>
           <Button variant="ghost" size="sm" asChild>
             <Link href="/map">
               <Map className="size-4" />

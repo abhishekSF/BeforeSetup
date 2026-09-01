@@ -15,12 +15,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:4780"
+  ),
   title: {
-    default: "OrgAtlas — the Salesforce topic map",
-    template: "%s · OrgAtlas",
+    default: "BeforeSetup — the five minutes before you touch Setup",
+    template: "%s · BeforeSetup",
   },
   description:
-    "Quick five-minute dives into every core Salesforce platform topic: plain-English mental models, when to use what, common pitfalls, and the best resources — free, no sign-up.",
+    "A field guide to the Salesforce platform: plain-English mental models, the recurring X-vs-Y decisions, common pitfalls, and the best resources — free, no sign-up.",
 };
 
 export default function RootLayout({
