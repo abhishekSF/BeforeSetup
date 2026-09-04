@@ -46,6 +46,29 @@ npm run dev -- --port 4780
 
 Then open http://localhost:4780.
 
+## Quality gates
+
+Every PR runs `npm run quality`. The bar:
+
+| Gate | Limit |
+| --- | --- |
+| Cyclomatic complexity | < 22 per function |
+| Cognitive complexity | < 22 per function |
+| Halstead difficulty | < 80 per function |
+| Lines of code | < 500 per file |
+| Test coverage | 100% statements / branches / functions / lines |
+| CRAP score | < 25 per function |
+| Mutation testing | 0 surviving mutants in `src/lib` |
+| Dead code | none (knip) |
+| Redundant code | none (jscpd + sonar) |
+| `any` / `unknown` | none |
+
+```bash
+npm run quality
+```
+
+See [QUALITY.md](QUALITY.md) for how each gate is enforced.
+
 ## Adding a topic
 
 1. Add a `Topic` object to the right category file in `src/data/topics/`
@@ -54,7 +77,7 @@ Then open http://localhost:4780.
    `whenToAvoid` / `pitfalls` bullets, `related` slugs, `resources`, and the
    metadata trio: `updatedOn`, `lifecycle`, `packaging` (plus `editionNote`
    when the SKU story needs a warning).
-3. Add a short display label for the map in `src/components/topic-map.tsx`.
+3. Add a short display label for the map in `src/lib/topic-map-layout.ts`.
 
 The map layout, search index, topic page, and related-topic links all derive
 from the data automatically.

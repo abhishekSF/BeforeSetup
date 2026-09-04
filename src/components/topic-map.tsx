@@ -6,168 +6,50 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { topics } from "@/data/topics";
 import { categories } from "@/data/categories";
-import type { CategoryId } from "@/data/types";
 import { categoryHex, categoryBadgeClass } from "@/lib/category-colors";
+import { findBySlug } from "@/lib/catalog";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import {
+  MAP_WIDTH,
+  MAP_HEIGHT,
+  buildEdges,
+  computeLayout,
+  curveControl,
+  neighborSlugs,
+  shortLabelFor,
+} from "@/lib/topic-map-layout";
 
-const W = 1320;
-const H = 940;
-const CX = W / 2;
-const CY = 500;
-const RX = 400;
-const RY = 310;
-
-const shortLabel: Record<string, string> = {
-  "objects-and-fields": "Objects & Fields",
-  relationships: "Relationships",
-  "record-types": "Record Types",
-  flow: "Flow",
-  "apex-triggers": "Triggers",
-  approvals: "Approvals",
-  "async-apex": "Async Apex",
-  apex: "Apex",
-  soql: "SOQL & SOSL",
-  "governor-limits": "Governor Limits",
-  "apex-testing": "Testing",
-  "lightning-app-builder": "App Builder",
-  "lightning-web-components": "LWC",
-  "profiles-permission-sets": "Permissions",
-  "sharing-and-visibility": "Sharing",
-  "rest-apis": "APIs",
-  "platform-events": "Events & CDC",
-  "integration-patterns": "Patterns",
-  sandboxes: "Sandboxes",
-  "sfdx-cli": "CLI & Source",
-  deployments: "Deployments",
-  "data-loading": "Data Loading",
-  "reports-dashboards": "Reports",
-  "validation-rules": "Validation",
-  "experience-cloud": "Experience Cloud",
-  "custom-metadata": "Custom Metadata",
-  agentforce: "Agentforce",
-  "data-360": "Data 360",
-  "headless-360": "Headless 360",
-  claudeforce: "Claudeforce",
-  "identity-sso": "Identity & SSO",
-  "org-strategy": "Org Strategy",
-  "large-data-volumes": "LDV & Scale",
-  "licenses-editions": "Licenses",
-  appexchange: "AppExchange",
-  "implementation-lifecycle": "Implementations",
-};
-
-interface NodePos {
-  slug: string;
-  title: string;
-  category: CategoryId;
-  x: number;
-  y: number;
-}
-
-function computeLayout(): {
-  nodes: NodePos[];
-  clusterLabels: { id: CategoryId; label: string; x: number; y: number }[];
-} {
-  const nodes: NodePos[] = [];
-  const clusterLabels: {
-    id: CategoryId;
-    label: string;
-    x: number;
-    y: number;
-  }[] = [];
-
-  categories.forEach((cat, i) => {
-    const angle = (i / categories.length) * Math.PI * 2 - Math.PI / 2;
-    const ccx = CX + RX * Math.cos(angle);
-    const ccy = CY + RY * Math.sin(angle);
-    const members = topics.filter((t) => t.category === cat.id);
-    const r = members.length <= 2 ? 52 : members.length <= 4 ? 84 : 100;
-
-    // Label sits on the far side of the cluster, away from the map center,
-    // clamped so it never leaves the canvas.
-    clusterLabels.push({
-      id: cat.id,
-      label: cat.label,
-      x: Math.min(Math.max(ccx + Math.cos(angle) * (r + 62), 110), W - 110),
-      y: Math.min(Math.max(ccy + Math.sin(angle) * (r + 62), 28), H - 14),
-    });
-
-    members.forEach((t, j) => {
-      if (members.length === 1) {
-        nodes.push({ slug: t.slug, title: t.title, category: cat.id, x: ccx, y: ccy });
-        return;
-      }
-      const a = (j / members.length) * Math.PI * 2 + angle + Math.PI / members.length;
-      nodes.push({
-        slug: t.slug,
-        title: t.title,
-        category: cat.id,
-        x: ccx + r * Math.cos(a),
-        y: ccy + r * Math.sin(a),
-      });
-    });
-  });
-
-  return { nodes, clusterLabels };
-}
-
-const { nodes, clusterLabels } = computeLayout();
-const nodeBySlug = new Map(nodes.map((n) => [n.slug, n]));
-
-const edges: [NodePos, NodePos][] = (() => {
-  const seen = new Set<string>();
-  const list: [NodePos, NodePos][] = [];
-  for (const t of topics) {
-    for (const rel of t.related) {
-      const a = nodeBySlug.get(t.slug);
-      const b = nodeBySlug.get(rel);
-      if (!a || !b) continue;
-      const key = [t.slug, rel].sort().join("|");
-      if (seen.has(key)) continue;
-      seen.add(key);
-      list.push([a, b]);
-    }
-  }
-  return list;
-})();
+const { nodes, clusterLabels } = computeLayout(categories, topics);
+const edges = buildEdges(topics, nodes);
 
 export function TopicMap() {
   const router = useRouter();
   const [hovered, setHovered] = useState<string | null>(null);
 
-  const neighbors = useMemo(() => {
-    if (!hovered) return null;
-    const set = new Set<string>([hovered]);
-    for (const [a, b] of edges) {
-      if (a.slug === hovered) set.add(b.slug);
-      if (b.slug === hovered) set.add(a.slug);
-    }
-    return set;
-  }, [hovered]);
+  const neighbors = useMemo(
+    () => neighborSlugs(hovered, edges),
+    [hovered]
+  );
 
-  const hoveredTopic = hovered
-    ? topics.find((t) => t.slug === hovered)
-    : null;
+  const hoveredTopic =
+    hovered === null ? null : findBySlug(topics, hovered);
 
   return (
     <div>
-      {/* Full map on md+ screens */}
       <div className="hidden md:block">
         <div className="relative rounded-xl border bg-card p-2 shadow-sm">
           <svg
-            viewBox={`0 0 ${W} ${H}`}
+            viewBox={`0 0 ${MAP_WIDTH} ${MAP_HEIGHT}`}
             className="h-auto w-full select-none"
             role="img"
             aria-label="Interactive map of Salesforce platform topics grouped by category"
           >
-            {/* Edges */}
             {edges.map(([a, b]) => {
               const active =
                 hovered !== null &&
                 (a.slug === hovered || b.slug === hovered);
-              const mx = (a.x + b.x) / 2 + (CY - (a.y + b.y) / 2) * 0.12;
-              const my = (a.y + b.y) / 2 + ((a.x + b.x) / 2 - CX) * 0.12;
+              const { mx, my } = curveControl(a, b);
               return (
                 <path
                   key={`${a.slug}-${b.slug}`}
@@ -183,7 +65,6 @@ export function TopicMap() {
               );
             })}
 
-            {/* Cluster labels */}
             {clusterLabels.map((c) => (
               <text
                 key={c.id}
@@ -197,7 +78,6 @@ export function TopicMap() {
               </text>
             ))}
 
-            {/* Nodes */}
             {nodes.map((n) => {
               const dimmed = neighbors !== null && !neighbors.has(n.slug);
               const isHover = hovered === n.slug;
@@ -228,14 +108,13 @@ export function TopicMap() {
                       isHover ? "font-semibold" : "font-medium"
                     )}
                   >
-                    {shortLabel[n.slug] ?? n.title}
+                    {shortLabelFor(n.slug, n.title)}
                   </text>
                 </g>
               );
             })}
           </svg>
 
-          {/* Hover detail panel */}
           <div className="pointer-events-none absolute left-4 top-4 max-w-xs">
             {hoveredTopic ? (
               <div className="rounded-lg border bg-popover p-3 shadow-md">
@@ -264,7 +143,6 @@ export function TopicMap() {
         </div>
       </div>
 
-      {/* Grouped list fallback on small screens */}
       <div className="space-y-6 md:hidden">
         {categories.map((cat) => {
           const members = topics.filter((t) => t.category === cat.id);

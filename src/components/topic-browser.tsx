@@ -10,29 +10,17 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { TopicCard } from "@/components/topic-card";
 import { categoryBadgeClass } from "@/lib/category-colors";
+import { filterTopics } from "@/lib/search";
 import { cn } from "@/lib/utils";
 
 export function TopicBrowser() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<CategoryId | null>(null);
 
-  const results = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return topics.filter((t) => {
-      if (category && t.category !== category) return false;
-      if (!q) return true;
-      const haystack = [
-        t.title,
-        t.tagline,
-        ...t.mentalModel,
-        ...t.pitfalls,
-        ...t.whenToUse,
-      ]
-        .join(" ")
-        .toLowerCase();
-      return q.split(/\s+/).every((word) => haystack.includes(word));
-    });
-  }, [query, category]);
+  const results = useMemo(
+    () => filterTopics(topics, query, category),
+    [query, category]
+  );
 
   return (
     <div className="space-y-5">
@@ -47,7 +35,7 @@ export function TopicBrowser() {
         />
       </div>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by area">
         <Badge
           variant={category === null ? "default" : "outline"}
           className="cursor-pointer"
@@ -59,6 +47,7 @@ export function TopicBrowser() {
           <Badge
             key={c.id}
             variant="outline"
+            data-category={c.id}
             className={cn(
               "cursor-pointer",
               category === c.id

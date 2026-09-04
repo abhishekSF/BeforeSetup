@@ -1,4 +1,5 @@
 import type { Topic } from "../types";
+import { lookupMany } from "@/lib/catalog";
 import { dataModelTopics } from "./data-model";
 import { automationTopics } from "./automation";
 import { codeTopics } from "./code";
@@ -28,7 +29,5 @@ export function getTopic(slug: string): Topic | undefined {
 }
 
 export function relatedTopics(topic: Topic): Topic[] {
-  return topic.related
-    .map((slug) => topicBySlug.get(slug))
-    .filter((t): t is Topic => Boolean(t));
+  return lookupMany(topic.related, topicBySlug);
 }

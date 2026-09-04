@@ -39,7 +39,7 @@ npm run quality          # all of the above, in order
   coverage, and kept below the complexity / LOC / type gates.
 - **jscpd** ignores `src/data` (repeated topic/versus shapes are the catalog
   schema, not copy-paste) and test files.
-- **CRAP** is `complexity^2 * (1 - coverage)^3 + complexity`. At 100% coverage
+- **CRAP** is `complexity² × (1 − coverage)³ + complexity`. At 100% coverage
   this equals cyclomatic complexity, so the complexity cap of 21 already keeps
   CRAP under 25.
 

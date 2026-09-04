@@ -7,16 +7,23 @@ import {
   XCircle,
   AlertTriangle,
   ExternalLink,
-  Scale,
 } from "lucide-react";
 import { topics, getTopic, relatedTopics } from "@/data/topics";
 import { versusForTopic } from "@/data/versus";
 import { categoryById } from "@/data/categories";
 import { categoryBadgeClass } from "@/lib/category-colors";
+import { topicPageMeta } from "@/lib/catalog";
+import { RESOURCE_LEVEL_CLASS } from "@/lib/labels";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import type { ResourceLevel } from "@/data/types";
+import {
+  ConnectedTopics,
+  EditionNote,
+  LifecycleBadge,
+  PackagingBadge,
+  RelatedDecisions,
+} from "@/components/content-bits";
 
 export function generateStaticParams() {
   return topics.map((t) => ({ slug: t.slug }));
@@ -28,22 +35,8 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const topic = getTopic(slug);
-  if (!topic) return { title: "Topic not found" };
-  return { title: topic.title, description: topic.tagline };
+  return topicPageMeta(getTopic(slug));
 }
-
-const packagingLabels: Record<string, string> = {
-  "edition-gated": "Edition-gated",
-  "add-on": "Add-on SKU",
-  consumption: "Consumption-priced",
-};
-
-const levelStyles: Record<ResourceLevel, string> = {
-  intro: "bg-green-500/10 text-green-700 dark:text-green-300 border-green-500/30",
-  practical: "bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/30",
-  deep: "bg-violet-500/10 text-violet-700 dark:text-violet-300 border-violet-500/30",
-};
 
 export default async function TopicPage({
   params,
@@ -52,7 +45,9 @@ export default async function TopicPage({
 }) {
   const { slug } = await params;
   const topic = getTopic(slug);
-  if (!topic) notFound();
+  if (topic === undefined) {
+    notFound();
+  }
 
   const related = relatedTopics(topic);
   const decisions = versusForTopic(topic.slug);
@@ -75,22 +70,8 @@ export default async function TopicPage({
         >
           {category.label}
         </Badge>
-        {topic.lifecycle !== "ga" && (
-          <Badge
-            variant="outline"
-            className="border-amber-500/40 bg-amber-500/10 uppercase text-amber-700 dark:text-amber-300"
-          >
-            {topic.lifecycle}
-          </Badge>
-        )}
-        {topic.packaging !== "core" && (
-          <Badge
-            variant="outline"
-            className="border-sky-500/40 bg-sky-500/10 text-sky-700 dark:text-sky-300"
-          >
-            {packagingLabels[topic.packaging]}
-          </Badge>
-        )}
+        <LifecycleBadge lifecycle={topic.lifecycle} />
+        <PackagingBadge packaging={topic.packaging} />
       </div>
       <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
         {topic.title}
@@ -98,14 +79,7 @@ export default async function TopicPage({
       <p className="mt-3 text-lg leading-relaxed text-muted-foreground">
         {topic.tagline}
       </p>
-      {topic.editionNote && (
-        <p className="mt-4 rounded-lg border border-sky-500/30 bg-sky-500/5 px-4 py-3 text-sm leading-relaxed text-muted-foreground">
-          <span className="font-medium text-foreground">
-            Licensing reality:
-          </span>{" "}
-          {topic.editionNote}
-        </p>
-      )}
+      <EditionNote note={topic.editionNote} />
 
       <Separator className="my-8" />
 
@@ -173,54 +147,8 @@ export default async function TopicPage({
         </ul>
       </section>
 
-      {decisions.length > 0 && (
-        <section className="mt-10">
-          <h2 className="flex items-center gap-2 text-xl font-semibold">
-            <Scale className="size-5 text-primary" />
-            Related decisions
-          </h2>
-          <ul className="mt-3 space-y-2">
-            {decisions.map((v) => (
-              <li key={v.slug}>
-                <Link
-                  href={`/versus/${v.slug}`}
-                  className="group flex items-start justify-between gap-3 rounded-lg border bg-card p-3.5 transition-colors hover:border-primary/40 hover:bg-accent/40"
-                >
-                  <div>
-                    <span className="text-sm font-medium group-hover:text-primary">
-                      {v.title}
-                    </span>
-                    <span className="mt-0.5 block text-xs text-muted-foreground">
-                      {v.question}
-                    </span>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {related.length > 0 && (
-        <section className="mt-10">
-          <h2 className="text-xl font-semibold">Connected topics</h2>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {related.map((r) => (
-              <Link key={r.slug} href={`/topics/${r.slug}`}>
-                <Badge
-                  variant="outline"
-                  className={cn(
-                    "text-sm transition-colors hover:bg-accent",
-                    categoryBadgeClass[r.category]
-                  )}
-                >
-                  {r.title}
-                </Badge>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
+      <RelatedDecisions decisions={decisions} />
+      <ConnectedTopics topics={related} heading="Connected topics" />
 
       <section className="mt-10">
         <h2 className="text-xl font-semibold">Go deeper</h2>
@@ -248,7 +176,7 @@ export default async function TopicPage({
                 <div className="flex shrink-0 items-center gap-2">
                   <Badge
                     variant="outline"
-                    className={cn("text-xs", levelStyles[r.level])}
+                    className={cn("text-xs", RESOURCE_LEVEL_CLASS[r.level])}
                   >
                     {r.level}
                   </Badge>
