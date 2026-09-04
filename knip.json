@@ -1,0 +1,16 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": [
+    "src/app/**/{page,layout,not-found,opengraph-image}.{ts,tsx}",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "scripts/**/*.mjs"
+  ],
+  "project": ["src/**/*.{ts,tsx}", "scripts/**/*.mjs"],
+  "ignoreDependencies": [
+    "tw-animate-css",
+    "@tailwindcss/postcss",
+    "tailwindcss",
+    "postcss"
+  ]
+}
