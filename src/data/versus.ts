@@ -1,4 +1,5 @@
 import type { Versus } from "./types";
+import { versusForTopic as findVersusForTopic } from "@/lib/versus";
 
 export const versusPages: Versus[] = [
   {
@@ -369,8 +370,7 @@ export const versusPages: Versus[] = [
 export const versusBySlug = new Map(versusPages.map((v) => [v.slug, v]));
 
 export function versusForTopic(slug: string): Versus[] {
-  return versusPages.filter(
-    (v) =>
-      v.relatedTopics.includes(slug) || v.options.some((o) => o.topic === slug)
-  );
+  return findVersusForTopic(versusPages, slug);
 }
+
+

@@ -1,0 +1,32 @@
+name: Quality gates
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Lint (complexity, any/unknown, line limits, dead stores)
+        run: npm run lint
+      - name: Tests at 100% coverage
+        run: npm run coverage
+      - name: Dead code (knip)
+        run: npm run deadcode
+      - name: Redundant code (jscpd)
+        run: npm run dupes
+      - name: Halstead / CRAP / LOC
+        run: npm run metrics
+      - name: Mutation testing (no survivors)
+        run: npm run mutate

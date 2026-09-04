@@ -3,11 +3,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Scale, Lightbulb } from "lucide-react";
 import { versusPages, versusBySlug } from "@/data/versus";
-import { getTopic } from "@/data/topics";
-import { categoryBadgeClass } from "@/lib/category-colors";
-import { Badge } from "@/components/ui/badge";
+import { topicBySlug } from "@/data/topics";
+import { versusPageMeta } from "@/lib/catalog";
+import { versusRelatedTopics } from "@/lib/versus";
 import { Separator } from "@/components/ui/separator";
-import { cn } from "@/lib/utils";
+import { PickCell } from "@/components/pick-cell";
+import { ConnectedTopics, VersusOptions } from "@/components/content-bits";
 
 export function generateStaticParams() {
   return versusPages.map((v) => ({ slug: v.slug }));
@@ -19,32 +20,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const versus = versusBySlug.get(slug);
-  if (!versus) return { title: "Decision not found" };
-  return { title: versus.title, description: versus.question };
-}
-
-function PickCell({ pick }: { pick: string | string[] | null }) {
-  if (pick === null) {
-    return (
-      <span className="inline-flex rounded-md border border-amber-500/40 bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-700 dark:text-amber-300">
-        It depends
-      </span>
-    );
-  }
-  const picks = Array.isArray(pick) ? pick : [pick];
-  return (
-    <span className="flex flex-wrap gap-1.5">
-      {picks.map((p) => (
-        <span
-          key={p}
-          className="inline-flex rounded-md border border-green-500/40 bg-green-500/10 px-2 py-0.5 text-xs font-medium text-green-700 dark:text-green-300"
-        >
-          {p}
-        </span>
-      ))}
-    </span>
-  );
+  return versusPageMeta(versusBySlug.get(slug));
 }
 
 export default async function VersusPage({
@@ -54,11 +30,11 @@ export default async function VersusPage({
 }) {
   const { slug } = await params;
   const versus = versusBySlug.get(slug);
-  if (!versus) notFound();
+  if (versus === undefined) {
+    notFound();
+  }
 
-  const related = versus.relatedTopics
-    .map((s) => getTopic(s))
-    .filter((t) => t !== undefined);
+  const related = versusRelatedTopics(versus, topicBySlug);
 
   return (
     <article className="mx-auto max-w-4xl px-4 py-10">
@@ -81,24 +57,7 @@ export default async function VersusPage({
         {versus.question}
       </p>
 
-      <div className="mt-5 flex flex-wrap gap-2">
-        {versus.options.map((o) =>
-          o.topic ? (
-            <Link key={o.label} href={`/topics/${o.topic}`}>
-              <Badge
-                variant="outline"
-                className="text-sm transition-colors hover:bg-accent"
-              >
-                {o.label}
-              </Badge>
-            </Link>
-          ) : (
-            <Badge key={o.label} variant="outline" className="text-sm">
-              {o.label}
-            </Badge>
-          )
-        )}
-      </div>
+      <VersusOptions options={versus.options} />
 
       <Separator className="my-8" />
 
@@ -151,26 +110,7 @@ export default async function VersusPage({
         </ul>
       </section>
 
-      {related.length > 0 && (
-        <section className="mt-10">
-          <h2 className="text-xl font-semibold">Dive deeper</h2>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {related.map((t) => (
-              <Link key={t.slug} href={`/topics/${t.slug}`}>
-                <Badge
-                  variant="outline"
-                  className={cn(
-                    "text-sm transition-colors hover:bg-accent",
-                    categoryBadgeClass[t.category]
-                  )}
-                >
-                  {t.title}
-                </Badge>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
+      <ConnectedTopics topics={related} heading="Dive deeper" />
 
       <p className="mt-10 text-xs text-muted-foreground">
         Last reviewed {versus.updatedOn}. Spot something outdated? The platform

@@ -12,6 +12,9 @@
 
 # testing
 /coverage
+/reports
+/.stryker-tmp
+/stryker.log
 
 # next.js
 /.next/
@@ -38,7 +41,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
 
 # Agent scratch files
 agent-tools/
