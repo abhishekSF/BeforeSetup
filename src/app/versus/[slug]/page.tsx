@@ -20,7 +20,8 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  return versusPageMeta(versusBySlug.get(slug));
+  const meta = versusPageMeta(versusBySlug.get(slug));
+  return { ...meta, alternates: { canonical: `/versus/${slug}` }, openGraph: { title: meta.title, description: meta.description, url: `/versus/${slug}` } };
 }
 
 export default async function VersusPage({
@@ -64,17 +65,17 @@ export default async function VersusPage({
       <section>
         <h2 className="text-xl font-semibold">The matrix</h2>
         <p className="mt-1 text-sm text-muted-foreground">
-          Find your situation in the left column. Green means a committed
-          answer; amber means the honest answer is a trade-off — the note says
-          on what.
+          Find your situation in the left column. “Pick” names the recommendation;
+          “It depends” means a trade-off — the note says on what.
         </p>
-        <div className="mt-4 overflow-x-auto rounded-xl border">
+        <div className="mt-4 overflow-x-auto rounded-xl border" role="region" aria-label="Scrollable decision matrix" tabIndex={0}>
           <table className="w-full min-w-[640px] text-sm">
+            <caption>Decision matrix: {versus.title}</caption>
             <thead>
               <tr className="border-b bg-muted/50 text-left">
-                <th className="px-4 py-3 font-semibold">Your situation</th>
-                <th className="px-4 py-3 font-semibold">Pick</th>
-                <th className="px-4 py-3 font-semibold">Why</th>
+                <th scope="col" className="px-4 py-3 font-semibold">Your situation</th>
+                <th scope="col" className="px-4 py-3 font-semibold">Pick</th>
+                <th scope="col" className="px-4 py-3 font-semibold">Why</th>
               </tr>
             </thead>
             <tbody>

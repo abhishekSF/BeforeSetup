@@ -158,7 +158,7 @@ export const versusPages: Versus[] = [
       {
         criterion: "A persona that is a bundle of job functions (AE = Core CRM + CPQ + Forecasts)",
         pick: "Permission set group",
-        note: "Compose existing permission sets. Muting permissions let you subtract one dangerous right from the bundle without forking the underlying sets.",
+        note: "Compose existing permission sets. Muting can suppress a selected permission within this group without forking the underlying sets. It does not remove the same permission granted by a profile or an unrelated set.",
       },
       {
         criterion: "One-off exception for a single person",
@@ -358,7 +358,7 @@ export const versusPages: Versus[] = [
     ruleOfThumb: [
       "If you can flowchart it, it is a Flow — with a prompt template only where language is the output. If you cannot flowchart it because the next step depends on the answer, it might be an agent.",
       "Prompt templates are cheap, testable, and boring. Start there. Agents are a product decision, not a checkbox.",
-      "An agent with no grounded data and no tightly scoped actions is a hallucination with a logo. Data 360 is not optional for the interesting cases, and it is not in the edition by default.",
+      "An agent with no grounded data and no tightly scoped actions is a hallucination with a logo. Choose the grounding architecture the use case needs, and verify current Data 360 entitlements rather than assuming a separate implementation is always required.",
       "Never let an agent do what a validation rule, a before-save flow, or a permission already does. Deterministic first; language second; planning last.",
       "Consumption pricing means a looping agent is a billing incident. Cap turns, log actions, and keep a human in the loop for anything that writes.",
     ],

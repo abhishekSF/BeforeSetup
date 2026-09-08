@@ -1,147 +1,27 @@
 import Link from "next/link";
-import { Map, Compass, Zap, BookOpen, Scale } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TopicMap } from "@/components/topic-map";
-import { topics } from "@/data/topics";
-import { paths } from "@/data/paths";
-import { versusPages } from "@/data/versus";
+import { DecisionList } from "@/components/decision-list";
+import { PathJourneys } from "@/components/path-journeys";
+import { changes } from "@/data/changes";
+
+export const metadata = { alternates: { canonical: "/" } };
 
 export default function Home() {
-  return (
-    <div className="mx-auto max-w-6xl px-4">
-      {/* Hero */}
-      <section className="py-14 text-center sm:py-20">
-        <p className="mb-3 text-sm font-medium uppercase tracking-widest text-primary">
-          Free · No sign-up · No badges
-        </p>
-        <h1 className="mx-auto max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
-          The five minutes before you touch Setup
-        </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-          A field guide to the Salesforce platform: {topics.length} quick
-          dives — from objects and Apex to Agentforce, Data 360, Headless 360,
-          and Claudeforce — plus the recurring decisions, answered straight. A
-          plain-English mental model, when to use it, where it bites, and the
-          best links to go deeper. Then back to work.
-        </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <Button size="lg" asChild>
-            <Link href="/versus">
-              <Scale className="size-4" />
-              Start with a decision
-            </Link>
-          </Button>
-          <Button size="lg" variant="outline" asChild>
-            <Link href="/map">
-              <Map className="size-4" />
-              Explore the map
-            </Link>
-          </Button>
-        </div>
-      </section>
-
-      <section className="pb-12">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight">
-              Start with a decision
-            </h2>
-            <p className="mt-1.5 text-muted-foreground">
-              The questions that show up in Slack. Each one commits to an
-              answer.
-            </p>
-          </div>
-          <Button variant="ghost" asChild className="hidden shrink-0 sm:inline-flex">
-            <Link href="/versus">All decisions →</Link>
-          </Button>
-        </div>
-        <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-          {versusPages.map((v) => (
-            <li key={v.slug}>
-              <Link
-                href={`/versus/${v.slug}`}
-                className="group flex h-full flex-col rounded-xl border bg-card p-4 transition-colors hover:border-primary/40 hover:bg-accent/40"
-              >
-                <h3 className="font-semibold group-hover:text-primary">
-                  {v.title}
-                </h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                  {v.question}
-                </p>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* The map itself */}
-      <section className="pb-16">
-        <TopicMap />
-      </section>
-
-      {/* What this is / isn't */}
-      <section className="grid gap-6 pb-16 sm:grid-cols-3">
-        <div className="rounded-xl border bg-card p-5">
-          <Compass className="mb-3 size-6 text-primary" />
-          <h2 className="font-semibold">Orientation, not certification</h2>
-          <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-            Trailhead teaches you how, step by step, with badges. BeforeSetup
-            answers the question that comes first: what is this thing, how does
-            it connect, and do I even need it?
-          </p>
-        </div>
-        <div className="rounded-xl border bg-card p-5">
-          <Zap className="mb-3 size-6 text-primary" />
-          <h2 className="font-semibold">Five-minute dives</h2>
-          <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-            Every topic follows the same shape: mental model, when to use it,
-            when to avoid it, and the pitfalls that generate real support
-            tickets. Read one on the way into a meeting.
-          </p>
-        </div>
-        <div className="rounded-xl border bg-card p-5">
-          <BookOpen className="mb-3 size-6 text-primary" />
-          <h2 className="font-semibold">Curated onward links</h2>
-          <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-            Each dive ends with the best official docs, Trailhead modules, and
-            community resources — labeled intro, practical, or deep — so the
-            next step is always one click away.
-          </p>
-        </div>
-      </section>
-
-      {/* Paths */}
-      <section className="pb-20">
-        <h2 className="text-2xl font-bold tracking-tight">
-          Not sure where to begin?
-        </h2>
-        <p className="mt-1.5 text-muted-foreground">
-          Opinionated reading orders through the map — for admins, developers,
-          architects, consultants, and anyone tracking the AI wave.
-        </p>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {paths.map((p) => (
-            <Link
-              key={p.slug}
-              href={`/start/${p.slug}`}
-              className="group rounded-xl border bg-card p-5 shadow-sm transition-colors hover:border-primary/40 hover:bg-accent/40"
-            >
-              <h3 className="font-semibold group-hover:text-primary">
-                {p.title} →
-              </h3>
-              <p className="mt-1 text-sm text-muted-foreground">
-                {p.audience}
-              </p>
-              <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
-                {p.description}
-              </p>
-              <p className="mt-3 text-xs font-medium text-primary">
-                {p.steps.length} topics in order
-              </p>
-            </Link>
-          ))}
-        </div>
-      </section>
-    </div>
-  );
+  return <div className="home-shell">
+    <section className="hero">
+      <div className="hero-copy">
+        <p className="eyebrow">Free · Independent · No sign-up</p>
+        <h1>The five minutes before you touch Setup</h1>
+        <p className="hero-description">Plain-English mental models, real trade-offs, common traps, and the official resources worth reading — before you start building.</p>
+        <div className="hero-actions"><Button size="lg" asChild><Link href="/versus">Start with a decision <span aria-hidden="true">↗</span></Link></Button><Button size="lg" variant="ghost" asChild><Link href="#atlas">Explore the atlas ↓</Link></Button></div>
+        <p className="hero-note">Orientation, not certification.<br />Know the territory. Then build.</p>
+      </div>
+      <div className="hero-atlas"><TopicMap compact /></div>
+    </section>
+    <section className="home-section" id="decisions"><div className="section-heading"><div><p className="eyebrow">01 / Choose deliberately</p><h2>Start with a decision</h2></div><p>The questions that show up in Slack.<br />Trade-offs, then a recommendation.</p></div><DecisionList /></section>
+    <section className="home-section" id="atlas"><div className="section-heading"><div><p className="eyebrow">02 / See the connections</p><h2>Explore the Salesforce Atlas</h2></div><p>Nine regions. One connected platform.<br />Follow the relationships before the implementation.</p></div><TopicMap /></section>
+    <section className="home-section changes-section"><div><p className="eyebrow">Field guide revisions</p><h2>Recently changed</h2><p className="text-muted-foreground">Small corrections. Better decisions.</p></div><ul>{changes.map((change) => <li key={change.topic}><Link href={`/topics/${change.topic}`}><time dateTime={change.date}>{change.date}</time><h3>{change.title} <span aria-hidden="true">↗</span></h3><p>{change.note}</p></Link></li>)}</ul></section>
+    <section className="home-section"><div className="section-heading"><div><p className="eyebrow">03 / Find your bearings</p><h2>Choose your path</h2></div><p>Opinionated reading orders.<br />Start where your work starts.</p></div><PathJourneys /></section>
+  </div>;
 }

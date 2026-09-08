@@ -99,7 +99,7 @@ describe("topic pages", () => {
   it("generateMetadata handles missing and found topics", async () => {
     await expect(
       topicMeta({ params: Promise.resolve({ slug: "missing" }) })
-    ).resolves.toEqual({ title: "Topic not found" });
+    ).resolves.toMatchObject({ title: "Topic not found" });
     const meta = await topicMeta({
       params: Promise.resolve({ slug: "flow" }),
     });
@@ -146,7 +146,7 @@ describe("versus pages", () => {
   it("generateMetadata handles missing and found", async () => {
     await expect(
       versusMeta({ params: Promise.resolve({ slug: "missing" }) })
-    ).resolves.toEqual({ title: "Decision not found" });
+    ).resolves.toMatchObject({ title: "Decision not found" });
     const meta = await versusMeta({
       params: Promise.resolve({ slug: "flow-vs-apex-trigger" }),
     });
@@ -178,7 +178,7 @@ describe("path pages", () => {
   it("generateMetadata handles missing and found", async () => {
     await expect(
       pathMeta({ params: Promise.resolve({ slug: "missing" }) })
-    ).resolves.toEqual({ title: "Path not found" });
+    ).resolves.toMatchObject({ title: "Path not found" });
     const meta = await pathMeta({
       params: Promise.resolve({ slug: "admin" }),
     });

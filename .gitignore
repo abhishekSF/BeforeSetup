@@ -46,3 +46,6 @@ yarn-error.log*
 agent-tools/
 AGENTS.md
 CLAUDE.md
+
+/playwright-report/
+/test-results/

@@ -71,7 +71,7 @@ export const paths: LearningPath[] = [
       },
       {
         topic: "apex",
-        note: "Java-flavored, database-aware, and always bulkified. The system-mode default is the security fact to internalize.",
+        note: "Java-flavored, database-aware, and always bulkified. Understand the API 67.0 execution-default boundary, legacy classes, and trigger context before trusting access checks.",
       },
       {
         topic: "soql",
@@ -193,7 +193,7 @@ export const paths: LearningPath[] = [
       },
       {
         topic: "data-360",
-        note: "The unified data layer every AI feature now assumes — and an implementation project, not a toggle.",
+        note: "The unified data layer for use cases that need cross-system grounding — and an implementation project, not a toggle.",
       },
       {
         topic: "headless-360",

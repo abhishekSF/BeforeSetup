@@ -10,7 +10,7 @@ export function TopicCard({ topic }: { topic: Topic }) {
   return (
     <Link
       href={`/topics/${topic.slug}`}
-      className="group flex flex-col gap-2 rounded-xl border bg-card p-4 shadow-sm transition-colors hover:border-primary/40 hover:bg-accent/40"
+      className="topic-card group flex flex-col gap-2 rounded-xl border bg-card p-4 shadow-sm transition-colors hover:border-primary/40 hover:bg-accent/40"
     >
       <div className="flex items-start justify-between gap-2">
         <h3 className="font-semibold leading-snug">{topic.title}</h3>

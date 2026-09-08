@@ -21,7 +21,8 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  return pathPageMeta(pathBySlug.get(slug));
+  const meta = pathPageMeta(pathBySlug.get(slug));
+  return { ...meta, alternates: { canonical: `/start/${slug}` }, openGraph: { title: meta.title, description: meta.description, url: `/start/${slug}` } };
 }
 
 export default async function PathPage({

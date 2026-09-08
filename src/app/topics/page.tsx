@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { TopicBrowser } from "@/components/topic-browser";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/topics" },
   title: "All topics",
   description:
     "Browse and search every Salesforce quick-dive: data model, automation, Apex, LWC, security, integration, and DevOps.",

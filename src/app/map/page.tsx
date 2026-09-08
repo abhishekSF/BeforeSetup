@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { TopicMap } from "@/components/topic-map";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/map" },
   title: "Topic map",
   description:
     "An interactive map of the topics BeforeSetup covers: data model, automation, code, UI, security, integration, DevOps, AI & agents, and architecture & strategy — with the connections between them.",

@@ -65,3 +65,15 @@ describe("learning paths", () => {
     }
   });
 });
+
+describe("resource trust", () => {
+  it("keeps a first-party source on every topic and never fabricates review dates", () => {
+    for (const topic of topics) {
+      expect(topic.resources.some((resource) => resource.official)).toBe(true);
+      for (const resource of topic.resources) {
+        expect(new URL(resource.url).protocol).toBe("https:");
+        if (resource.verifiedOn !== null) expect(resource.verifiedOn).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      }
+    }
+  });
+});

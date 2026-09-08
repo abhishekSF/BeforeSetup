@@ -18,11 +18,17 @@ export type Lifecycle = "ga" | "beta" | "pilot" | "renamed" | "retired";
  *  (Data 360 is both add-on *and* GA; one enum can't say that). */
 export type Packaging = "core" | "edition-gated" | "add-on" | "consumption";
 
+type ResourceKind = "docs" | "trailhead" | "community" | "article" | "video";
+
 export interface Resource {
   title: string;
   url: string;
   source: string;
   level: ResourceLevel;
+  kind: ResourceKind;
+  official: boolean;
+  /** Editorial source review, never an HTTP reachability timestamp. */
+  verifiedOn: string | null;
 }
 
 export interface Topic {
@@ -45,6 +51,8 @@ export interface Topic {
   packaging: Packaging;
   /** e.g. "Add-on SKU. Do not assume it is in Enterprise Edition." */
   editionNote?: string;
+  /** Explicit unresolved source checks; never imply a completed factual audit. */
+  reviewNote?: string;
 }
 
 /** One choice in a versus page. Not every option is a map topic —

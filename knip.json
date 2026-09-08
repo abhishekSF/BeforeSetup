@@ -4,9 +4,18 @@
     "src/app/**/{page,layout,not-found,opengraph-image}.{ts,tsx}",
     "src/**/*.test.ts",
     "src/**/*.test.tsx",
-    "scripts/**/*.mjs"
+    "scripts/**/*.mjs",
+    "src/app/{sitemap,robots}.ts",
+    "playwright.config.ts",
+    "e2e/**/*.ts",
+    "scripts/**/*.ts"
   ],
-  "project": ["src/**/*.{ts,tsx}", "scripts/**/*.mjs"],
+  "project": [
+    "src/**/*.{ts,tsx}",
+    "scripts/**/*.mjs",
+    "scripts/**/*.ts",
+    "e2e/**/*.ts"
+  ],
   "ignoreDependencies": [
     "tw-animate-css",
     "@tailwindcss/postcss",

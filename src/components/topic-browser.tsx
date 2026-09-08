@@ -3,15 +3,12 @@
 import { useMemo, useState } from "react";
 import { SearchX, Search } from "lucide-react";
 import { topics } from "@/data/topics";
-import { categories } from "@/data/categories";
 import type { CategoryId } from "@/data/types";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { TopicCard } from "@/components/topic-card";
-import { categoryBadgeClass } from "@/lib/category-colors";
 import { filterTopics } from "@/lib/search";
-import { cn } from "@/lib/utils";
+import { CategoryFilter } from "@/components/category-filter";
 
 export function TopicBrowser() {
   const [query, setQuery] = useState("");
@@ -35,31 +32,8 @@ export function TopicBrowser() {
         />
       </div>
 
-      <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by area">
-        <Badge
-          variant={category === null ? "default" : "outline"}
-          className="cursor-pointer"
-          onClick={() => setCategory(null)}
-        >
-          All ({topics.length})
-        </Badge>
-        {categories.map((c) => (
-          <Badge
-            key={c.id}
-            variant="outline"
-            data-category={c.id}
-            className={cn(
-              "cursor-pointer",
-              category === c.id
-                ? categoryBadgeClass[c.id] + " ring-1 ring-current"
-                : "text-muted-foreground"
-            )}
-            onClick={() => setCategory(category === c.id ? null : c.id)}
-          >
-            {c.label}
-          </Badge>
-        ))}
-      </div>
+      <CategoryFilter value={category} onChange={setCategory} />
+      <p className="text-sm text-muted-foreground" role="status">{results.length} topics found</p>
 
       {results.length === 0 ? (
         <div className="flex flex-col items-center gap-3 rounded-xl border border-dashed py-16 text-center">
