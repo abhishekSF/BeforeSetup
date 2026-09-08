@@ -15,6 +15,7 @@ export default function TopicsPage() {
       <p className="mt-2 max-w-2xl text-muted-foreground">
         Search across titles, mental models, and pitfalls — or filter by area.
       </p>
+      <h2 className="sr-only">Browse the field guide</h2>
       <div className="mt-8">
         <TopicBrowser />
       </div>

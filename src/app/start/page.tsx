@@ -16,6 +16,7 @@ export default function StartPage() {
         The map is browsable in any order, but order helps when everything is
         new. Pick the path that matches how you build.
       </p>
+      <h2 className="sr-only">Choose your path</h2>
       <PathJourneys />
     </div>
   );

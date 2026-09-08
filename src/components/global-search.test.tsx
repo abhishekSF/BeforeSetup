@@ -6,6 +6,7 @@ import { GlobalSearch } from "./global-search";
 it("opens by keyboard, searches, closes on navigation, and restores focus", async () => {
   const user = userEvent.setup();
   const view = render(<GlobalSearch />);
+  expect(screen.getByRole("button", { name: "Search" })).toBeInTheDocument();
   fireEvent.keyDown(document, { key: "k" });
   expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   fireEvent.keyDown(document, { key: "x", ctrlKey: true });

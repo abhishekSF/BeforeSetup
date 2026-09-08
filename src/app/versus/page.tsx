@@ -27,6 +27,7 @@ export default function VersusIndexPage() {
         on <em>what</em>.
       </p>
 
+      <h2 className="sr-only">Compare your options</h2>
       <DecisionList />
     </div>
   );

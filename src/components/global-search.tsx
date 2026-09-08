@@ -23,7 +23,7 @@ export function GlobalSearch() {
   }, []);
   const results = filterTopics(topics, query, null);
   return <Dialog.Root open={open} onOpenChange={setOpen}>
-    <Dialog.Trigger ref={trigger} className="search-trigger"><Search aria-hidden="true" size={17} /><span>Search</span><kbd>⌘ K</kbd></Dialog.Trigger>
+    <Dialog.Trigger aria-label="Search" ref={trigger} className="search-trigger"><Search aria-hidden="true" size={17} /><span>Search</span><kbd>⌘ K</kbd></Dialog.Trigger>
     <Dialog.Portal>
       <Dialog.Overlay className="search-overlay" />
       <Dialog.Content className="search-dialog">

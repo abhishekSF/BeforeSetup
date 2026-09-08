@@ -14,9 +14,10 @@ export default function MapPage() {
       <h1 className="text-3xl font-bold tracking-tight">The topic map</h1>
       <p className="mt-2 max-w-2xl text-muted-foreground">
         Every core platform topic, grouped by area, with lines showing what
-        connects to what. Hover to see how a topic relates to its neighbors —
-        click to dive in.
+        connects to what. Hover or focus to trace relationships, then open a
+        topic to dive in.
       </p>
+      <h2 className="sr-only">Explore connected topics</h2>
       <div className="mt-8">
         <TopicMap />
       </div>
