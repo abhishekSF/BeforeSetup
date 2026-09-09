@@ -24,3 +24,47 @@ it("opens by keyboard, searches, closes on navigation, and restores focus", asyn
   await user.click(screen.getByRole("button", { name: "Close search" }));
   view.unmount();
 });
+
+it("focuses search, moves between results with arrows, and opens the focused link with Enter", async () => {
+  const user = userEvent.setup();
+  render(<GlobalSearch />);
+  await user.click(screen.getByRole("button", { name: "Search" }));
+  const input = screen.getByLabelText("Search the field guide");
+  expect(input).toHaveFocus();
+  await user.type(input, "flow");
+  const links = screen.getAllByRole("link");
+  await user.keyboard("{ArrowDown}");
+  expect(links[0]).toHaveFocus();
+  await user.keyboard("{ArrowDown}");
+  expect(links[1]).toHaveFocus();
+  await user.keyboard("{ArrowUp}{ArrowUp}");
+  expect(input).toHaveFocus();
+  await user.keyboard("{ArrowUp}");
+  expect(links.at(-1)).toHaveFocus();
+  await user.keyboard("{ArrowDown}{ArrowDown}");
+  expect(links[0]).toHaveFocus();
+  expect(links[0]).toHaveAttribute("href", "/topics/data-loading");
+  await user.keyboard("{Enter}");
+  expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+});
+
+it("handles empty results, Enter from search, and shortcut dismissal", async () => {
+  const user = userEvent.setup();
+  render(<GlobalSearch />);
+  await user.keyboard("{Control>}k{/Control}");
+  const input = screen.getByLabelText("Search the field guide");
+  await user.type(input, "zzzzzz");
+  await user.keyboard("{ArrowDown}{ArrowUp}{Enter}");
+  expect(input).toHaveFocus();
+  expect(screen.getByRole("dialog")).toBeInTheDocument();
+  await user.clear(input);
+  await user.type(input, "flow");
+  fireEvent.keyDown(input, { key: "Enter", isComposing: true });
+  expect(screen.getByRole("dialog")).toBeInTheDocument();
+  await user.keyboard("{Enter}");
+  expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  await user.keyboard("{Control>}k{/Control}");
+  await user.keyboard("{Control>}k{/Control}");
+  expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  expect(screen.getByRole("button", { name: "Search" })).toHaveFocus();
+});

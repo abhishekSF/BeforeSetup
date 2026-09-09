@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Compass, Menu } from "lucide-react";
+import { Compass } from "lucide-react";
 import { GlobalSearch } from "@/components/global-search";
+import { MobileNavigation } from "@/components/mobile-navigation";
 
 const destinations = [
   ["Decisions", "/versus"], ["Atlas", "/map"], ["Topics", "/topics"], ["Paths", "/start"],
@@ -15,13 +16,10 @@ export function SiteHeader() {
       </nav>
       <div className="header-actions">
         <GlobalSearch />
-        <details className="mobile-menu">
-          <summary aria-label="Open navigation"><Menu aria-hidden="true" /><span className="sr-only">Menu</span></summary>
-          <nav aria-label="Mobile navigation">
+        <MobileNavigation>
             {destinations.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
             <a href="https://github.com/abhishekSF/BeforeSetup">Source on GitHub</a>
-          </nav>
-        </details>
+        </MobileNavigation>
       </div>
     </div>
   </header>;
