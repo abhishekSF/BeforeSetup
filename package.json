@@ -11,6 +11,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "coverage": "vitest run --coverage",
+    "build:pages": "GITHUB_PAGES=true next build",
     "deadcode": "knip",
     "dupes": "jscpd",
     "metrics": "node scripts/check-metrics.mjs",

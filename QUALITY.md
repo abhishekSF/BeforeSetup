@@ -29,7 +29,12 @@ npm run dupes
 npm run metrics
 npm run mutate
 npm run quality          # all of the above, in order
+npm run build:pages      # static export with basePath /BeforeSetup (CI + GitHub Pages)
 ```
+
+## GitHub Pages
+
+The live site is the `gh-pages` branch, built by CI with `GITHUB_PAGES=true`. That flag sets `output: "export"`, `trailingSlash: true`, and `basePath: "/BeforeSetup"` in `next.config.ts`. PRs verify the export; pushes to `main` publish it after `npm run quality` passes. Touch `out/.nojekyll` so GitHub’s Jekyll step does not ignore `_next`.
 
 ## Scope notes
 

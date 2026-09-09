@@ -23,6 +23,24 @@ export function pickValues(pick: string | string[] | null): string[] | null {
   return [pick];
 }
 
+/** Pick labels that are not in the versus option list. Empty when it depends. */
+export function invalidPickLabels(
+  pick: string | string[] | null,
+  optionLabels: ReadonlySet<string>
+): string[] {
+  const values = pickValues(pick);
+  if (values === null) {
+    return [];
+  }
+  const invalid: string[] = [];
+  for (const value of values) {
+    if (!optionLabels.has(value)) {
+      invalid.push(value);
+    }
+  }
+  return invalid;
+}
+
 export function versusRelatedTopics(
   versus: Versus,
   topicBySlug: Map<string, Topic>

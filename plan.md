@@ -1,9 +1,12 @@
 # Plan — from prototype to field guide
 
-**Repo:** `abhishekSF/orgatlas` (rename to `beforesetup` pending on GitHub — a two-click owner action in Settings; content rename is done)
-**Name: DECIDED — BeforeSetup** (2026-09-01). Verified clean: the string exists only as a generic lifecycle-hook name in Video.js/werf/NestJS docs — no product, no company, no trademark, nothing Salesforce-adjacent. The tagline comes free: "the five minutes before you touch Setup."
+**Repo:** `abhishekSF/BeforeSetup`
+**Name: DECIDED — BeforeSetup** (2026-09-01).
+**Live:** https://abhisheksf.github.io/BeforeSetup/
+**Status of this doc (2026-09-09):** Phases 1–2 of the product work below are in the repo: MIT LICENSE, lockfile, six versus pages, 36 topics with `updatedOn` / `lifecycle` / `packaging`, quality gates on every PR. GitHub Pages is the host (not Vercel). Remaining product work is still the later phases (typed map edges, seasonal “changed this season” strip, analytics). Historical sections after the baseline still mention stale blockers such as a missing lockfile — treat this box as current.
+
 **Baseline verified:** 2026-08-31 · 36 topics / 9 categories / 5 paths · builds clean from the GitHub clone
-**Status of this doc:** my synthesis of the external critique-derived plan, corrected against the actual codebase, with schemas fixed and open decisions isolated.
+**Original synthesis date:** 2026-09-01
 
 ---
 
@@ -152,13 +155,13 @@ No accounts/auth/personalization · no org/metadata-API connection · no AI chat
 
 ## 8. Definition of done, v1
 
-- [ ] Name with zero Atlas/OrgAtlas gravity, domain live
-- [ ] Public URL + analytics from day one
-- [ ] MIT LICENSE + lockfile in repo
-- [ ] Six versus pages shipped
-- [ ] All 36 topics carry `updatedOn` + `lifecycle` + `packaging`
+- [x] Name with zero Atlas/OrgAtlas gravity (GitHub Pages URL live; custom domain still an owner action)
+- [ ] Public URL + analytics from day one (URL yes; analytics not in repo)
+- [x] MIT LICENSE + lockfile in repo
+- [x] Six versus pages shipped
+- [x] All 36 topics carry `updatedOn` + `lifecycle` + `packaging`
 - [ ] Map filters by role and lifecycle — or the map is off the homepage
-- [ ] README: screenshots + live link
+- [x] README: live link (screenshots still optional)
 - [ ] One week of real traffic and an honest read on whether anyone uses the graph
 
 If all boxes tick and the graph goes unused, the field guide still succeeded — that was the design.

@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { pickValues, versusForTopic, versusRelatedTopics } from "@/lib/versus";
+import {
+  invalidPickLabels,
+  pickValues,
+  versusForTopic,
+  versusRelatedTopics,
+} from "@/lib/versus";
 import { makeTopic, makeVersus } from "@/test/fixtures";
 
 const pages = [
@@ -53,6 +58,26 @@ describe("pickValues", () => {
     expect(pickValues("Flow")).toEqual(["Flow"]);
     expect(pickValues(["A", "B"])).toEqual(["A", "B"]);
     expect(pickValues([])).toEqual([]);
+  });
+});
+
+describe("invalidPickLabels", () => {
+  const labels = new Set(["Before-save flow", "Apex trigger"]);
+
+  it("returns nothing for it-depends or labels that exist", () => {
+    expect(invalidPickLabels(null, labels)).toEqual([]);
+    expect(invalidPickLabels("Apex trigger", labels)).toEqual([]);
+    expect(invalidPickLabels(["Before-save flow", "Apex trigger"], labels)).toEqual(
+      []
+    );
+    expect(invalidPickLabels([], labels)).toEqual([]);
+  });
+
+  it("returns labels that are not options", () => {
+    expect(invalidPickLabels("Scheduled flow", labels)).toEqual(["Scheduled flow"]);
+    expect(invalidPickLabels(["Apex trigger", "Batch Apex"], labels)).toEqual([
+      "Batch Apex",
+    ]);
   });
 });
 

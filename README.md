@@ -2,6 +2,8 @@
 
 A free, independent field guide to the Salesforce platform.
 
+**Live site:** [https://abhisheksf.github.io/BeforeSetup/](https://abhisheksf.github.io/BeforeSetup/)
+
 It is deliberately **not** a Trailhead competitor. Trailhead teaches step by step
 with badges; BeforeSetup answers the questions that come first: *what is this
 thing, how does it connect to everything else, do I even need it — and when
@@ -44,7 +46,9 @@ npm install
 npm run dev -- --port 4780
 ```
 
-Then open http://localhost:4780.
+Then open http://localhost:4780. See [CONTRIBUTING.md](CONTRIBUTING.md) to add a topic or decision page.
+
+The production site is a static export on GitHub Pages (`/BeforeSetup/`). CI builds that export with `npm run build:pages` and, on `main`, publishes the `gh-pages` branch.
 
 ## Quality gates
 
