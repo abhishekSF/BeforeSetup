@@ -1,98 +1,48 @@
-# BeforeSetup — the five minutes before you touch Setup
+# BeforeSetup
+
+The five minutes before you touch Setup.
 
 A free, independent field guide to the Salesforce platform.
 
-**Live site:** [https://abhisheksf.github.io/BeforeSetup/](https://abhisheksf.github.io/BeforeSetup/)
+**Live site.** [https://abhisheksf.github.io/BeforeSetup/](https://abhisheksf.github.io/BeforeSetup/)
 
-It is deliberately **not** a Trailhead competitor. Trailhead teaches step by step
-with badges; BeforeSetup answers the questions that come first: *what is this
-thing, how does it connect to everything else, do I even need it — and when
-there are three ways to do it, which one do I pick?*
+Trailhead teaches step by step with badges. BeforeSetup answers the questions that come first. What is this thing. How does it connect to everything else. Do you even need it. When there are three ways to do it, which one do you pick.
 
-## What's inside
+## What is inside
 
-- **Decision pages** — six recurring "X vs Y" questions of the platform,
-  answered with a situation-by-situation matrix and a committed rule of thumb.
-  "It depends" appears only where it genuinely does — and then says on *what*.
-- **Five-minute quick-dives** — 36 platform topics across 9 areas (data model,
-  automation, Apex & queries, UI, security, integration, DevOps, AI & agents,
-  and architecture & strategy). Every dive follows the same shape: a
-  plain-English mental model, when to reach for it, when to think twice, and
-  the pitfalls that generate real support tickets.
-- **The latest wave covered** — Agentforce and the 360 rebrand, Data 360
-  (formerly Data Cloud), Headless 360 and Hosted MCP Servers, and the
-  Claudeforce / AIforce partnership (August 2026). Each topic carries
-  `lifecycle` (GA / beta / pilot) and `packaging` (core / edition-gated /
-  add-on / consumption) metadata so SKU reality is never a footnote.
-- **Interactive topic map** — the connections between topics drawn as edges.
-  Hover to see relationships, click to dive in.
-- **Curated onward links** — each dive ends with official docs, Trailhead
-  modules, and community resources labeled *intro*, *practical*, or *deep*.
-- **Start-here paths** — opinionated reading orders for admins/declarative
-  builders, developers, architects, consultants, and builders tracking the AI
-  & Agentforce wave.
-- **Search** — filter every topic by title, mental model, or pitfall text.
+- **Decision pages.** Six recurring X versus Y questions. Each page has a situation-by-situation matrix and a committed rule of thumb. "It depends" appears only when it is true. Then the page says what it depends on.
+- **Five-minute quick-dives.** 36 platform topics across 9 areas: data model, automation, Apex and queries, UI, security, integration, DevOps, AI and agents, and architecture and strategy. Every dive has a plain-English mental model, when to reach for it, when to think twice, and the pitfalls that generate real support tickets.
+- **Current wave.** Agentforce and the 360 rebrand. Data 360, previously Data Cloud. Headless 360 and Hosted MCP Servers. The Claudeforce and AIforce partnership from August 2026. Each topic has `lifecycle` of GA, beta, or pilot. Each topic has `packaging` of core, edition-gated, add-on, or consumption. Those fields carry the SKU limits.
+- **Interactive topic map.** Connections between topics drawn as edges. Hover to see relationships. Click to open a dive.
+- **Curated onward links.** Each dive ends with official docs, Trailhead modules, and community resources labeled *intro*, *practical*, or *deep*.
+- **Start-here paths.** Opinionated reading orders for admins and declarative builders, developers, architects, consultants, and builders tracking the AI and Agentforce wave.
+- **Search.** Filter every topic by title, mental model, or pitfall text.
 
 ## Stack
 
-Next.js (App Router) · TypeScript · Tailwind CSS v4 · shadcn/ui · lucide icons.
-All content lives as typed data in [`src/data/`](src/data/) — adding a topic or
-a decision page is adding one object to a file, no CMS required.
+Next.js App Router, TypeScript, Tailwind CSS v4, shadcn/ui, lucide icons.
+All content lives as typed data in [`src/data/`](src/data/). Adding a topic or a decision page is adding one object to a file.
 
-## Run it locally
+## Run locally
 
 ```bash
 npm install
 npm run dev -- --port 4780
 ```
 
-Then open http://localhost:4780. See [CONTRIBUTING.md](CONTRIBUTING.md) to add a topic or decision page.
+Then open http://localhost:4780.
 
-The production site is a static export on GitHub Pages (`/BeforeSetup/`). CI builds that export with `npm run build:pages` and, on `main`, publishes the `gh-pages` branch.
+The production site is a static export on GitHub Pages at `/BeforeSetup/`. CI builds that export with `npm run build:pages`. On `main`, it publishes the `gh-pages` branch.
+
+To add a topic, a decision page, or a path, follow [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Quality gates
 
-Every PR runs `npm run quality`. The bar:
-
-| Gate | Limit |
-| --- | --- |
-| Cyclomatic complexity | < 22 per function |
-| Cognitive complexity | < 22 per function |
-| Halstead difficulty | < 80 per function |
-| Lines of code | < 500 per file |
-| Test coverage | 100% statements / branches / functions / lines |
-| CRAP score | < 25 per function |
-| Mutation testing | 0 surviving mutants in `src/lib` |
-| Dead code | none (knip) |
-| Redundant code | none (jscpd + sonar) |
-| `any` / `unknown` | none |
+Every PR runs `npm run quality`. See [QUALITY.md](QUALITY.md) for the limits and how each gate is enforced.
 
 ```bash
 npm run quality
 ```
-
-See [QUALITY.md](QUALITY.md) for how each gate is enforced.
-
-## Adding a topic
-
-1. Add a `Topic` object to the right category file in `src/data/topics/`
-   (or create a new category in `src/data/categories.ts`).
-2. Give it a `slug`, `tagline`, 2–3 `mentalModel` paragraphs, `whenToUse` /
-   `whenToAvoid` / `pitfalls` bullets, `related` slugs, `resources`, and the
-   metadata trio: `updatedOn`, `lifecycle`, `packaging` (plus `editionNote`
-   when the SKU story needs a warning).
-3. Add a short display label for the map in `src/lib/topic-map-layout.ts`.
-
-The map layout, search index, topic page, and related-topic links all derive
-from the data automatically.
-
-## Adding a decision page
-
-Add a `Versus` object to [`src/data/versus.ts`](src/data/versus.ts): the
-question as someone would type it in Slack, the options (with topic slugs where
-a dive exists), a matrix of situations with a committed pick per row, and 3–5
-rule-of-thumb bullets. The route, index card, and topic cross-links derive from
-the data.
 
 ## License
 
@@ -100,8 +50,4 @@ the data.
 
 ## Trademark note
 
-BeforeSetup is an independent community resource, not affiliated with,
-sponsored by, or endorsed by Salesforce. Salesforce, Trailhead, Apex,
-Lightning, and Agentforce are trademarks of Salesforce, Inc. All content is
-original; every topic links to the official documentation as the source of
-truth.
+BeforeSetup is a free, independent community field guide. It is not affiliated with, sponsored by, or endorsed by Salesforce. Salesforce, Trailhead, Apex, Lightning, and Agentforce are trademarks of Salesforce, Inc. All content is original. Every topic links to the official documentation as the source of truth.

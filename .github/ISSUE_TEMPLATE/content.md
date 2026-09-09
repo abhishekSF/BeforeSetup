@@ -5,10 +5,10 @@ title: "[content] "
 labels: []
 ---
 
-**Page** (topic slug, versus slug, or URL):
+**Page.** Topic slug, versus slug, or URL.
 
-**What’s wrong or missing**
+**What is wrong or missing**
 
-**Official source** (Help / Docs / Trailhead URL, if you have one):
+**Official source.** Help, Docs, or Trailhead URL, if you have one.
 
 Do not invent Salesforce SKUs, lifecycle, or docs URLs. If the official page disagrees with BeforeSetup, the official page wins.

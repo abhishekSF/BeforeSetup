@@ -1,12 +1,13 @@
-# Plan — from prototype to field guide
+# Plan, from prototype to field guide
 
-**Repo:** `abhishekSF/BeforeSetup`
-**Name: DECIDED — BeforeSetup** (2026-09-01).
-**Live:** https://abhisheksf.github.io/BeforeSetup/
-**Status of this doc (2026-09-09):** Phases 1–2 of the product work below are in the repo: MIT LICENSE, lockfile, six versus pages, 36 topics with `updatedOn` / `lifecycle` / `packaging`, quality gates on every PR. GitHub Pages is the host (not Vercel). Remaining product work is still the later phases (typed map edges, seasonal “changed this season” strip, analytics). Historical sections after the baseline still mention stale blockers such as a missing lockfile — treat this box as current.
+**Repo.** `abhishekSF/BeforeSetup`
+**Name.** BeforeSetup. Locked 2026-09-01.
+**Live.** https://abhisheksf.github.io/BeforeSetup/
 
-**Baseline verified:** 2026-08-31 · 36 topics / 9 categories / 5 paths · builds clean from the GitHub clone
-**Original synthesis date:** 2026-09-01
+**Status, 2026-09-09.** Phases 1 and 2 of the product work below are in the repo. The repo has an MIT LICENSE, a lockfile, six versus pages, and 36 topics with `updatedOn`, `lifecycle`, and `packaging`. Quality gates run on every PR. GitHub Pages hosts the site. Remaining product work is still the later phases. Those phases include typed map edges, a seasonal "changed this season" strip, and analytics. Historical sections after this box still mention stale blockers such as a missing lockfile. Trust this box over those lines.
+
+**Baseline verified.** 2026-08-31. 36 topics, 9 categories, 5 paths. Builds clean from the GitHub clone.
+**Original synthesis date.** 2026-09-01
 
 ---
 
@@ -160,8 +161,8 @@ No accounts/auth/personalization · no org/metadata-API connection · no AI chat
 - [x] MIT LICENSE + lockfile in repo
 - [x] Six versus pages shipped
 - [x] All 36 topics carry `updatedOn` + `lifecycle` + `packaging`
-- [ ] Map filters by role and lifecycle — or the map is off the homepage
-- [x] README: live link (screenshots still optional)
+- [ ] Map filters by role and lifecycle, or the map is off the homepage
+- [x] README live link (screenshots still optional)
 - [ ] One week of real traffic and an honest read on whether anyone uses the graph
 
 If all boxes tick and the graph goes unused, the field guide still succeeded — that was the design.
