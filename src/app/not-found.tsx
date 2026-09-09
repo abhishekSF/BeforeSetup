@@ -8,7 +8,7 @@ export default function NotFound() {
       <Compass className="size-10 text-muted-foreground" />
       <h1 className="mt-4 text-2xl font-bold">Off the map</h1>
       <p className="mt-2 text-muted-foreground">
-        That page doesn&apos;t exist — but every topic we do cover is one click
+        That page doesn&apos;t exist. Every topic we do cover is one click
         away.
       </p>
       <div className="mt-6 flex gap-3">

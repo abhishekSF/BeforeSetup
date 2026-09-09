@@ -18,11 +18,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl(process.env.NEXT_PUBLIC_SITE_URL)),
   title: {
-    default: "BeforeSetup — the five minutes before you touch Setup",
+    default: "BeforeSetup. The five minutes before you touch Setup",
     template: "%s · BeforeSetup",
   },
   description:
-    "A field guide to the Salesforce platform: plain-English mental models, the recurring X-vs-Y decisions, common pitfalls, and the best resources — free, no sign-up.",
+    "A field guide to the Salesforce platform. Plain-English mental models, recurring X versus Y decisions, common pitfalls, and the best resources. Free, no sign-up.",
 };
 
 export default function RootLayout({

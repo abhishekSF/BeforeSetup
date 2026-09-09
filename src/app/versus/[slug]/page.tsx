@@ -65,7 +65,7 @@ export default async function VersusPage({
         <h2 className="text-xl font-semibold">The matrix</h2>
         <p className="mt-1 text-sm text-muted-foreground">
           Find your situation in the left column. Green means a committed
-          answer; amber means the honest answer is a trade-off — the note says
+          answer. Amber means the honest answer is a trade-off. The note says
           on what.
         </p>
         <div className="mt-4 overflow-x-auto rounded-xl border">
