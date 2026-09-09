@@ -35,7 +35,7 @@ npm run build:pages
 
 ## GitHub Pages
 
-The live site is the `gh-pages` branch. CI sets `GITHUB_PAGES=true`. Then `next.config.ts` uses static export, trailing slashes, and `basePath` `/BeforeSetup`. Pull requests only verify the export. Pushes to `main` publish after `npm run quality` passes. The workflow writes `out/.nojekyll` so GitHub's Jekyll step does not ignore `_next`.
+The live site is the `gh-pages` branch. CI sets `GITHUB_PAGES=true`. Then `next.config.ts` uses static export, trailing slashes, and `basePath` `/BeforeSetup`. Pull requests only verify the export. Pushes to `main` publish after `npm run quality` passes. The workflow writes `out/.nojekyll` and uploads it with hidden files included, so GitHub's Jekyll step does not ignore `_next`.
 
 ## Scope notes
 
