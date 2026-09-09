@@ -5,6 +5,13 @@ on:
     branches: [main]
   pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
 jobs:
   quality:
     runs-on: ubuntu-latest
@@ -30,3 +37,54 @@ jobs:
         run: npm run metrics
       - name: Mutation testing (no survivors)
         run: npm run mutate
+
+  pages-export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GITHUB_PAGES: "true"
+      NEXT_PUBLIC_SITE_URL: "https://abhisheksf.github.io/BeforeSetup"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Static export with the GitHub Pages base path
+        run: npm run build:pages
+      - name: Keep Jekyll from hiding _next
+        run: touch out/.nojekyll
+      - name: Export uses /BeforeSetup asset prefix
+        run: |
+          test -f out/index.html
+          grep -q "/BeforeSetup/_next/" out/index.html
+      - uses: actions/upload-artifact@v4
+        with:
+          name: github-pages-out
+          path: out
+          retention-days: 3
+
+  deploy-pages:
+    needs: [quality, pages-export]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: github-pages-out
+          path: out
+      - name: Publish out/ to the gh-pages branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: out
+        run: |
+          git init
+          git checkout -B gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Publish BeforeSetup static export"
+          git push --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages:gh-pages

@@ -1,7 +1,6 @@
 # Quality gates
 
-BeforeSetup keeps a hard quality bar on application code. CI runs
-`npm run quality` on every pull request; a failure is a failed build.
+CI runs `npm run quality` on every pull request. CI fails the job when any gate fails.
 
 ## The bar
 
@@ -12,11 +11,11 @@ BeforeSetup keeps a hard quality bar on application code. CI runs
 | Halstead difficulty | less than 80 | `scripts/check-metrics.mjs` |
 | File length | fewer than 500 lines | ESLint `max-lines`, `scripts/check-metrics.mjs` |
 | Test coverage | 100% | Vitest v8 coverage thresholds |
-| CRAP score | below 25 | `scripts/check-metrics.mjs` (at 100% coverage, CRAP = complexity) |
+| CRAP score | below 25 | `scripts/check-metrics.mjs`. At 100% coverage, CRAP equals complexity. |
 | Mutation score | no surviving mutants | Stryker on `src/lib/**` |
-| Dead code | zero | knip + ESLint unused + sonar dead-store |
-| Redundant code | zero | jscpd + sonar no-duplicated-branches / no-identical-functions / no-redundant-* |
-| `any` / `unknown` | none | `@typescript-eslint/no-explicit-any` + `no-restricted-syntax` on `TSAnyKeyword` / `TSUnknownKeyword` |
+| Dead code | zero | knip, ESLint unused, and sonar dead-store |
+| Redundant code | zero | jscpd and sonar no-duplicated-branches, no-identical-functions, and no-redundant-* |
+| `any` and `unknown` | none | `@typescript-eslint/no-explicit-any` and `no-restricted-syntax` on `TSAnyKeyword` and `TSUnknownKeyword` |
 
 ## Commands
 
@@ -28,24 +27,24 @@ npm run deadcode
 npm run dupes
 npm run metrics
 npm run mutate
-npm run quality          # all of the above, in order
+npm run quality
+npm run build:pages
 ```
+
+`npm run quality` runs the gates above, in that order. `npm run build:pages` is a separate static export for GitHub Pages. That export uses `basePath` `/BeforeSetup`.
+
+## GitHub Pages
+
+The live site is the `gh-pages` branch. CI sets `GITHUB_PAGES=true`. Then `next.config.ts` uses static export, trailing slashes, and `basePath` `/BeforeSetup`. Pull requests only verify the export. Pushes to `main` publish after `npm run quality` passes. The workflow writes `out/.nojekyll` so GitHub's Jekyll step does not ignore `_next`.
 
 ## Scope notes
 
-- **Mutation testing** targets `src/lib` — the extracted, branching logic.
-  Content files under `src/data` are typed catalogs of prose, not control flow;
-  mutating their string literals is noise. UI chrome is covered by tests and
-  coverage, and kept below the complexity / LOC / type gates.
-- **jscpd** ignores `src/data` (repeated topic/versus shapes are the catalog
-  schema, not copy-paste) and test files.
-- **CRAP** is `complexity² × (1 − coverage)³ + complexity`. At 100% coverage
-  this equals cyclomatic complexity, so the complexity cap of 21 already keeps
-  CRAP under 25.
+**Mutation testing.** Stryker mutates `src/lib`. Files under `src/data` are typed catalogs of prose, not control flow. Mutating their string literals is noise. Tests cover UI chrome. UI chrome stays under the complexity, line-count, and type gates.
 
-## Adding code
+**jscpd.** Ignores `src/data` and test files. Repeated topic and versus shapes are the catalog schema.
 
-Put branching logic in `src/lib` as small typed functions with direct unit
-tests. Pages and components should call those functions, not grow new
-conditionals. Do not introduce `any` or `unknown`; model missing values as
-`T | undefined` or `T | null`.
+**CRAP.** `complexity² × (1 − coverage)³ + complexity`. At 100% coverage this equals cyclomatic complexity. The complexity cap of 21 already keeps CRAP under 25.
+
+## Application code
+
+Branching logic lives in `src/lib` as small typed functions with direct unit tests. Pages and components call those functions instead of growing new conditionals. The type gates reject `any` and `unknown`. Missing values are `T | undefined` or `T | null`.
