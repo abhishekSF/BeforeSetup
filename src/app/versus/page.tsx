@@ -22,9 +22,9 @@ export default function VersusIndexPage() {
       <p className="mt-3 leading-relaxed text-muted-foreground">
         Nobody searches &ldquo;what is Flow.&rdquo; They search &ldquo;Flow vs
         Apex trigger.&rdquo; Each page here takes one recurring decision, lays
-        out the options in a matrix, and commits to a rule of thumb — saying
-        &ldquo;it depends&rdquo; only where it genuinely does, and then saying
-        on <em>what</em>.
+        out the options in a matrix, and commits to a rule of thumb.
+        &ldquo;It depends&rdquo; appears only when it is true, and then the
+        page says on <em>what</em>.
       </p>
 
       <ul className="mt-8 space-y-4">
@@ -50,7 +50,7 @@ export default function VersusIndexPage() {
 
       <p className="mt-10 text-sm text-muted-foreground">
         Each page links back to the full topic dives. If a decision you keep
-        having is missing, that is a content bug — the catalog should cover
+        having is missing, that is a content bug. The catalog should cover
         the ones that generate Slack threads.
       </p>
     </div>

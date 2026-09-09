@@ -9,7 +9,6 @@ import { versusPages } from "@/data/versus";
 export default function Home() {
   return (
     <div className="mx-auto max-w-6xl px-4">
-      {/* Hero */}
       <section className="py-14 text-center sm:py-20">
         <p className="mb-3 text-sm font-medium uppercase tracking-widest text-primary">
           Free · No sign-up · No badges
@@ -18,9 +17,9 @@ export default function Home() {
           The five minutes before you touch Setup
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-          A field guide to the Salesforce platform: {topics.length} quick
-          dives — from objects and Apex to Agentforce, Data 360, Headless 360,
-          and Claudeforce — plus the recurring decisions, answered straight. A
+          A field guide to the Salesforce platform. {topics.length} quick dives
+          cover objects, Apex, Agentforce, Data 360, Headless 360, and
+          Claudeforce. Recurring decisions get a straight answer. A
           plain-English mental model, when to use it, where it bites, and the
           best links to go deeper. Then back to work.
         </p>
@@ -74,20 +73,18 @@ export default function Home() {
         </ul>
       </section>
 
-      {/* The map itself */}
       <section className="pb-16">
         <TopicMap />
       </section>
 
-      {/* What this is / isn't */}
       <section className="grid gap-6 pb-16 sm:grid-cols-3">
         <div className="rounded-xl border bg-card p-5">
           <Compass className="mb-3 size-6 text-primary" />
-          <h2 className="font-semibold">Orientation, not certification</h2>
+          <h2 className="font-semibold">Orientation</h2>
           <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
             Trailhead teaches you how, step by step, with badges. BeforeSetup
-            answers the question that comes first: what is this thing, how does
-            it connect, and do I even need it?
+            answers the question that comes first. What is this thing. How
+            does it connect. Do you even need it.
           </p>
         </div>
         <div className="rounded-xl border bg-card p-5">
@@ -104,19 +101,18 @@ export default function Home() {
           <h2 className="font-semibold">Curated onward links</h2>
           <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
             Each dive ends with the best official docs, Trailhead modules, and
-            community resources — labeled intro, practical, or deep — so the
-            next step is always one click away.
+            community resources, labeled intro, practical, or deep. The next
+            step is one click away.
           </p>
         </div>
       </section>
 
-      {/* Paths */}
       <section className="pb-20">
         <h2 className="text-2xl font-bold tracking-tight">
-          Not sure where to begin?
+          Where to begin
         </h2>
         <p className="mt-1.5 text-muted-foreground">
-          Opinionated reading orders through the map — for admins, developers,
+          Opinionated reading orders through the map, for admins, developers,
           architects, consultants, and anyone tracking the AI wave.
         </p>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

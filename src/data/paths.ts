@@ -14,11 +14,11 @@ export const paths: LearningPath[] = [
       },
       {
         topic: "relationships",
-        note: "Lookup vs master-detail is the first real design decision you'll make — and the hardest to undo.",
+        note: "Lookup vs master-detail is the first real design decision you'll make, and the hardest to undo.",
       },
       {
         topic: "profiles-permission-sets",
-        note: "Before automating anything, understand what users are allowed to do — and why new grants go in permission sets.",
+        note: "Before automating anything, understand what users are allowed to do, and why new grants go in permission sets.",
       },
       {
         topic: "sharing-and-visibility",
@@ -34,7 +34,7 @@ export const paths: LearningPath[] = [
       },
       {
         topic: "record-types",
-        note: "One object, multiple processes — and the admin overhead that comes with each flavor.",
+        note: "One object, multiple processes, and the admin overhead that comes with each flavor.",
       },
       {
         topic: "lightning-app-builder",
@@ -55,7 +55,7 @@ export const paths: LearningPath[] = [
     title: "Developer",
     audience: "Engineers writing Apex, LWC, and integrations",
     description:
-      "The platform rewards developers who learn its rules before its syntax. Start with the data model and governor limits — they shape everything — then layer on Apex, queries, UI, and the async and integration patterns real orgs run on.",
+      "The platform rewards developers who learn its rules before its syntax. Start with the data model and governor limits. They shape everything. Then layer on Apex, queries, UI, and the async and integration patterns real orgs run on.",
     steps: [
       {
         topic: "objects-and-fields",
@@ -75,7 +75,7 @@ export const paths: LearningPath[] = [
       },
       {
         topic: "soql",
-        note: "No SELECT *, no arbitrary joins — relationship traversal and selectivity are the skills.",
+        note: "No SELECT *, no arbitrary joins. Relationship traversal and selectivity are the skills.",
       },
       {
         topic: "apex-triggers",
@@ -87,7 +87,7 @@ export const paths: LearningPath[] = [
       },
       {
         topic: "async-apex",
-        note: "Queueable, Batch, Scheduled — how work escapes the synchronous transaction and its limits.",
+        note: "Queueable, Batch, Scheduled. How work escapes the synchronous transaction and its limits.",
       },
       {
         topic: "flow",
@@ -103,7 +103,7 @@ export const paths: LearningPath[] = [
       },
       {
         topic: "platform-events",
-        note: "The event bus — decoupled automation on-platform and near-real-time sync off it.",
+        note: "The event bus. Decoupled automation on-platform and near-real-time sync off it.",
       },
       {
         topic: "sfdx-cli",
@@ -118,13 +118,13 @@ export const paths: LearningPath[] = [
   {
     slug: "ai",
     title: "AI & Agentforce",
-    audience: "Builders tracking the 2025–26 agentic wave",
+    audience: "Builders tracking the 2025 to 2026 agentic wave",
     description:
-      "Salesforce reorganized its entire platform around AI agents between Dreamforce 2025 and August 2026 — new names, new architecture, new products. This path takes you through the layers in dependency order: what agents are, the data they stand on, the automation and permissions they run through, and the headless plumbing that ends with Claudeforce.",
+      "Salesforce reorganized its entire platform around AI agents between Dreamforce 2025 and August 2026. New names, new architecture, new products. This path takes you through the layers in dependency order: what agents are, the data they stand on, the automation and permissions they run through, and the headless plumbing that ends with Claudeforce.",
     steps: [
       {
         topic: "agentforce",
-        note: "Start with what an agent actually is — topics, actions, the Atlas Reasoning Engine — plus the decoder ring for the 360 rebrand.",
+        note: "Start with what an agent actually is. Topics, actions, the Atlas Reasoning Engine, plus the decoder ring for the 360 rebrand.",
       },
       {
         topic: "data-360",
@@ -132,7 +132,7 @@ export const paths: LearningPath[] = [
       },
       {
         topic: "flow",
-        note: "Agent actions are mostly flows and Apex underneath — the automation layer is what agents actually invoke.",
+        note: "Agent actions are mostly flows and Apex underneath. The automation layer is what agents actually invoke.",
       },
       {
         topic: "profiles-permission-sets",
@@ -140,7 +140,7 @@ export const paths: LearningPath[] = [
       },
       {
         topic: "rest-apis",
-        note: "OAuth, Connected/External Client Apps, and API mechanics — the foundation the MCP layer builds on.",
+        note: "OAuth, Connected/External Client Apps, and API mechanics. The foundation the MCP layer builds on.",
       },
       {
         topic: "headless-360",
@@ -148,7 +148,7 @@ export const paths: LearningPath[] = [
       },
       {
         topic: "claudeforce",
-        note: "The newest layer (August 2026): Claude in Salesforce, Salesforce in Claude, and the AIforce harness — plus the pilot cautions.",
+        note: "The newest layer, August 2026. Claude in Salesforce, Salesforce in Claude, and the AIforce harness, plus the pilot cautions.",
       },
     ],
   },
@@ -165,7 +165,7 @@ export const paths: LearningPath[] = [
       },
       {
         topic: "relationships",
-        note: "Relationship choices cascade into security, queries, and load order — the schema is the first architecture document.",
+        note: "Relationship choices cascade into security, queries, and load order. The schema is the first architecture document.",
       },
       {
         topic: "sharing-and-visibility",
@@ -177,7 +177,7 @@ export const paths: LearningPath[] = [
       },
       {
         topic: "governor-limits",
-        note: "Limits are the platform's design language — every pattern below either respects or escapes them.",
+        note: "Limits are the platform's design language. Every pattern below either respects or escapes them.",
       },
       {
         topic: "large-data-volumes",
@@ -193,7 +193,7 @@ export const paths: LearningPath[] = [
       },
       {
         topic: "data-360",
-        note: "The unified data layer every AI feature now assumes — and an implementation project, not a toggle.",
+        note: "The unified data layer every AI feature now assumes, and an implementation project, not a toggle.",
       },
       {
         topic: "headless-360",
@@ -214,7 +214,7 @@ export const paths: LearningPath[] = [
     title: "Consultant",
     audience: "Functional consultants and solution designers running client projects",
     description:
-      "Consultants translate between business problems and platform capabilities — which means knowing what exists, what it costs, and how projects actually succeed. This path leads with the craft, then the platform knowledge clients expect you to have cold.",
+      "Consultants translate between business problems and platform capabilities. That means knowing what exists, what it costs, and how projects actually succeed. This path leads with the craft, then the platform knowledge clients expect you to have cold.",
     steps: [
       {
         topic: "implementation-lifecycle",
@@ -222,7 +222,7 @@ export const paths: LearningPath[] = [
       },
       {
         topic: "licenses-editions",
-        note: "Editions and licenses shape what's even possible — a design input, not a procurement afterthought.",
+        note: "Editions and licenses shape what's even possible. A design input, not a procurement afterthought.",
       },
       {
         topic: "objects-and-fields",
@@ -230,7 +230,7 @@ export const paths: LearningPath[] = [
       },
       {
         topic: "record-types",
-        note: "The 'same object, two processes' request appears in every project — and multiplies admin overhead each time.",
+        note: "The 'same object, two processes' request appears in every project, and multiplies admin overhead each time.",
       },
       {
         topic: "flow",
@@ -238,7 +238,7 @@ export const paths: LearningPath[] = [
       },
       {
         topic: "sharing-and-visibility",
-        note: "'Who can see what' requirements hide in every discovery — surface them before the data model hardens.",
+        note: "'Who can see what' requirements hide in every discovery. Surface them before the data model hardens.",
       },
       {
         topic: "reports-dashboards",
@@ -250,11 +250,11 @@ export const paths: LearningPath[] = [
       },
       {
         topic: "appexchange",
-        note: "Buy vs build is a judgment call clients pay you for — commodity problems buy, differentiators build.",
+        note: "Buy vs build is a judgment call clients pay you for. Commodity problems buy, differentiators build.",
       },
       {
         topic: "sandboxes",
-        note: "Environment strategy and UAT discipline keep your go-live boring — the highest compliment.",
+        note: "Environment strategy and UAT discipline keep your go-live boring. The highest compliment.",
       },
       {
         topic: "agentforce",

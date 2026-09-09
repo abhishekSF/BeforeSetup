@@ -29,7 +29,7 @@ export function TopicBrowser() {
         <Input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search topics — try 'bulk', 'sharing', 'callout'…"
+          placeholder="Search topics. Try bulk, sharing, or callout."
           className="h-11 pl-9"
           aria-label="Search topics"
         />
@@ -68,7 +68,7 @@ export function TopicBrowser() {
             <p className="font-medium">No topics match that search</p>
             <p className="mt-1 text-sm text-muted-foreground">
               Try a broader term like &ldquo;flow&rdquo;, &ldquo;apex&rdquo;, or
-              &ldquo;security&rdquo; — or clear the filters.
+              &ldquo;security&rdquo;, or clear the filters.
             </p>
           </div>
           <Button

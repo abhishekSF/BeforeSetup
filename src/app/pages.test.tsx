@@ -39,6 +39,19 @@ describe("root layout and static pages", () => {
     expect(rootMetadata.title).toBeDefined();
   });
 
+  it("renders home copy without em dashes or en dashes", () => {
+    render(<Home />);
+    expect(document.body.textContent ?? "").not.toMatch(/[\u2014\u2013]/);
+    const title = rootMetadata.title;
+    const titleText =
+      typeof title === "object" && title !== null && "default" in title
+        ? String(title.default)
+        : String(title);
+    expect(titleText).not.toMatch(/[\u2014\u2013]/);
+    expect(String(rootMetadata.description ?? "")).not.toMatch(/[\u2014\u2013]/);
+    expect(alt).not.toMatch(/[\u2014\u2013]/);
+  });
+
   it("renders home, map, topics, versus index, and start", () => {
     const { unmount: unmountHome } = render(<Home />);
     expect(

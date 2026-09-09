@@ -5,6 +5,7 @@ import { getTopic, relatedTopics, topicBySlug, topics } from "@/data/topics";
 import { versusBySlug, versusForTopic, versusPages } from "@/data/versus";
 import {
   duplicateValues,
+  hasLongDash,
   hasSalesforceDocsResource,
   httpsUrlError,
   isIsoDate,
@@ -136,6 +137,73 @@ describe("versus catalog", () => {
       expect(duplicateValues(page.relatedTopics)).toEqual([]);
       expect(isIsoDate(page.updatedOn)).toBe(true);
     }
+  });
+});
+
+function catalogProse(): { path: string; text: string }[] {
+  const entries: { path: string; text: string }[] = [];
+  for (const topic of topics) {
+    entries.push({ path: `${topic.slug}.tagline`, text: topic.tagline });
+    topic.mentalModel.forEach((text, index) => {
+      entries.push({ path: `${topic.slug}.mentalModel.${index}`, text });
+    });
+    topic.whenToUse.forEach((text, index) => {
+      entries.push({ path: `${topic.slug}.whenToUse.${index}`, text });
+    });
+    topic.whenToAvoid.forEach((text, index) => {
+      entries.push({ path: `${topic.slug}.whenToAvoid.${index}`, text });
+    });
+    topic.pitfalls.forEach((text, index) => {
+      entries.push({ path: `${topic.slug}.pitfalls.${index}`, text });
+    });
+    if (topic.editionNote !== undefined) {
+      entries.push({ path: `${topic.slug}.editionNote`, text: topic.editionNote });
+    }
+    topic.resources.forEach((resource, index) => {
+      entries.push({
+        path: `${topic.slug}.resources.${index}.title`,
+        text: resource.title,
+      });
+    });
+  }
+  for (const category of categories) {
+    entries.push({ path: `category.${category.id}`, text: category.description });
+    entries.push({ path: `category.${category.id}.label`, text: category.label });
+  }
+  for (const page of versusPages) {
+    entries.push({ path: `versus.${page.slug}.title`, text: page.title });
+    entries.push({ path: `versus.${page.slug}.question`, text: page.question });
+    page.matrix.forEach((row, index) => {
+      entries.push({
+        path: `versus.${page.slug}.matrix.${index}.criterion`,
+        text: row.criterion,
+      });
+      entries.push({
+        path: `versus.${page.slug}.matrix.${index}.note`,
+        text: row.note,
+      });
+    });
+    page.ruleOfThumb.forEach((text, index) => {
+      entries.push({ path: `versus.${page.slug}.ruleOfThumb.${index}`, text });
+    });
+  }
+  for (const path of paths) {
+    entries.push({ path: `path.${path.slug}.title`, text: path.title });
+    entries.push({ path: `path.${path.slug}.audience`, text: path.audience });
+    entries.push({ path: `path.${path.slug}.description`, text: path.description });
+    path.steps.forEach((step, index) => {
+      entries.push({ path: `path.${path.slug}.steps.${index}`, text: step.note });
+    });
+  }
+  return entries;
+}
+
+describe("site copy punctuation", () => {
+  it("keeps published catalog prose free of em dashes and en dashes", () => {
+    const hits = catalogProse()
+      .filter((entry) => hasLongDash(entry.text))
+      .map((entry) => entry.path);
+    expect(hits).toEqual([]);
   });
 });
 
