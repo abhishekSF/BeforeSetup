@@ -65,3 +65,28 @@ it("falls back without WebGL", () => {
   mountAtlasDepth(host)();
   expect(host.dataset.renderer).toBe("unavailable");
 });
+
+it("does not render or restart after context loss", () => {
+  const host = document.createElement("div");
+  const dispose = mountAtlasDepth(host);
+  Object.defineProperty(document, "hidden", { value: false, configurable: true });
+  intersections.at(-1)!([{ isIntersecting: true }]);
+  const animation = state.loops.at(-1)!;
+  const rendersBeforeLoss = state.render.mock.calls.length;
+  const sizesBeforeLoss = state.size.mock.calls.length;
+  const lost = new Event("webglcontextlost", { cancelable: true });
+  host.querySelector("canvas")!.dispatchEvent(lost);
+  const loopCountAtLoss = state.loops.length;
+
+  animation(1000);
+  resizes.at(-1)!();
+  document.dispatchEvent(new Event("visibilitychange"));
+  motion.dispatchEvent(new Event("change"));
+  intersections.at(-1)!([{ isIntersecting: true }]);
+
+  expect(state.render).toHaveBeenCalledTimes(rendersBeforeLoss);
+  expect(state.size).toHaveBeenCalledTimes(sizesBeforeLoss);
+  expect(state.loops.slice(loopCountAtLoss).every((loop) => loop === null)).toBe(true);
+  dispose();
+  expect(state.dispose).toHaveBeenCalledOnce();
+});

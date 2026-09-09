@@ -3,10 +3,9 @@ import type { Topic } from "../types";
 export const aiTopics: Topic[] = [
   {
     slug: "agentforce",
-    reviewNote: "Execution identity and action-context guidance needs a final check against the documentation for your specific agent type. Pricing options were checked on September 8, 2026.",
     title: "Agentforce & the 360 Rebrand",
     category: "ai",
-    updatedOn: "2026-09-08",
+    updatedOn: "2026-09-09",
     lifecycle: "ga",
     packaging: "consumption",
     editionNote: "Access and billing vary: Salesforce Foundations, consumption plans, and user-based options exist. Check your current entitlements and the official pricing page before designing a rollout.",
@@ -34,7 +33,24 @@ export const aiTopics: Topic[] = [
     ],
     related: ["data-360", "claudeforce", "headless-360", "flow", "profiles-permission-sets"],
     resources: [
-      { title: "Agentforce pricing and Salesforce Foundations", url: "https://www.salesforce.com/agentforce/pricing/", source: "Salesforce", level: "practical", kind: "article", official: true, verifiedOn: "2026-09-08" },
+      {
+        title: "Agentforce pricing and Salesforce Foundations",
+        url: "https://www.salesforce.com/agentforce/pricing/",
+        source: "Salesforce",
+        level: "practical",
+        kind: "article",
+        official: true,
+        verifiedOn: "2026-09-08",
+      },
+      {
+        title: "Agentforce Security and the Shared Responsibility Model",
+        url: "https://help.salesforce.com/s/articleView?id=005315874&language=en_US&type=1",
+        source: "Salesforce Help",
+        level: "practical",
+        kind: "docs",
+        official: true,
+        verifiedOn: "2026-09-09",
+      },
       {
         title: "Agentforce (official product page)",
         url: "https://www.salesforce.com/agentforce/",
@@ -63,7 +79,8 @@ export const aiTopics: Topic[] = [
         verifiedOn: null,
       },
       {
-        title: "What's actually shipping post-Dreamforce (Q1 2026 reality check)",
+        title:
+          "What's actually shipping post-Dreamforce (Q1 2026 reality check)",
         url: "https://digitalmass.com/insights/the-post-dreamforce-reality-check-whats-actually-shipping-in-q1-2026/",
         source: "DigitalMass",
         level: "practical",
@@ -104,8 +121,24 @@ export const aiTopics: Topic[] = [
     ],
     related: ["agentforce", "claudeforce", "objects-and-fields", "integration-patterns", "reports-dashboards"],
     resources: [
-      { title: "Informatica acquisition completed \u2014 November 18, 2025", url: "https://www.salesforce.com/news/press-releases/2025/11/18/salesforce-completes-acquisition-of-informatica/", source: "Salesforce", level: "practical", kind: "article", official: true, verifiedOn: "2026-09-08" },
-      { title: "Informatica definitive agreement \u2014 May 27, 2025", url: "https://www.salesforce.com/news/press-releases/2025/05/27/salesforce-signs-definitive-agreement-to-acquire-informatica/", source: "Salesforce", level: "practical", kind: "article", official: true, verifiedOn: "2026-09-08" },
+      {
+        title: "Informatica acquisition completed \u2014 November 18, 2025",
+        url: "https://www.salesforce.com/news/press-releases/2025/11/18/salesforce-completes-acquisition-of-informatica/",
+        source: "Salesforce",
+        level: "practical",
+        kind: "article",
+        official: true,
+        verifiedOn: "2026-09-08",
+      },
+      {
+        title: "Informatica definitive agreement \u2014 May 27, 2025",
+        url: "https://www.salesforce.com/news/press-releases/2025/05/27/salesforce-signs-definitive-agreement-to-acquire-informatica/",
+        source: "Salesforce",
+        level: "practical",
+        kind: "article",
+        official: true,
+        verifiedOn: "2026-09-08",
+      },
       {
         title: "Data 360 rename, explained",
         url: "https://www.salesforceben.com/salesforce-data-cloud-renamed-to-data-360-as-part-of-agentforce-360/",
@@ -137,18 +170,18 @@ export const aiTopics: Topic[] = [
   },
   {
     slug: "headless-360",
-    reviewNote: "The dated beta status, tool names, and API requirements in this dive still require fresh first-party verification.",
     title: "Headless 360 & Hosted MCP Servers",
     category: "ai",
-    updatedOn: "2026-08-31",
+    updatedOn: "2026-09-09",
     lifecycle: "beta",
     packaging: "core",
-    editionNote: "The hosted MCP server is Beta as of mid-2026; API-first surfaces themselves are core platform.",
+    editionNote:
+      "The specific platform/headless-360 Hosted MCP Server is Beta as of July 2026 and requires API v67+; Hosted MCP infrastructure is generally available, with availability and terms varying by server and edition.",
     tagline:
       "The platform without the browser: every Salesforce capability exposed as APIs, MCP tools, and CLI commands that AI agents call directly.",
     mentalModel: [
       "Headless 360, announced April 2026, is the architectural move underneath everything agentic Salesforce ships now: expose data, workflows, business logic, and governance as capabilities an AI can call directly — over 60 MCP tools, 30+ coding skills, plus a Headless Experience Layer for building an agent UI once and rendering it in Slack, Teams, WhatsApp, or a web app. The browser interface becomes optional; the platform becomes a system that powers any interface.",
-      "The clever part is the Hosted MCP Server design (Beta since July 2026, requires API v67+). Instead of registering hundreds of tools and drowning the model's context window, the platform/headless-360 server exposes just four: discover (semantic search for the right operation), describe (read its spec), dispatch (invoke it), and dispatch_readonly (GET only). The model searches, reads, then calls — three steps that scale to the whole platform. Auth is per-user OAuth (PKCE) through an External Client App with the mcp_api scope, so every call runs as the person making it, under their real permissions.",
+      "The specific platform/headless-360 Hosted MCP Server is Beta since July 2026 and requires API v67+. It exposes four tools: discover, describe, dispatch, and dispatch_readonly; the last runs selected operations in read-only mode. The model searches, reads, then calls — three steps that scale to the platform. Auth is per-user OAuth through an External Client App with the mcp_api scope, so every call runs as the authenticated user under their permissions.",
     ],
     whenToUse: [
       "Connecting AI clients — Claude, Cursor, ChatGPT, Postman — to your org for governed data access and actions without custom integration code.",
@@ -156,14 +189,13 @@ export const aiTopics: Topic[] = [
       "Anywhere you were about to hand-roll a 'let the LLM call our REST API' bridge — the MCP server is that bridge, with permissions built in.",
     ],
     whenToAvoid: [
-      "Production-critical revenue processes today — the MCP server is Beta; pilot on non-critical workflows first.",
+      "Production-critical revenue processes today — validate the specific server and operation in a sandbox before enabling it in production.",
       "As a replacement for integration architecture: MCP is a great AI-to-platform channel, but system-to-system sync at volume is still Bulk API, events, and middleware territory.",
     ],
     pitfalls: [
-      "Writes through dispatch are normal Salesforce DML: validation rules, flows, triggers, and governor limits all fire. An agent bulk-updating 200 records trips the same limits a Data Loader job would.",
+      "Writes through dispatch are Salesforce operations: validation rules, flows, triggers, and governor limits still apply. Scope write access per use case and test bulk behavior in a safe environment.",
       "Start read-only: dispatch_readonly plus a tightly scoped permission set exists precisely so you can enable analysis before enabling writes. Add write access per use case, deliberately.",
       "Shadow MCP: if every team stands up its own connections, you've reinvented shadow IT with better branding. Govern the connector list from day one.",
-      "Note the two different auth postures in the ecosystem: Hosted MCP Servers run per-user OAuth, but Slack's Claude Tag route uses a client-credentials integration user — one identity for everyone in scope. Know which one you're enabling.",
     ],
     related: ["claudeforce", "agentforce", "rest-apis", "profiles-permission-sets", "governor-limits"],
     resources: [
@@ -186,6 +218,24 @@ export const aiTopics: Topic[] = [
         verifiedOn: null,
       },
       {
+        title: "Headless 360 MCP Server reference",
+        url: "https://developer.salesforce.com/docs/platform/hosted-mcp-servers/references/reference/headless-360-mcp.html",
+        source: "Salesforce Developers",
+        level: "practical",
+        kind: "docs",
+        official: true,
+        verifiedOn: "2026-09-09",
+      },
+      {
+        title: "Salesforce Hosted MCP Servers are generally available",
+        url: "https://developer.salesforce.com/blogs/2026/04/salesforce-hosted-mcp-servers-are-now-generally-available",
+        source: "Salesforce Developers Blog",
+        level: "practical",
+        kind: "article",
+        official: true,
+        verifiedOn: "2026-09-09",
+      },
+      {
         title: "Model Context Protocol (the open standard)",
         url: "https://modelcontextprotocol.io/",
         source: "MCP",
@@ -198,32 +248,32 @@ export const aiTopics: Topic[] = [
   },
   {
     slug: "claudeforce",
-    reviewNote: "The dated launch, model defaults, and pilot claims in this dive remain unverified in this review. Check the linked first-party announcement before making a product decision.",
     title: "Claudeforce & AIforce",
     category: "ai",
-    updatedOn: "2026-09-08",
+    updatedOn: "2026-09-09",
     lifecycle: "pilot",
-    packaging: "consumption",
-    editionNote: "Pilot program. Consumption-priced and contracted separately; expect terms to shift before GA.",
+    packaging: "verify-terms",
+    editionNote:
+      "The August 26, 2026 announcement describes pilot and planned availability; verify current lifecycle, edition access, and commercial terms before adoption.",
     tagline:
       "The Salesforce–Anthropic partnership (Aug 2026): Claude inside Salesforce, Salesforce inside Claude, and the AIforce harness underneath.",
     mentalModel: [
-      "Claudeforce, announced August 26, 2026, is really three workstreams under one name. Claude in Salesforce: Claude serves as a reasoning model in the Atlas Reasoning Engine and is the default in Agentforce Vibes and Coworker — served through Amazon Bedrock inside the Salesforce Trust Boundary, which is the sentence your security review cares about. Salesforce in Claude: a plugin with 37 prebuilt sales skills (meeting prep, deal health, pipeline review) that lets sellers work their CRM from inside Claude — one admin connects the org once, and everyone gets access scoped to their own permissions. Claude in Slack: Claude becomes the default model behind Slackbot and Slack AI.",
+      "Salesforce’s August 26, 2026 announcement puts Claude in three places: inside Salesforce, inside Slack, and in a Salesforce plugin for Claude. It describes 37 sales skills and Claude as the default for Agentforce Vibes and Coworker, with Bedrock serving Claude inside Salesforce’s Trust Boundary.",
       "AIforce is the layer that makes this possible: Salesforce's 'enterprise harness' that brings business data, workflows, logic, actions, and governance to any agent through MCP servers, APIs, and CLI tools — built on Headless 360's plumbing. Benioff's framing is 'the UI is the AI': Claude generates dashboards and interfaces on the fly from live Salesforce data instead of you configuring screens in advance. The strategic read: Salesforce is betting that agentic interfaces increase the value of the platform even as they bypass its traditional UI.",
     ],
     whenToUse: [
       "Sales teams already living in Claude or Slack who need governed CRM access without tab-switching — that's the launch persona, with more functions promised late 2026.",
       "As the managed alternative to wiring up your own MCP connection: single-admin setup and co-engineered skills replace per-user plumbing you'd otherwise build.",
-      "Piloting now if you want influence: Salesforce in Claude is pilot-only with open beta expected September 2026 — early feedback shapes the skills.",
+      "Use the announcement's lifecycle language carefully: Salesforce in Claude is described as pilot with open beta expected in September 2026. Treat that as a dated announcement status, then verify the current program before planning rollout.",
     ],
     whenToAvoid: [
-      "Any Q4-critical revenue process — the plugin is pilot, the MCP server underneath is Beta, and 'beta means beta.'",
+      "For revenue-critical work, verify the current program status and supported operations before enabling production use.",
       "Before a permission audit: on first run the plugin sweeps the seller's context across Salesforce, Slack, and other connectors. Over-provisioned profiles become agent reach on day one.",
     ],
     pitfalls: [
-      "Budget for tokens with real data: pricing is consumption-based, and you contract with Anthropic separately for inference. Instrument a pilot cohort before signing org-wide.",
+      "Commercial terms and model availability are product decisions to verify against current Salesforce and Anthropic documentation before budgeting or signing.",
       "Keep pilot changes separate from platform upgrades — two simultaneous changes make failures hard to attribute. Check the current Salesforce Release Calendar for your instance.",
-      "The rename hazard: 'Claudeforce', 'AIforce', 'Agentforce', and 'Headless 360' are distinct layers that launch coverage blurs together. Partnership brand, harness, agent platform, architecture — in that order.",
+      "Architecture note: keep the partnership brand, AIforce harness, Agentforce platform, and Headless 360 architecture distinct when evaluating a solution.",
       "Concentration risk for architects: Salesforce made a supplier's model its default while becoming a feature in that supplier's product. Keep the Agent Builder model picker a real escape hatch, not a theoretical one.",
     ],
     related: ["headless-360", "agentforce", "data-360", "profiles-permission-sets"],
@@ -244,7 +294,7 @@ export const aiTopics: Topic[] = [
         level: "intro",
         kind: "article",
         official: true,
-        verifiedOn: null,
+        verifiedOn: "2026-09-09",
       },
       {
         title: "Claudeforce explained: what actually ships",

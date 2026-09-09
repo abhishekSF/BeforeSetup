@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import Home from "@/app/page";
 import RootLayout, { metadata as rootMetadata } from "@/app/layout";
 import NotFound from "@/app/not-found";
@@ -24,6 +24,7 @@ import OpengraphImage, {
   contentType,
   size,
 } from "@/app/opengraph-image";
+import { topicBySlug, getTopic } from "@/data/topics";
 
 describe("root layout and static pages", () => {
   it("renders the document shell", () => {
@@ -109,6 +110,24 @@ describe("topic pages", () => {
   it("renders a core GA topic", async () => {
     render(await TopicPage({ params: Promise.resolve({ slug: "flow" }) }));
     expect(screen.getByRole("heading", { name: "Flow" })).toBeInTheDocument();
+    expect(screen.queryByText(/Review note:/)).not.toBeInTheDocument();
+  });
+
+  it("renders an editorial review note when a topic has one", async () => {
+    const flow = getTopic("flow");
+    if (!flow) throw new Error("flow topic fixture is missing");
+    const reviewNote = "Fixture review note for editorial verification.";
+    const originalGet = topicBySlug.get.bind(topicBySlug);
+    const getSpy = vi.spyOn(topicBySlug, "get").mockImplementation((slug) =>
+      slug === "flow" ? { ...flow, reviewNote } : originalGet(slug)
+    );
+    try {
+      render(await TopicPage({ params: Promise.resolve({ slug: "flow" }) }));
+      expect(screen.getByText("Review note:")).toBeInTheDocument();
+      expect(screen.getByText(reviewNote)).toBeInTheDocument();
+    } finally {
+      getSpy.mockRestore();
+    }
   });
 
   it("renders a packaged/beta topic", async () => {

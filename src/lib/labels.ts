@@ -4,6 +4,7 @@ const PACKAGING_LABELS: Record<Exclude<Packaging, "core">, string> = {
   "edition-gated": "Edition-gated",
   "add-on": "Add-on SKU",
   consumption: "Consumption-priced",
+  "verify-terms": "Verify current terms",
 };
 
 export function packagingLabel(packaging: Packaging): string | null {

@@ -42,7 +42,7 @@ export const devopsTopics: Topic[] = [
       },
       {
         title: "Custom Metadata Types (Salesforce Help)",
-        url: "https://help.salesforce.com/s/articleView?id=platform.custommetadatatypes_overview.htm&type=5",
+        url: "https://help.salesforce.com/s/articleView?language=en_US&id=platform.custommetadatatypes_overview.htm&type=5",
         source: "Salesforce Help",
         level: "practical",
         kind: "docs",
@@ -154,20 +154,19 @@ export const devopsTopics: Topic[] = [
   },
   {
     slug: "deployments",
-    reviewNote: "The historical DevOps Center recommendation has been qualified. Current next-generation capabilities and migration instructions still need editorial verification.",
     title: "Deployments & Release Management",
     category: "devops",
-    updatedOn: "2026-09-08",
+    updatedOn: "2026-09-09",
     lifecycle: "ga",
     packaging: "core",
     tagline:
       "Moving changes safely to production — change sets, CLI pipelines, or DevOps Center, plus the discipline around them.",
     mentalModel: [
-      "A deployment moves metadata from one org to another. The tools form a maturity ladder. Change sets: click-to-select changes in a sandbox, upload to production — simple, but manual, unversioned, and easy to under-scope. DevOps Center: Salesforce’s source-backed release workspace for admins and developers. Evaluate the current next-generation offering and its supported source-control providers, pipeline features, and migration requirements; older managed-package setup guides describe a different generation. Full CI/CD: the CLI in GitHub Actions (or similar), validating every pull request against a sandbox and deploying on merge.",
+      "A deployment moves metadata from one org to another. Change sets are manual and easy to under-scope. Next-generation DevOps Center is built into the Salesforce Platform, requires no package install, and uses DX Inspector to view and commit changes. The source-control repository remains the source of truth; DevOps Center can promote metadata with associated configuration data so dependencies stay together. Full CI/CD can use the Salesforce CLI and a repository workflow.",
       "Production Apex deployments normally require passing tests and coverage, with rules depending on the selected test level. RunLocalTests, RunAllTestsInOrg, and RunSpecifiedTests are different choices; eligible Quick Deploy operations reuse a successful validation without rerunning tests. Metadata-only changes can have different requirements. The discipline that matters more than tooling: production is read-only for humans, everything moves through the pipeline, and every release has a rollback plan (which, since Salesforce has no native rollback, means knowing how to deploy the previous state).",
     ],
     whenToUse: [
-      "Consider the current DevOps Center when admins and developers need a shared release process. Verify the current offering and migration path before following historical setup instructions.",
+      "Consider next-generation DevOps Center when admins and developers need a shared release process with repository-backed changes and promotion.",
       "Full CLI-based CI/CD when you have multiple developers, real branching, and want validation on every PR.",
       "Validation-only deploys (check without committing) before big releases — catch test failures without a deployment window.",
     ],
@@ -184,21 +183,21 @@ export const devopsTopics: Topic[] = [
     related: ["sandboxes", "sfdx-cli", "apex-testing", "flow"],
     resources: [
       {
+        title: "Say Hello to Next-Generation DevOps Center",
+        url: "https://trailhead.salesforce.com/content/learn/modules/devops-center-quick-look/say-hello-to-devops-center",
+        source: "Trailhead",
+        level: "intro",
+        kind: "trailhead",
+        official: true,
+        verifiedOn: "2026-09-09",
+      },
+      {
         title: "DevOps Center (Salesforce Help)",
         url: "https://help.salesforce.com/s/articleView?id=platform.devops_center_overview.htm&type=5",
         source: "Salesforce Help",
         level: "intro",
         kind: "docs",
         official: true,
-        verifiedOn: null,
-      },
-      {
-        title: "DevOps Center guide and setup",
-        url: "https://www.salesforceben.com/salesforce-devops-center/",
-        source: "Salesforce Ben",
-        level: "practical",
-        kind: "community",
-        official: false,
         verifiedOn: null,
       },
     ],

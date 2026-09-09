@@ -11,7 +11,7 @@ import { versusPages } from "@/data/versus";
 it("includes every route and source review dates in the sitemap", () => {
   const entries = sitemap();
   expect(entries).toHaveLength(5 + topics.length + paths.length + versusPages.length);
-  expect(entries.find((entry) => entry.url.endsWith("/topics/apex"))?.lastModified).toBe("2026-09-08");
+  expect(entries.find((entry) => entry.url.endsWith("/topics/apex"))?.lastModified).toBe("2026-09-09");
   expect(robots().sitemap).toContain("/sitemap.xml");
 });
 it("serializes article and breadcrumb metadata without script injection", () => {

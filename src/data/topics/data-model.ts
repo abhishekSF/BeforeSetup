@@ -193,7 +193,7 @@ export const dataModelTopics: Topic[] = [
     resources: [
       {
         title: "Object Relationships Overview",
-        url: "https://help.salesforce.com/s/articleView?id=platform.overview_of_custom_object_relationships.htm&type=5",
+        url: "https://help.salesforce.com/s/articleView?language=en_US&id=platform.overview_of_custom_object_relationships.htm&type=5",
         source: "Salesforce Help",
         level: "intro",
         kind: "docs",

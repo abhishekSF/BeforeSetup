@@ -3,10 +3,9 @@ import type { Topic } from "../types";
 export const codeTopics: Topic[] = [
   {
     slug: "apex",
-    reviewNote: "API 67.0 guidance was corrected against the reported version boundary; the current release-note details still need an independent source check before relying on them for a migration.",
     title: "Apex",
     category: "code",
-    updatedOn: "2026-09-08",
+    updatedOn: "2026-09-09",
     lifecycle: "ga",
     packaging: "core",
     tagline:
@@ -27,12 +26,37 @@ export const codeTopics: Topic[] = [
     ],
     pitfalls: [
       "Queries or DML inside loops — the number one Apex sin. Collect, then operate once.",
-      "Execution defaults are versioned. Before API 67.0, Apex class database operations default to system mode; from API 67.0, class defaults move to user mode. Do not apply that class behavior to triggers: triggers remain system context. Review explicit sharing and database access modes, test restricted users, and check the current Apex security documentation before upgrading a class.",
+      "Execution defaults are versioned. Before API 67.0, Apex class database operations defaulted to system mode; from API 67.0, SOQL, SOSL, DML, and Database methods default to user mode. Separately, classes without an explicit sharing declaration default to with sharing in API 67.0. Triggers remain system mode, but handler classes they call are subject to the class defaults. Declare database and sharing intent explicitly, and test restricted users before upgrading.",
       "Hardcoded IDs that differ between sandbox and production.",
       "Skipping null and empty-list handling — a query returning no rows gives an empty list, but single-record shortcuts throw.",
     ],
-    related: ["soql", "governor-limits", "apex-testing", "apex-triggers", "async-apex", "lightning-web-components"],
+    related: [
+      "soql",
+      "governor-limits",
+      "apex-testing",
+      "apex-triggers",
+      "async-apex",
+      "lightning-web-components",
+    ],
     resources: [
+      {
+        title: "Summer '26 Apex security model changes",
+        url: "https://www.salesforce.com/blog/summer-26-release-architect-highlights/",
+        source: "Salesforce Architecture Blog",
+        level: "practical",
+        kind: "article",
+        official: true,
+        verifiedOn: "2026-09-08",
+      },
+      {
+        title: "The Salesforce Developer's Guide to the Summer '26 Release",
+        url: "https://developer.salesforce.com/blogs/2026/06/the-salesforce-developers-guide-to-the-summer-26-release",
+        source: "Salesforce Developers Blog",
+        level: "practical",
+        kind: "article",
+        official: true,
+        verifiedOn: "2026-09-08",
+      },
       {
         title: "Apex Basics & Database (Trailhead)",
         url: "https://trailhead.salesforce.com/content/learn/modules/apex_database",

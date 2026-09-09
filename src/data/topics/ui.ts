@@ -8,7 +8,8 @@ export const uiTopics: Topic[] = [
     updatedOn: "2026-08-31",
     lifecycle: "ga",
     packaging: "add-on",
-    editionNote: "External users need separate member- or login-based license SKUs.",
+    editionNote:
+      "External users need separate member- or login-based license SKUs.",
     tagline:
       "Salesforce for people outside your company — portals and sites where customers and partners work with your data under a stricter security model.",
     mentalModel: [
@@ -30,7 +31,12 @@ export const uiTopics: Topic[] = [
       "Sharing sets and share groups (the external sharing tools) work differently from internal sharing rules — budget learning time.",
       "Performance on data-heavy pages: external users triggering expensive queries on every page view adds up fast.",
     ],
-    related: ["sharing-and-visibility", "profiles-permission-sets", "lightning-web-components", "lightning-app-builder"],
+    related: [
+      "sharing-and-visibility",
+      "profiles-permission-sets",
+      "lightning-web-components",
+      "lightning-app-builder",
+    ],
     resources: [
       {
         title: "Experience Cloud (Salesforce Help)",
@@ -89,7 +95,12 @@ export const uiTopics: Topic[] = [
       "Dynamic Forms migration is per-object opt-in; half-migrated objects confuse admins editing 'the layout' in two places.",
       "Visibility rules that hide required fields can strand users mid-save.",
     ],
-    related: ["lightning-web-components", "record-types", "profiles-permission-sets", "flow"],
+    related: [
+      "lightning-web-components",
+      "record-types",
+      "profiles-permission-sets",
+      "flow",
+    ],
     resources: [
       {
         title: "Lightning App Builder (Trailhead)",
@@ -122,10 +133,9 @@ export const uiTopics: Topic[] = [
   },
   {
     slug: "lightning-web-components",
-    reviewNote: "The API 67.0 controller guidance needs the same release-note verification as the Apex dive.",
     title: "Lightning Web Components (LWC)",
     category: "ui",
-    updatedOn: "2026-09-08",
+    updatedOn: "2026-09-09",
     lifecycle: "ga",
     packaging: "core",
     tagline:
@@ -146,11 +156,20 @@ export const uiTopics: Topic[] = [
     pitfalls: [
       "Skipping Lightning Data Service and writing Apex for every read — you lose caching and reactivity and write more code than needed.",
       "Forgetting that @wire is reactive and fires again when parameters change — side effects in wired functions cause loops.",
-      "An Apex controller’s security depends on its class API version and explicit access modes. API 67.0 changes class defaults toward user mode; legacy classes and explicit system-mode operations still need review. This is not a change to trigger context. Enforce authorization on the server, not just by hiding UI.",
+      "An Apex controller’s security depends on its class API version and explicit access modes. In API 67.0, class database operations default to user mode and classes without an explicit sharing declaration default to with sharing; triggers remain system mode, while handler classes are affected by their own defaults. Legacy classes and explicit system-mode operations still need review. Enforce authorization on the server, not just by hiding UI.",
       "Testing gaps: Jest tests exist for LWC and orgs that skip them regret it at refactor time.",
     ],
     related: ["apex", "lightning-app-builder", "flow", "rest-apis"],
     resources: [
+      {
+        title: "Summer '26 Apex security model changes",
+        url: "https://www.salesforce.com/blog/summer-26-release-architect-highlights/",
+        source: "Salesforce Architecture Blog",
+        level: "practical",
+        kind: "article",
+        official: true,
+        verifiedOn: "2026-09-08",
+      },
       {
         title: "Lightning Web Components Dev Guide",
         url: "https://developer.salesforce.com/docs/platform/lwc/guide",

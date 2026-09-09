@@ -16,7 +16,7 @@ export type Lifecycle = "ga" | "beta" | "pilot" | "renamed" | "retired";
 
 /** How you pay for it — deliberately separate from Lifecycle
  *  (Data 360 is both add-on *and* GA; one enum can't say that). */
-export type Packaging = "core" | "edition-gated" | "add-on" | "consumption";
+export type Packaging = "core" | "edition-gated" | "add-on" | "consumption" | "verify-terms";
 
 type ResourceKind = "docs" | "trailhead" | "community" | "article" | "video";
 
@@ -51,7 +51,7 @@ export interface Topic {
   packaging: Packaging;
   /** e.g. "Add-on SKU. Do not assume it is in Enterprise Edition." */
   editionNote?: string;
-  /** Explicit unresolved source checks; never imply a completed factual audit. */
+  /** Optional editorial qualification when a topic needs careful interpretation. */
   reviewNote?: string;
 }
 

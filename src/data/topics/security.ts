@@ -64,7 +64,7 @@ export const securityTopics: Topic[] = [
     slug: "profiles-permission-sets",
     title: "Profiles & Permission Sets",
     category: "security",
-    updatedOn: "2026-09-08",
+    updatedOn: "2026-09-09",
     lifecycle: "ga",
     packaging: "core",
     tagline:
@@ -90,6 +90,15 @@ export const securityTopics: Topic[] = [
     ],
     related: ["sharing-and-visibility", "objects-and-fields", "record-types", "apex"],
     resources: [
+      {
+        title: "Summer '26 Apex security model changes",
+        url: "https://www.salesforce.com/blog/summer-26-release-architect-highlights/",
+        source: "Salesforce Architecture Blog",
+        level: "practical",
+        kind: "article",
+        official: true,
+        verifiedOn: "2026-09-08",
+      },
       {
         title: "Data Security (Trailhead)",
         url: "https://trailhead.salesforce.com/content/learn/modules/data_security",

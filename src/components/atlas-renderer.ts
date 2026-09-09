@@ -22,12 +22,15 @@ export function mountAtlasDepth(host: HTMLDivElement): () => void {
   scene.add(field);
   const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let visible = false;
+  let contextLost = false;
   function frame(time: number) {
+    if (contextLost) return;
     field.rotation.z = Math.sin(time * 0.00002) * 0.04;
     renderer.render(scene, camera);
   }
   function update() {
     renderer.setAnimationLoop(null);
+    if (contextLost) return;
     renderer.render(scene, camera);
     if (visible && !document.hidden && !motion.matches) renderer.setAnimationLoop(frame);
   }
@@ -37,6 +40,7 @@ export function mountAtlasDepth(host: HTMLDivElement): () => void {
   });
   observer.observe(host);
   const resize = new ResizeObserver(() => {
+    if (contextLost) return;
     const width = Math.max(host.clientWidth, 1);
     const height = Math.max(host.clientHeight, 1);
     renderer.setSize(width, height);
@@ -47,7 +51,7 @@ export function mountAtlasDepth(host: HTMLDivElement): () => void {
   resize.observe(host);
   motion.addEventListener("change", update);
   document.addEventListener("visibilitychange", update);
-  function lost(event: Event) { event.preventDefault(); renderer.setAnimationLoop(null); host.dataset.renderer = "unavailable"; }
+  function lost(event: Event) { event.preventDefault(); contextLost = true; renderer.setAnimationLoop(null); host.dataset.renderer = "unavailable"; }
   renderer.domElement.addEventListener("webglcontextlost", lost);
   return () => {
     observer.disconnect(); resize.disconnect();

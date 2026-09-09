@@ -1,5 +1,7 @@
 # System Atlas redesign
 
+> Historical checklist note: the original redesign checklist below predates the focused editorial and runtime evidence in [editorial-stabilization.md](./editorial-stabilization.md) and [runtime-audit.md](./runtime-audit.md). Those follow-up records provide current review context; this document is not the current release verdict.
+
 This is an incremental change from `0887aa7`, retaining Next.js, all 36 topics,
 nine categories, six decisions, five paths, typed catalogs, semantic comparison
 tables, and the existing graph layout/edge functions. Existing quality thresholds
