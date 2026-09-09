@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import robots from "@/app/robots";
-import sitemap from "@/app/sitemap";
+import robots, { dynamic as robotsDynamic, revalidate as robotsRevalidate } from "@/app/robots";
+import sitemap, { dynamic as sitemapDynamic, revalidate as sitemapRevalidate } from "@/app/sitemap";
 import { topics } from "@/data/topics";
 import { versusPages } from "@/data/versus";
 import { paths } from "@/data/paths";
@@ -31,5 +31,9 @@ describe("sitemap and robots routes", () => {
       rules: { userAgent: "*", allow: "/" },
       sitemap: `${origin}/sitemap.xml`,
     });
+    expect(robotsDynamic).toBe("force-static");
+    expect(robotsRevalidate).toBe(false);
+    expect(sitemapDynamic).toBe("force-static");
+    expect(sitemapRevalidate).toBe(false);
   });
 });

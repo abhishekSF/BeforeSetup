@@ -1,5 +1,7 @@
 import { ImageResponse } from "next/og";
 
+export const dynamic = "force-static";
+export const revalidate = false;
 export const alt = "BeforeSetup — the five minutes before you touch Setup";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

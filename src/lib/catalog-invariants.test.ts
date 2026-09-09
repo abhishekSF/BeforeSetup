@@ -13,11 +13,13 @@ describe("isIsoDate", () => {
     expect(isIsoDate("2024-02-29")).toBe(true);
   });
 
-  it("rejects the wrong shape", () => {
+  it("rejects strings that are not a UTC YYYY-MM-DD date", () => {
     expect(isIsoDate("")).toBe(false);
     expect(isIsoDate("2026-9-1")).toBe(false);
     expect(isIsoDate("2026/09/01")).toBe(false);
     expect(isIsoDate("09-01-2026")).toBe(false);
+    expect(isIsoDate("x2026-09-01")).toBe(false);
+    expect(isIsoDate("2026-09-01x")).toBe(false);
   });
 
   it("rejects impossible calendar days", () => {

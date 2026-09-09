@@ -4,6 +4,9 @@ import { topics } from "@/data/topics";
 import { versusPages } from "@/data/versus";
 import { sitemapUrls, siteUrl } from "@/lib/site";
 
+export const dynamic = "force-static";
+export const revalidate = false;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const origin = siteUrl(process.env.NEXT_PUBLIC_SITE_URL);
   return sitemapUrls(
