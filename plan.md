@@ -1,9 +1,13 @@
-# Plan — from prototype to field guide
+# Plan, from prototype to field guide
 
-**Repo:** `abhishekSF/orgatlas` (rename to `beforesetup` pending on GitHub — a two-click owner action in Settings; content rename is done)
-**Name: DECIDED — BeforeSetup** (2026-09-01). Verified clean: the string exists only as a generic lifecycle-hook name in Video.js/werf/NestJS docs — no product, no company, no trademark, nothing Salesforce-adjacent. The tagline comes free: "the five minutes before you touch Setup."
-**Baseline verified:** 2026-08-31 · 36 topics / 9 categories / 5 paths · builds clean from the GitHub clone
-**Status of this doc:** my synthesis of the external critique-derived plan, corrected against the actual codebase, with schemas fixed and open decisions isolated.
+**Repo.** `abhishekSF/BeforeSetup`
+**Name.** BeforeSetup. Locked 2026-09-01.
+**Live.** https://abhisheksf.github.io/BeforeSetup/
+
+**Status, 2026-09-09.** Phases 1 and 2 of the product work below are in the repo. The repo has an MIT LICENSE, a lockfile, six versus pages, and 36 topics with `updatedOn`, `lifecycle`, and `packaging`. Quality gates run on every PR. GitHub Pages hosts the site. Remaining product work is still the later phases. Those phases include typed map edges, a seasonal "changed this season" strip, and analytics. Historical sections after this box still mention stale blockers such as a missing lockfile. Trust this box over those lines.
+
+**Baseline verified.** 2026-08-31. 36 topics, 9 categories, 5 paths. Builds clean from the GitHub clone.
+**Original synthesis date.** 2026-09-01
 
 ---
 
@@ -152,13 +156,13 @@ No accounts/auth/personalization · no org/metadata-API connection · no AI chat
 
 ## 8. Definition of done, v1
 
-- [ ] Name with zero Atlas/OrgAtlas gravity, domain live
-- [ ] Public URL + analytics from day one
-- [ ] MIT LICENSE + lockfile in repo
-- [ ] Six versus pages shipped
-- [ ] All 36 topics carry `updatedOn` + `lifecycle` + `packaging`
-- [ ] Map filters by role and lifecycle — or the map is off the homepage
-- [ ] README: screenshots + live link
+- [x] Name with zero Atlas/OrgAtlas gravity (GitHub Pages URL live; custom domain still an owner action)
+- [ ] Public URL + analytics from day one (URL yes; analytics not in repo)
+- [x] MIT LICENSE + lockfile in repo
+- [x] Six versus pages shipped
+- [x] All 36 topics carry `updatedOn` + `lifecycle` + `packaging`
+- [ ] Map filters by role and lifecycle, or the map is off the homepage
+- [x] README live link (screenshots still optional)
 - [ ] One week of real traffic and an honest read on whether anyone uses the graph
 
 If all boxes tick and the graph goes unused, the field guide still succeeded — that was the design.

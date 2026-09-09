@@ -3,6 +3,14 @@ import { categories, categoryById } from "@/data/categories";
 import { paths, pathBySlug } from "@/data/paths";
 import { getTopic, relatedTopics, topicBySlug, topics } from "@/data/topics";
 import { versusBySlug, versusForTopic, versusPages } from "@/data/versus";
+import {
+  duplicateValues,
+  hasSalesforceDocsResource,
+  httpsUrlError,
+  isIsoDate,
+} from "@/lib/catalog-invariants";
+import { SHORT_LABEL } from "@/lib/topic-map-layout";
+import { invalidPickLabels } from "@/lib/versus";
 
 describe("topic catalog", () => {
   it("has unique slugs and a working lookup", () => {
@@ -29,11 +37,70 @@ describe("topic catalog", () => {
     }
     expect(categories).toHaveLength(9);
   });
+
+  it("gives every category at least one topic", () => {
+    for (const category of categories) {
+      expect(topics.some((topic) => topic.category === category.id)).toBe(true);
+    }
+  });
+});
+
+describe("topic editorial shape", () => {
+  it("keeps related links unique, existent, and not self-referential", () => {
+    for (const topic of topics) {
+      expect(topic.related).not.toContain(topic.slug);
+      expect(duplicateValues(topic.related)).toEqual([]);
+      expect(topic.related.length).toBeGreaterThan(0);
+    }
+  });
+
+  it("fills the five-minute dive fields and an ISO review date", () => {
+    for (const topic of topics) {
+      expect(topic.title.length).toBeGreaterThan(0);
+      expect(topic.tagline.length).toBeGreaterThan(0);
+      expect(topic.mentalModel.length).toBeGreaterThanOrEqual(2);
+      expect(topic.mentalModel.length).toBeLessThanOrEqual(3);
+      expect(topic.whenToUse.length).toBeGreaterThan(0);
+      expect(topic.whenToAvoid.length).toBeGreaterThan(0);
+      expect(topic.pitfalls.length).toBeGreaterThan(0);
+      expect(isIsoDate(topic.updatedOn)).toBe(true);
+    }
+  });
+
+  it("requires https resources, unique URLs, and at least one official Salesforce link", () => {
+    for (const topic of topics) {
+      expect(topic.resources.length).toBeGreaterThan(0);
+      const urls = topic.resources.map((resource) => resource.url);
+      expect(duplicateValues(urls)).toEqual([]);
+      for (const resource of topic.resources) {
+        expect(resource.title.length).toBeGreaterThan(0);
+        expect(resource.source.length).toBeGreaterThan(0);
+        expect(httpsUrlError(resource.url)).toBeNull();
+      }
+      expect(hasSalesforceDocsResource(topic.resources)).toBe(true);
+    }
+  });
+
+  it("warns on SKU reality whenever packaging is not core", () => {
+    for (const topic of topics) {
+      if (topic.packaging === "core") {
+        continue;
+      }
+      expect(topic.editionNote, topic.slug).toBeDefined();
+      expect(topic.editionNote?.length).toBeGreaterThan(0);
+    }
+  });
+
+  it("gives every topic a map short label and no leftover labels", () => {
+    const slugs = topics.map((topic) => topic.slug).sort();
+    expect(Object.keys(SHORT_LABEL).sort()).toEqual(slugs);
+  });
 });
 
 describe("versus catalog", () => {
   it("indexes every decision page", () => {
     expect(versusPages.length).toBeGreaterThan(0);
+    expect(duplicateValues(versusPages.map((page) => page.slug))).toEqual([]);
     for (const page of versusPages) {
       expect(versusBySlug.get(page.slug)).toBe(page);
       for (const option of page.options) {
@@ -52,15 +119,38 @@ describe("versus catalog", () => {
     expect(forFlow.length).toBeGreaterThan(0);
     expect(versusForTopic("no-such-topic")).toEqual([]);
   });
+
+  it("keeps option labels unique and matrix picks inside that list", () => {
+    for (const page of versusPages) {
+      const labels = page.options.map((option) => option.label);
+      expect(labels.length).toBeGreaterThan(1);
+      expect(duplicateValues(labels)).toEqual([]);
+      const optionLabels = new Set(labels);
+      expect(duplicateValues(page.matrix.map((row) => row.criterion))).toEqual([]);
+      for (const row of page.matrix) {
+        expect(invalidPickLabels(row.pick, optionLabels)).toEqual([]);
+        expect(row.note.length).toBeGreaterThan(0);
+      }
+      expect(page.ruleOfThumb.length).toBeGreaterThanOrEqual(3);
+      expect(page.ruleOfThumb.length).toBeLessThanOrEqual(5);
+      expect(duplicateValues(page.relatedTopics)).toEqual([]);
+      expect(isIsoDate(page.updatedOn)).toBe(true);
+    }
+  });
 });
 
 describe("learning paths", () => {
   it("indexes every path and points at real topics", () => {
     expect(paths.length).toBeGreaterThan(0);
+    expect(duplicateValues(paths.map((path) => path.slug))).toEqual([]);
     for (const path of paths) {
       expect(pathBySlug.get(path.slug)).toBe(path);
+      const stepTopics = path.steps.map((step) => step.topic);
+      expect(stepTopics.length).toBeGreaterThan(0);
+      expect(duplicateValues(stepTopics)).toEqual([]);
       for (const step of path.steps) {
         expect(getTopic(step.topic)).toBeDefined();
+        expect(step.note.length).toBeGreaterThan(0);
       }
     }
   });

@@ -1,6 +1,16 @@
 import type { MetadataRoute } from "next";
-import { siteUrl } from "@/lib/site";
+import { joinSitePath, siteUrl } from "@/lib/site";
+
+export const dynamic = "force-static";
+export const revalidate = false;
 
 export default function robots(): MetadataRoute.Robots {
-  return { rules: { userAgent: "*", allow: "/" }, sitemap: `${siteUrl(process.env.NEXT_PUBLIC_SITE_URL)}/sitemap.xml` };
+  const origin = siteUrl(process.env.NEXT_PUBLIC_SITE_URL);
+  return {
+    rules: {
+      userAgent: "*",
+      allow: "/",
+    },
+    sitemap: joinSitePath(origin, "/sitemap.xml"),
+  };
 }

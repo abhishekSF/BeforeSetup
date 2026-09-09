@@ -22,6 +22,8 @@ import PathPage, {
 import OpengraphImage, {
   alt,
   contentType,
+  dynamic as ogDynamic,
+  revalidate as ogRevalidate,
   size,
 } from "@/app/opengraph-image";
 import { topicBySlug, getTopic } from "@/data/topics";
@@ -86,6 +88,8 @@ describe("root layout and static pages", () => {
     expect(image).toBeDefined();
     expect(alt).toContain("BeforeSetup");
     expect(contentType).toBe("image/png");
+    expect(ogDynamic).toBe("force-static");
+    expect(ogRevalidate).toBe(false);
     expect(size).toEqual({ width: 1200, height: 630 });
   });
 });
