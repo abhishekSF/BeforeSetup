@@ -1,0 +1,263 @@
+name: PR website previews
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: "PR number to preview"
+        required: true
+        type: string
+      ref:
+        description: "Branch or commit SHA to preview"
+        required: true
+        type: string
+      title:
+        description: "Optional label shown on the preview dashboard"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  build-preview:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.action != 'closed' && github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PR_NUMBER: ${{ github.event_name == 'workflow_dispatch' && inputs.pr_number || github.event.pull_request.number }}
+      PREVIEW_REF: ${{ github.event_name == 'workflow_dispatch' && inputs.ref || github.event.pull_request.head.sha }}
+    steps:
+      - name: Require a numeric PR number
+        run: |
+          if ! [[ "$PR_NUMBER" =~ ^[0-9]+$ ]]; then
+            echo "PR_NUMBER must be digits, got: $PR_NUMBER" >&2
+            exit 1
+          fi
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.PREVIEW_REF }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Build static PR preview
+        env:
+          GITHUB_PAGES: "true"
+          GITHUB_PAGES_BASE_PATH: /BeforeSetup/previews/pr-${{ env.PR_NUMBER }}
+          NEXT_PUBLIC_SITE_URL: https://abhisheksf.github.io/BeforeSetup/previews/pr-${{ env.PR_NUMBER }}
+        run: npm run build:pages
+      - name: Export uses the PR preview asset prefix
+        run: |
+          test -f out/index.html
+          grep -q "/BeforeSetup/previews/pr-${PR_NUMBER}/_next/" out/index.html
+      - name: Upload preview build
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-preview-${{ env.PR_NUMBER }}
+          path: out
+          include-hidden-files: true
+          retention-days: 3
+
+  publish-preview:
+    needs: build-preview
+    runs-on: ubuntu-latest
+    concurrency:
+      group: gh-pages-publish
+      cancel-in-progress: false
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      PR_NUMBER: ${{ github.event_name == 'workflow_dispatch' && inputs.pr_number || github.event.pull_request.number }}
+      PR_TITLE: ${{ github.event_name == 'workflow_dispatch' && inputs.title || github.event.pull_request.title }}
+      PR_REF: ${{ github.event_name == 'workflow_dispatch' && inputs.ref || github.event.pull_request.head.ref }}
+      PR_SHA: ${{ github.event_name == 'workflow_dispatch' && inputs.ref || github.event.pull_request.head.sha }}
+      PR_URL: https://github.com/${{ github.repository }}/pull/${{ github.event_name == 'workflow_dispatch' && inputs.pr_number || github.event.pull_request.number }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Require a numeric PR number
+        run: |
+          if ! [[ "$PR_NUMBER" =~ ^[0-9]+$ ]]; then
+            echo "PR_NUMBER must be digits, got: $PR_NUMBER" >&2
+            exit 1
+          fi
+      - uses: actions/download-artifact@v4
+        with:
+          name: pr-preview-${{ env.PR_NUMBER }}
+          path: out
+      - name: Publish preview and rebuild dashboard
+        run: |
+          git clone --depth 1 --branch gh-pages \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" site
+
+          target="site/previews/pr-${PR_NUMBER}"
+          rm -rf "$target"
+          mkdir -p "$target"
+          cp -a out/. "$target/"
+          rm -f "$target/.nojekyll"
+          mkdir -p site/previews
+
+          node <<'NODE'
+          const fs = require("fs");
+          const path = require("path");
+          const root = "site/previews";
+          const target = path.join(root, `pr-${process.env.PR_NUMBER}`);
+          const meta = {
+            number: Number(process.env.PR_NUMBER),
+            title: process.env.PR_TITLE || `PR #${process.env.PR_NUMBER}`,
+            ref: process.env.PR_REF || process.env.PR_SHA,
+            sha: process.env.PR_SHA,
+            url: process.env.PR_URL,
+            updatedAt: new Date().toISOString(),
+          };
+          fs.writeFileSync(path.join(target, "meta.json"), JSON.stringify(meta, null, 2));
+
+          const esc = (value) => String(value ?? "").replace(/[&<>\"']/g, (ch) => ({
+            "&": "&", "<": "<", ">": ">", "\"": """, "'": "&#39;",
+          }[ch]));
+          const entries = fs.readdirSync(root, { withFileTypes: true })
+            .filter((entry) => entry.isDirectory() && /^pr-\d+$/.test(entry.name))
+            .map((entry) => {
+              const file = path.join(root, entry.name, "meta.json");
+              if (!fs.existsSync(file)) return null;
+              try { return { dir: entry.name, ...JSON.parse(fs.readFileSync(file, "utf8")) }; }
+              catch { return null; }
+            })
+            .filter(Boolean)
+            .sort((a, b) => b.number - a.number);
+
+          const cards = entries.length
+            ? entries.map((entry) => `
+              <article class="card">
+                <div class="kicker">PR #${esc(entry.number)}</div>
+                <h2>${esc(entry.title)}</h2>
+                <p>${esc(entry.ref || entry.sha || "")}</p>
+                <div class="actions">
+                  <a class="primary" href="./${encodeURIComponent(entry.dir)}/">Open preview</a>
+                  <a href="${esc(entry.url)}">GitHub PR</a>
+                </div>
+              </article>`).join("")
+            : `<p class="empty">No PR previews are currently published.</p>`;
+
+          const html = `<!doctype html>
+          <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+          <title>BeforeSetup previews</title><style>
+          :root{font-family:ui-sans-serif,system-ui,sans-serif;color:#edece7;background:#0b0e12;color-scheme:dark}*{box-sizing:border-box}body{margin:0}main{max-width:980px;margin:auto;padding:56px 22px 80px}.eyebrow{font:12px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:#9babbc}h1{font-size:clamp(34px,6vw,62px);letter-spacing:-.055em;line-height:1;margin:12px 0 14px;font-weight:550}.intro{max-width:650px;color:#a3acb8;line-height:1.65}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:36px}.card{background:#11161c;border:1px solid #2a323d;border-radius:12px;padding:22px}.kicker{font-size:12px;color:#9babbc;text-transform:uppercase;letter-spacing:.08em}.card h2{font-size:20px;line-height:1.25;margin:10px 0;font-weight:550}.card p{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;color:#a3acb8;overflow-wrap:anywhere}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}a{display:inline-flex;text-decoration:none;color:#8ac2ff;border:1px solid #2a323d;padding:9px 12px;border-radius:8px;font-weight:600;font-size:14px}.primary{background:#8ac2ff;color:#0a192b;border-color:#8ac2ff}.production{margin-top:28px}.empty{margin-top:28px;color:#a3acb8}</style></head>
+          <body><main><div class="eyebrow">BeforeSetup / design review</div><h1>PR previews</h1><p class="intro">Compare live website iterations without touching production. Each card is built from that pull request and published under its own GitHub Pages path.</p><p class="production"><a href="/BeforeSetup/">Open production</a></p><section class="grid">${cards}</section></main></body></html>`;
+          fs.writeFileSync(path.join(root, "index.html"), html);
+          NODE
+
+          touch site/.nojekyll
+          cd site
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No preview changes to publish"
+            exit 0
+          fi
+          git commit -m "Publish preview for PR #${PR_NUMBER}"
+          git push origin gh-pages
+      - name: Comment preview URL
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const number = Number(process.env.PR_NUMBER);
+            const preview = `https://abhisheksf.github.io/BeforeSetup/previews/pr-${number}/`;
+            const dashboard = "https://abhisheksf.github.io/BeforeSetup/previews/";
+            const marker = "<!-- beforesetup-pr-preview -->";
+            const body = [
+              marker,
+              `**Preview:** ${preview}`,
+              `**Dashboard:** ${dashboard}`,
+            ].join("\n");
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: number,
+            });
+            const existing = comments.find((comment) =>
+              comment.body && comment.body.includes(marker)
+            );
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: number,
+                body,
+              });
+            }
+
+  remove-preview:
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.action == 'closed' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    concurrency:
+      group: gh-pages-publish
+      cancel-in-progress: false
+    permissions:
+      contents: write
+    env:
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Remove closed PR preview and rebuild dashboard
+        run: |
+          if ! [[ "$PR_NUMBER" =~ ^[0-9]+$ ]]; then
+            echo "PR_NUMBER must be digits, got: $PR_NUMBER" >&2
+            exit 1
+          fi
+          git clone --depth 1 --branch gh-pages \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" site
+          rm -rf "site/previews/pr-${PR_NUMBER}"
+          mkdir -p site/previews
+
+          node <<'NODE'
+          const fs = require("fs");
+          const path = require("path");
+          const root = "site/previews";
+          const esc = (value) => String(value ?? "").replace(/[&<>\"']/g, (ch) => ({
+            "&": "&", "<": "<", ">": ">", "\"": """, "'": "&#39;",
+          }[ch]));
+          const entries = fs.readdirSync(root, { withFileTypes: true })
+            .filter((entry) => entry.isDirectory() && /^pr-\d+$/.test(entry.name))
+            .map((entry) => {
+              const file = path.join(root, entry.name, "meta.json");
+              if (!fs.existsSync(file)) return null;
+              try { return { dir: entry.name, ...JSON.parse(fs.readFileSync(file, "utf8")) }; }
+              catch { return null; }
+            })
+            .filter(Boolean)
+            .sort((a, b) => b.number - a.number);
+          const cards = entries.length ? entries.map((entry) => `
+            <article class="card"><div class="kicker">PR #${esc(entry.number)}</div><h2>${esc(entry.title)}</h2><p>${esc(entry.ref || entry.sha || "")}</p><div class="actions"><a class="primary" href="./${encodeURIComponent(entry.dir)}/">Open preview</a><a href="${esc(entry.url)}">GitHub PR</a></div></article>`).join("") : `<p class="empty">No PR previews are currently published.</p>`;
+          const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BeforeSetup previews</title><style>:root{font-family:ui-sans-serif,system-ui,sans-serif;color:#edece7;background:#0b0e12;color-scheme:dark}*{box-sizing:border-box}body{margin:0}main{max-width:980px;margin:auto;padding:56px 22px 80px}.eyebrow{font:12px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:#9babbc}h1{font-size:clamp(34px,6vw,62px);letter-spacing:-.055em;line-height:1;margin:12px 0 14px;font-weight:550}.intro{max-width:650px;color:#a3acb8;line-height:1.65}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:36px}.card{background:#11161c;border:1px solid #2a323d;border-radius:12px;padding:22px}.kicker{font-size:12px;color:#9babbc;text-transform:uppercase;letter-spacing:.08em}.card h2{font-size:20px;line-height:1.25;margin:10px 0;font-weight:550}.card p{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;color:#a3acb8;overflow-wrap:anywhere}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}a{display:inline-flex;text-decoration:none;color:#8ac2ff;border:1px solid #2a323d;padding:9px 12px;border-radius:8px;font-weight:600;font-size:14px}.primary{background:#8ac2ff;color:#0a192b;border-color:#8ac2ff}.production{margin-top:28px}.empty{margin-top:28px;color:#a3acb8}</style></head><body><main><div class="eyebrow">BeforeSetup / design review</div><h1>PR previews</h1><p class="intro">Compare live website iterations without touching production. Each card is built from that pull request and published under its own GitHub Pages path.</p><p class="production"><a href="/BeforeSetup/">Open production</a></p><section class="grid">${cards}</section></main></body></html>`;
+          fs.writeFileSync(path.join(root, "index.html"), html);
+          NODE
+
+          cd site
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No preview cleanup needed"
+            exit 0
+          fi
+          git commit -m "Remove preview for PR #${PR_NUMBER}"
+          git push origin gh-pages
