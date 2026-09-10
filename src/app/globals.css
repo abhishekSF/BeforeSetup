@@ -145,7 +145,8 @@ kbd { font: 12px var(--font-geist-mono), monospace; padding: 3px 5px; border: 1p
 .decision-options { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; font-size: 12px; color: #afbac7; }
 .decision-options span { padding: 5px 8px; border-left: 2px solid #5d86b2; background: #16202a; }
 .decision-list a:hover h3, .path-journeys a:hover h3 { color: var(--primary); }
-.atlas { min-width: 0; }
+.atlas { min-width: 0; overflow-x: clip; }
+.atlas-visual { overflow: hidden; }
 .atlas-controls { display: grid; gap: 16px; padding: 20px; border: 1px solid var(--border); border-bottom: 0; background: #111720; }
 .atlas-controls input { max-width: 400px; }
 .atlas-controls p { font: 12px var(--font-geist-mono), monospace; color: #a3acb8; }
@@ -160,12 +161,13 @@ kbd { font: 12px var(--font-geist-mono), monospace; padding: 3px 5px; border: 1p
 .atlas-node:focus circle { stroke: #fff; stroke-width: 4px; stroke-opacity: 1; }
 .atlas-preview { position: absolute; top: 16px; left: 16px; max-width: 340px; pointer-events: none; }
 .atlas-preview > div { background: #101923ee; }
-.atlas-topic-list { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; padding: 24px 0; }
+.atlas-topic-list { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; padding: 24px 0; min-width: 0; }
 .atlas-topic-list a { display: inline-flex; align-items: center; min-height: 44px; }
 .atlas-compact .atlas-topic-list { display: none; }
 .atlas-compact .atlas-surface { border: 0; background-color: transparent; padding: 35px 0; }
 .atlas-compact .atlas-preview { display: none; }
-.atlas-compact svg { overflow: visible; }
+.atlas svg { overflow: hidden; max-width: 100%; }
+.atlas-compact svg { overflow: hidden; }
 .changes-section { display: grid; grid-template-columns: 1fr 2fr; gap: 48px; }
 .changes-section li { padding: 20px 0; border-bottom: 1px solid var(--border); }
 .changes-section li:first-child { padding-top: 0; }
@@ -204,6 +206,7 @@ thead th { position: sticky; top: 0; background: #18212c; }
   .hero-note { display: none; }
   .hero-description { max-width: 600px; }
   .changes-section { grid-template-columns: 1fr; gap: 30px; }
+  .atlas-topic-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 640px) {
   .header-inner { min-height: 64px; padding: 0 16px; gap: 10px; justify-content: space-between; }
