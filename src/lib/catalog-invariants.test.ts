@@ -3,7 +3,6 @@ import {
   duplicateValues,
   hasSalesforceDocsResource,
   httpsUrlError,
-  hasLongDash,
   isIsoDate,
   isSalesforceDocsHost,
 } from "@/lib/catalog-invariants";
@@ -67,16 +66,6 @@ describe("isSalesforceDocsHost", () => {
     expect(isSalesforceDocsHost("apexhours.com")).toBe(false);
     expect(isSalesforceDocsHost("notsalesforce.com")).toBe(false);
     expect(isSalesforceDocsHost("salesforce.com.evil.example")).toBe(false);
-  });
-});
-
-describe("hasLongDash", () => {
-  it("detects em dashes and en dashes only", () => {
-    expect(hasLongDash("a\u2014b")).toBe(true);
-    expect(hasLongDash("a\u2013b")).toBe(true);
-    expect(hasLongDash("a-b")).toBe(false);
-    expect(hasLongDash("plain")).toBe(false);
-    expect(hasLongDash("")).toBe(false);
   });
 });
 

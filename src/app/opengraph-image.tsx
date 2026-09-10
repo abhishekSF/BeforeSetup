@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const dynamic = "force-static";
 export const revalidate = false;
-export const alt = "BeforeSetup. The five minutes before you touch Setup";
+export const alt = "BeforeSetup — the five minutes before you touch Setup";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -68,7 +68,7 @@ export default function OpengraphImage() {
             lineHeight: 1.4,
           }}
         >
-          A field guide to the Salesforce platform. Mental models, decisions,
+          A field guide to the Salesforce platform — mental models, decisions,
           and pitfalls. Free, no sign-up.
         </div>
       </div>

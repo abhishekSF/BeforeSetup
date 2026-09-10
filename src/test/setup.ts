@@ -46,3 +46,5 @@ vi.mock("next/link", () => ({
     return React.createElement("a", { href, ...rest }, children);
   },
 }));
+
+import "./observers";

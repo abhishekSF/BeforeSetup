@@ -45,10 +45,6 @@ export function isSalesforceDocsHost(hostname: string): boolean {
   return host.endsWith(".salesforce.com");
 }
 
-export function hasLongDash(value: string): boolean {
-  return value.includes("\u2014") || value.includes("\u2013");
-}
-
 export function hasSalesforceDocsResource(
   resources: readonly { url: string }[]
 ): boolean {

@@ -2,7 +2,10 @@
 
 import { useMemo, useState } from "react";
 
-import { useRouter } from "next/navigation";
+import { CategoryFilter } from "@/components/category-filter";
+import { AtlasDepth } from "@/components/atlas-depth";
+import { filterTopics } from "@/lib/search";
+import type { CategoryId } from "@/data/types";
 import Link from "next/link";
 import { topics } from "@/data/topics";
 import { categories } from "@/data/categories";
@@ -23,8 +26,10 @@ import {
 const { nodes, clusterLabels } = computeLayout(categories, topics);
 const edges = buildEdges(topics, nodes);
 
-export function TopicMap() {
-  const router = useRouter();
+export function TopicMap({ compact = false }: { compact?: boolean }) {
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState<CategoryId | null>(null);
+  const visible = new Set(filterTopics(topics, query, category).map((topic) => topic.slug));
   const [hovered, setHovered] = useState<string | null>(null);
 
   const neighbors = useMemo(
@@ -36,16 +41,18 @@ export function TopicMap() {
     hovered === null ? null : findBySlug(topics, hovered);
 
   return (
-    <div>
-      <div className="hidden md:block">
-        <div className="relative rounded-xl border bg-card p-2 shadow-sm">
+    <div className={cn("atlas", compact && "atlas-compact")}>
+      {!compact && <div className="atlas-controls"><input aria-label="Search the atlas" placeholder="Locate a topic…" value={query} onChange={(event) => setQuery(event.target.value)} /><CategoryFilter value={category} onChange={setCategory} /><p role="status">{visible.size} topics in view</p></div>}
+      <div className="atlas-visual">
+        <div className="atlas-surface">
+          <AtlasDepth />
           <svg
             viewBox={`0 0 ${MAP_WIDTH} ${MAP_HEIGHT}`}
             className="h-auto w-full select-none"
-            role="img"
+            role="group"
             aria-label="Interactive map of Salesforce platform topics grouped by category"
           >
-            {edges.map(([a, b]) => {
+            {edges.filter(([a, b]) => visible.has(a.slug) && visible.has(b.slug)).map(([a, b]) => {
               const active =
                 hovered !== null &&
                 (a.slug === hovered || b.slug === hovered);
@@ -78,19 +85,23 @@ export function TopicMap() {
               </text>
             ))}
 
-            {nodes.map((n) => {
+            {nodes.filter((node) => visible.has(node.slug)).map((n) => {
               const dimmed = neighbors !== null && !neighbors.has(n.slug);
               const isHover = hovered === n.slug;
               return (
-                <g
+                <a
+                  href={`/topics/${n.slug}`}
+                  aria-label={n.title}
                   key={n.slug}
-                  transform={`translate(${n.x}, ${n.y})`}
-                  className="cursor-pointer transition-opacity"
+
+                  className="atlas-node transition-opacity"
                   style={{ opacity: dimmed ? 0.2 : 1 }}
                   onMouseEnter={() => setHovered(n.slug)}
                   onMouseLeave={() => setHovered(null)}
-                  onClick={() => router.push(`/topics/${n.slug}`)}
+                  onFocus={() => setHovered(n.slug)}
+                  onBlur={() => setHovered(null)}
                 >
+                  <g transform={`translate(${n.x}, ${n.y})`}>
                   <circle
                     r={isHover ? 15 : 11}
                     fill={categoryHex[n.category]}
@@ -110,12 +121,13 @@ export function TopicMap() {
                   >
                     {shortLabelFor(n.slug, n.title)}
                   </text>
-                </g>
+                  </g>
+                </a>
               );
             })}
           </svg>
 
-          <div className="pointer-events-none absolute left-4 top-4 max-w-xs">
+          <div className="atlas-preview" aria-live="polite">
             {hoveredTopic ? (
               <div className="rounded-lg border bg-popover p-3 shadow-md">
                 <div className="mb-1 flex items-center gap-2">
@@ -127,25 +139,25 @@ export function TopicMap() {
                     {hoveredTopic.title}
                   </span>
                 </div>
-                <p className="text-xs leading-relaxed text-muted-foreground">
+                <p className="text-sm leading-relaxed text-muted-foreground">
                   {hoveredTopic.tagline}
                 </p>
-                <p className="mt-1.5 text-[11px] font-medium text-primary">
-                  Click to dive in →
+                <p className="mt-1.5 text-sm font-medium text-primary">
+                  Open topic →
                 </p>
               </div>
             ) : (
               <p className="rounded-lg border bg-popover/80 px-3 py-2 text-xs text-muted-foreground shadow-sm backdrop-blur">
-                Hover a node to preview · click to dive in
+                Hover or focus to trace connections · open a topic to dive in
               </p>
             )}
           </div>
         </div>
       </div>
 
-      <div className="space-y-6 md:hidden">
+      <div className="atlas-topic-list" aria-label="Atlas topics">
         {categories.map((cat) => {
-          const members = topics.filter((t) => t.category === cat.id);
+          const members = topics.filter((t) => t.category === cat.id && visible.has(t.slug));
           return (
             <div key={cat.id}>
               <div className="mb-2 flex items-center gap-2">

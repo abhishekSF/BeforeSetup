@@ -1,0 +1,625 @@
+{
+  "checkedOn": "2026-09-09T12:26:57.102Z",
+  "results": [
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.dataLoader.meta/dataLoader/data_loader.htm",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://developer.salesforce.com/docs/atlas.en-us.dataLoader.meta/dataLoader/data_loader.htm"
+    },
+    {
+      "url": "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_data_management",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_data_management"
+    },
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.object_reference.meta/object_reference/sforce_api_objects_concepts.htm",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://developer.salesforce.com/docs/atlas.en-us.object_reference.meta/object_reference/sforce_api_objects_concepts.htm"
+    },
+    {
+      "url": "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_reports_dashboards",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://trailhead.salesforce.com/content/learn/modules/lex_implementation_reports_dashboards"
+    },
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers.htm",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers.htm"
+    },
+    {
+      "url": "https://trailhead.salesforce.com/content/learn/modules/data_modeling",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://trailhead.salesforce.com/content/learn/modules/data_modeling"
+    },
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_async_overview.htm",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_async_overview.htm"
+    },
+    {
+      "url": "https://trailhead.salesforce.com/content/learn/modules/data_modeling/object_relationships",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://trailhead.salesforce.com/content/learn/modules/data_modeling/object_relationships"
+    },
+    {
+      "url": "https://developer.salesforce.com/blogs/2026/06/the-salesforce-developers-guide-to-the-summer-26-release",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://developer.salesforce.com/blogs/2026/06/the-salesforce-developers-guide-to-the-summer-26-release"
+    },
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_dev_guide.htm",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_dev_guide.htm"
+    },
+    {
+      "url": "https://trailhead.salesforce.com/content/learn/modules/point_click_business_logic",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://trailhead.salesforce.com/content/learn/modules/point_click_business_logic"
+    },
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_sosl_intro.htm",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_sosl_intro.htm"
+    },
+    {
+      "url": "https://trailhead.salesforce.com/content/learn/modules/flow-basics",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://trailhead.salesforce.com/content/learn/modules/flow-basics"
+    },
+    {
+      "url": "https://trailhead.salesforce.com/content/learn/modules/apex_triggers",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://trailhead.salesforce.com/content/learn/modules/apex_triggers"
+    },
+    {
+      "url": "https://developer.salesforce.com/blogs/engineering/2015/06/query-optimizer-a-deeper-look-at-force-com",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://developer.salesforce.com/blogs/engineering/2015/06/query-optimizer-a-deeper-look-at-force-com"
+    },
+    {
+      "url": "https://trailhead.salesforce.com/content/learn/modules/business_process_automation",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://trailhead.salesforce.com/content/learn/modules/business_process_automation"
+    },
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_gov_limits.htm",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_gov_limits.htm"
+    },
+    {
+      "url": "https://trailhead.salesforce.com/content/learn/modules/asynchronous_apex",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://trailhead.salesforce.com/content/learn/modules/asynchronous_apex"
+    },
+    {
+      "url": "https://trailhead.salesforce.com/content/learn/modules/apex_database",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://trailhead.salesforce.com/content/learn/modules/apex_database"
+    },
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_testing.htm",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_testing.htm"
+    },
+    {
+      "url": "https://trailhead.salesforce.com/content/learn/modules/apex_patterns_sl",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://trailhead.salesforce.com/content/learn/modules/apex_patterns_sl"
+    },
+    {
+      "url": "https://developer.salesforce.com/docs/platform/lwc/guide",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://developer.salesforce.com/docs/platform/lwc/guide"
+    },
+    {
+      "url": "https://trailhead.salesforce.com/content/learn/modules/apex_testing",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://trailhead.salesforce.com/content/learn/modules/apex_testing"
+    },
+    {
+      "url": "https://trailhead.salesforce.com/content/learn/modules/lightning_app_builder",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://trailhead.salesforce.com/content/learn/modules/lightning_app_builder"
+    },
+    {
+      "url": "https://developer.salesforce.com/docs/component-library/overview/components",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://developer.salesforce.com/docs/component-library/overview/components"
+    },
+    {
+      "url": "https://trailhead.salesforce.com/content/learn/modules/identity_login",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://trailhead.salesforce.com/content/learn/modules/identity_login"
+    },
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm"
+    },
+    {
+      "url": "https://trailhead.salesforce.com/content/learn/modules/data_security",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://trailhead.salesforce.com/content/learn/modules/data_security"
+    },
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_callouts_named_credentials.htm",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_callouts_named_credentials.htm"
+    },
+    {
+      "url": "https://trailhead.salesforce.com/content/learn/modules/api_basics",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://trailhead.salesforce.com/content/learn/modules/api_basics"
+    },
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_intro.htm",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_intro.htm"
+    },
+    {
+      "url": "https://trailhead.salesforce.com/content/learn/modules/platform_events_basics",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://trailhead.salesforce.com/content/learn/modules/platform_events_basics"
+    },
+    {
+      "url": "https://trailhead.salesforce.com/content/learn/modules/custom_metadata_types_dec",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://trailhead.salesforce.com/content/learn/modules/custom_metadata_types_dec"
+    },
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm"
+    },
+    {
+      "url": "https://trailhead.salesforce.com/content/learn/projects/set-up-your-lightning-web-components-developer-tools",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://trailhead.salesforce.com/content/learn/projects/set-up-your-lightning-web-components-developer-tools"
+    },
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.integration_patterns_and_practices.meta/integration_patterns_and_practices/integ_pat_intro_overview.htm",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://developer.salesforce.com/docs/atlas.en-us.integration_patterns_and_practices.meta/integration_patterns_and_practices/integ_pat_intro_overview.htm"
+    },
+    {
+      "url": "https://trailhead.salesforce.com/content/learn/modules/devops-center-quick-look/say-hello-to-devops-center",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://trailhead.salesforce.com/content/learn/modules/devops-center-quick-look/say-hello-to-devops-center"
+    },
+    {
+      "url": "https://developer.salesforce.com/tools/salesforcecli",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://developer.salesforce.com/tools/salesforcecli"
+    },
+    {
+      "url": "https://help.salesforce.com/s/articleView?id=platform.rd_reports_overview.htm&type=5",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://help.salesforce.com/s/articleView?id=platform.rd_reports_overview.htm&type=5"
+    },
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_unified.htm",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_unified.htm"
+    },
+    {
+      "url": "https://help.salesforce.com/s/articleView?language=en_US&id=platform.overview_of_custom_object_relationships.htm&type=5",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://help.salesforce.com/s/articleView?language=en_US&id=platform.overview_of_custom_object_relationships.htm&type=5"
+    },
+    {
+      "url": "https://developer.salesforce.com/docs/platform/hosted-mcp-servers/guide/client-connection-overview.html",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://developer.salesforce.com/docs/platform/hosted-mcp-servers/guide/client-connection-overview.html"
+    },
+    {
+      "url": "https://help.salesforce.com/s/articleView?id=platform.customize_recordtype.htm&type=5",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://help.salesforce.com/s/articleView?id=platform.customize_recordtype.htm&type=5"
+    },
+    {
+      "url": "https://developer.salesforce.com/docs/platform/hosted-mcp-servers/references/reference/headless-360-mcp.html",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://developer.salesforce.com/docs/platform/hosted-mcp-servers/references/reference/headless-360-mcp.html"
+    },
+    {
+      "url": "https://developer.salesforce.com/blogs/2026/04/salesforce-hosted-mcp-servers-are-now-generally-available",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://developer.salesforce.com/blogs/2026/04/salesforce-hosted-mcp-servers-are-now-generally-available"
+    },
+    {
+      "url": "https://help.salesforce.com/s/articleView?id=platform.dynamic_forms_overview.htm&type=5",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://help.salesforce.com/s/articleView?id=platform.dynamic_forms_overview.htm&type=5"
+    },
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_large_data_volumes_bp.meta/salesforce_large_data_volumes_bp/ldv_deployments_introduction.htm",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_large_data_volumes_bp.meta/salesforce_large_data_volumes_bp/ldv_deployments_introduction.htm"
+    },
+    {
+      "url": "https://help.salesforce.com/s/articleView?id=platform.fields_about_field_validation.htm&type=5",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://help.salesforce.com/s/articleView?id=platform.fields_about_field_validation.htm&type=5"
+    },
+    {
+      "url": "https://developer.salesforce.com/docs/atlas.en-us.packagingGuide.meta/packagingGuide/packaging_intro.htm",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://developer.salesforce.com/docs/atlas.en-us.packagingGuide.meta/packagingGuide/packaging_intro.htm"
+    },
+    {
+      "url": "https://architect.salesforce.com/",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://architect.salesforce.com/"
+    },
+    {
+      "url": "https://help.salesforce.com/s/articleView?id=platform.flow_prep_bestpractices.htm&type=5",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://help.salesforce.com/s/articleView?id=platform.flow_prep_bestpractices.htm&type=5"
+    },
+    {
+      "url": "https://architect.salesforce.com/decision-guides/trigger-automation",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://architect.salesforce.com/decision-guides/trigger-automation"
+    },
+    {
+      "url": "https://architect.salesforce.com/docs/architect/well-architected/guide/overview.html",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://architect.salesforce.com/docs/architect/well-architected/guide/overview.html"
+    },
+    {
+      "url": "https://help.salesforce.com/s/articleView?id=platform.what_are_approvals.htm&type=5",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://help.salesforce.com/s/articleView?id=platform.what_are_approvals.htm&type=5"
+    },
+    {
+      "url": "https://github.com/SFDO-Community/declarative-lookup-rollup-summaries",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://github.com/SFDO-Community/declarative-lookup-rollup-summaries"
+    },
+    {
+      "url": "https://help.salesforce.com/s/articleView?id=experience.networks_overview.htm&type=5",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://help.salesforce.com/s/articleView?id=experience.networks_overview.htm&type=5"
+    },
+    {
+      "url": "https://github.com/trailheadapps/lwc-recipes",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://github.com/trailheadapps/lwc-recipes"
+    },
+    {
+      "url": "https://help.salesforce.com/s/articleView?id=experience.networks_guest_policies_timeline.htm&type=5",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://help.salesforce.com/s/articleView?id=experience.networks_guest_policies_timeline.htm&type=5"
+    },
+    {
+      "url": "https://www.salesforceben.com/salesforce-record-types/",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://www.salesforceben.com/salesforce-record-types/"
+    },
+    {
+      "url": "https://help.salesforce.com/s/articleView?id=platform.sso_about.htm&type=5",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://help.salesforce.com/s/articleView?id=platform.sso_about.htm&type=5"
+    },
+    {
+      "url": "https://www.salesforceben.com/salesforce-experience-cloud/",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://www.salesforceben.com/salesforce-experience-cloud/"
+    },
+    {
+      "url": "https://help.salesforce.com/s/articleView?id=platform.remoteaccess_oauth_flows.htm&type=5",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://help.salesforce.com/s/articleView?id=platform.remoteaccess_oauth_flows.htm&type=5"
+    },
+    {
+      "url": "https://www.salesforceben.com/salesforce-dynamic-forms-overview-deep-dive-tutorial/",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://www.salesforceben.com/salesforce-dynamic-forms-overview-deep-dive-tutorial/"
+    },
+    {
+      "url": "https://help.salesforce.com/s/articleView?id=platform.perm_sets_overview.htm&type=5",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://help.salesforce.com/s/articleView?id=platform.perm_sets_overview.htm&type=5"
+    },
+    {
+      "url": "https://www.salesforceben.com/salesforce-permission-sets/",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://www.salesforceben.com/salesforce-permission-sets/"
+    },
+    {
+      "url": "https://www.salesforceben.com/salesforce-integration/",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://www.salesforceben.com/salesforce-integration/"
+    },
+    {
+      "url": "https://help.salesforce.com/s/articleView?id=platform.security_data_access.htm&type=5",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://help.salesforce.com/s/articleView?id=platform.security_data_access.htm&type=5"
+    },
+    {
+      "url": "https://www.salesforceben.com/salesforce-data-cloud-renamed-to-data-360-as-part-of-agentforce-360/",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://www.salesforceben.com/salesforce-data-cloud-renamed-to-data-360-as-part-of-agentforce-360/"
+    },
+    {
+      "url": "https://help.salesforce.com/s/articleView?id=xcloud.integrate_what_is_api.htm&type=5",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://help.salesforce.com/s/articleView?id=xcloud.integrate_what_is_api.htm&type=5"
+    },
+    {
+      "url": "https://www.salesforceben.com/salesforce-data-skew/",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://www.salesforceben.com/salesforce-data-skew/"
+    },
+    {
+      "url": "https://help.salesforce.com/s/articleView?language=en_US&id=platform.custommetadatatypes_overview.htm&type=5",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://help.salesforce.com/s/articleView?language=en_US&id=platform.custommetadatatypes_overview.htm&type=5"
+    },
+    {
+      "url": "https://www.salesforceben.com/salesforce-licenses/",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://www.salesforceben.com/salesforce-licenses/"
+    },
+    {
+      "url": "https://www.salesforceben.com/salesforce-implementation/",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://www.salesforceben.com/salesforce-implementation/"
+    },
+    {
+      "url": "https://help.salesforce.com/s/articleView?id=platform.deploy_sandboxes_parent.htm&type=5",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://help.salesforce.com/s/articleView?id=platform.deploy_sandboxes_parent.htm&type=5"
+    },
+    {
+      "url": "https://unofficialsf.com/",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://unofficialsf.com/"
+    },
+    {
+      "url": "https://help.salesforce.com/s/articleView?id=platform.devops_center_overview.htm&type=5",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://help.salesforce.com/s/articleView?id=platform.devops_center_overview.htm&type=5"
+    },
+    {
+      "url": "https://www.apexhours.com/trigger-framework-in-salesforce/",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://www.apexhours.com/trigger-framework-in-salesforce/"
+    },
+    {
+      "url": "https://help.salesforce.com/s/articleView?id=005315874&language=en_US&type=1",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://help.salesforce.com/s/articleView?id=005315874&language=en_US&type=1"
+    },
+    {
+      "url": "https://www.apexhours.com/asynchronous-apex/",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://www.apexhours.com/asynchronous-apex/"
+    },
+    {
+      "url": "https://help.salesforce.com/s/articleView?id=sales.overview_edition.htm&type=5",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://help.salesforce.com/s/articleView?id=sales.overview_edition.htm&type=5"
+    },
+    {
+      "url": "https://www.apexhours.com/",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://www.apexhours.com/"
+    },
+    {
+      "url": "https://www.apexhours.com/apex-test-class-best-practices/",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://www.apexhours.com/apex-test-class-best-practices/"
+    },
+    {
+      "url": "https://help.salesforce.com/s/articleView?id=platform.users_understanding_license_types.htm&type=5",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://help.salesforce.com/s/articleView?id=platform.users_understanding_license_types.htm&type=5"
+    },
+    {
+      "url": "https://www.apexhours.com/category/agentforce/",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://www.apexhours.com/category/agentforce/"
+    },
+    {
+      "url": "https://www.apexhours.com/claudeforce-explained-what-salesforce-anthropic-actually-ship/",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://www.apexhours.com/claudeforce-explained-what-salesforce-anthropic-actually-ship/"
+    },
+    {
+      "url": "https://www.salesforce.com/blog/summer-26-release-architect-highlights/",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://www.salesforce.com/blog/summer-26-release-architect-highlights/"
+    },
+    {
+      "url": "https://lwc.dev/",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://lwc.dev/"
+    },
+    {
+      "url": "https://www.salesforce.com/agentforce/pricing/",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://www.salesforce.com/agentforce/pricing/"
+    },
+    {
+      "url": "https://cloudmasonry.com/salesforce-product-name-changes-agentforce-360/",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://cloudmasonry.com/salesforce-product-name-changes-agentforce-360/"
+    },
+    {
+      "url": "https://www.salesforce.com/agentforce/",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://www.salesforce.com/agentforce/"
+    },
+    {
+      "url": "https://digitalmass.com/insights/the-post-dreamforce-reality-check-whats-actually-shipping-in-q1-2026/",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://digitalmass.com/insights/the-post-dreamforce-reality-check-whats-actually-shipping-in-q1-2026/"
+    },
+    {
+      "url": "https://www.salesforce.com/news/press-releases/2025/11/18/salesforce-completes-acquisition-of-informatica/",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://www.salesforce.com/news/press-releases/2025/11/18/salesforce-completes-acquisition-of-informatica/"
+    },
+    {
+      "url": "https://sfpractice.telusdigital.com/posts/10-reasons-salesforce-data-360-is-the-foundation-your-ai-strategy-needs",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://sfpractice.telusdigital.com/posts/10-reasons-salesforce-data-360-is-the-foundation-your-ai-strategy-needs"
+    },
+    {
+      "url": "https://www.salesforce.com/news/press-releases/2025/05/27/salesforce-signs-definitive-agreement-to-acquire-informatica/",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://www.salesforce.com/news/press-releases/2025/05/27/salesforce-signs-definitive-agreement-to-acquire-informatica/"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://modelcontextprotocol.io/"
+    },
+    {
+      "url": "https://10kview.com/claudeforce-a-closer-look-at-the-announcement/",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://10kview.com/claudeforce-a-closer-look-at-the-announcement/"
+    },
+    {
+      "url": "https://www.salesforce.com/data/",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://www.salesforce.com/data/"
+    },
+    {
+      "url": "https://appexchange.salesforce.com/",
+      "status": "healthy",
+      "code": 200,
+      "canonical": "https://appexchange.salesforce.com/"
+    },
+    {
+      "url": "https://www.salesforce.com/headless/",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://www.salesforce.com/headless/"
+    },
+    {
+      "url": "https://www.salesforce.com/claudeforce/",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://www.salesforce.com/claudeforce/"
+    },
+    {
+      "url": "https://www.salesforce.com/news/press-releases/2026/08/26/salesforce-and-anthropic-announce-claudeforce/",
+      "status": "unable-to-verify",
+      "code": 0,
+      "canonical": "https://www.salesforce.com/news/press-releases/2026/08/26/salesforce-and-anthropic-announce-claudeforce/"
+    }
+  ],
+  "fullAudit": {
+    "checkedOn": "2026-09-09T12:26:57.102Z",
+    "uniqueUrls": 101,
+    "method": "npm run check:links (unchanged checker; two hosts at a time, one request per host, 12s timeout, 400ms spacing, no retries)"
+  },
+  "targetedCanonicalRecheck": {
+    "checkedOn": "2026-09-09T12:29:23.294Z",
+    "urls": [
+      "https://help.salesforce.com/s/articleView?language=en_US&id=platform.overview_of_custom_object_relationships.htm&type=5",
+      "https://help.salesforce.com/s/articleView?language=en_US&id=platform.custommetadatatypes_overview.htm&type=5"
+    ],
+    "count": 2,
+    "method": "unchanged checkLink; sequential requests with 400ms spacing; no transport bypass; replaces the two redirect rows after source canonicalization"
+  }
+}

@@ -12,19 +12,19 @@ describe("SiteHeader", () => {
       "href",
       "/"
     );
-    expect(screen.getByRole("link", { name: "Decisions" })).toHaveAttribute(
+    expect(screen.getAllByRole("link", { name: "Decisions" })[0]).toHaveAttribute(
       "href",
       "/versus"
     );
-    expect(screen.getByRole("link", { name: /Map/ })).toHaveAttribute(
+    expect(screen.getAllByRole("link", { name: "Atlas" })[0]).toHaveAttribute(
       "href",
       "/map"
     );
-    expect(screen.getByRole("link", { name: "Topics" })).toHaveAttribute(
+    expect(screen.getAllByRole("link", { name: "Topics" })[0]).toHaveAttribute(
       "href",
       "/topics"
     );
-    expect(screen.getByRole("link", { name: "Start Here" })).toHaveAttribute(
+    expect(screen.getAllByRole("link", { name: "Paths" })[0]).toHaveAttribute(
       "href",
       "/start"
     );

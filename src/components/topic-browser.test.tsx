@@ -17,7 +17,7 @@ describe("TopicBrowser", () => {
     const user = userEvent.setup();
     render(<TopicBrowser />);
 
-    expect(screen.getByText(/All \(/)).toBeInTheDocument();
+    expect(screen.getByText("All areas")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Flow" })).toBeInTheDocument();
 
     fireEvent.click(categoryChip("ai"));
@@ -28,7 +28,7 @@ describe("TopicBrowser", () => {
       screen.queryByRole("heading", { name: "Flow" })
     ).not.toBeInTheDocument();
 
-    fireEvent.click(screen.getByText(/All \(/));
+    fireEvent.click(screen.getByText("All areas"));
     expect(screen.getByRole("heading", { name: "Flow" })).toBeInTheDocument();
 
     fireEvent.click(categoryChip("ai"));

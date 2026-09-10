@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { TopicBrowser } from "@/components/topic-browser";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/topics" },
   title: "All topics",
   description:
     "Browse and search every Salesforce quick-dive: data model, automation, Apex, LWC, security, integration, and DevOps.",
@@ -12,8 +13,9 @@ export default function TopicsPage() {
     <div className="mx-auto max-w-6xl px-4 py-10">
       <h1 className="text-3xl font-bold tracking-tight">All topics</h1>
       <p className="mt-2 max-w-2xl text-muted-foreground">
-        Search across titles, mental models, and pitfalls, or filter by area.
+        Search across titles, mental models, and pitfalls — or filter by area.
       </p>
+      <h2 className="sr-only">Browse the field guide</h2>
       <div className="mt-8">
         <TopicBrowser />
       </div>

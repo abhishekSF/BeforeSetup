@@ -38,7 +38,7 @@ export const versusPages: Versus[] = [
       {
         criterion: "Call an external system when a record changes",
         pick: null,
-        note: "Neither, directly. Callouts cannot run inside the save transaction. Use an after-save flow's asynchronous path, or a trigger that enqueues a Queueable. For fan-out to multiple systems, consider a platform event instead.",
+        note: "Neither, directly — callouts cannot run inside the save transaction. Use an after-save flow's asynchronous path, or a trigger that enqueues a Queueable. For fan-out to multiple systems, consider a platform event instead.",
       },
       {
         criterion: "Run nightly against records matching criteria",
@@ -53,13 +53,13 @@ export const versusPages: Versus[] = [
       {
         criterion: "No Apex capacity on the team",
         pick: ["Before-save flow", "After-save flow", "Scheduled flow"],
-        note: "Legitimate constraint, but budget for the day the org outgrows it, and keep the flow inventory documented so that migration is possible.",
+        note: "Legitimate constraint — but budget for the day the org outgrows it, and keep the flow inventory documented so that migration is possible.",
       },
     ],
     ruleOfThumb: [
       "Same-record field updates: before-save flow, always. This is the one answer with no caveats.",
       "Cross-object and simple: after-save flow. Cross-object and complex, ordered, or money-critical: one trigger per object with a handler class.",
-      "Callouts never run in the save. Async path, Queueable, or a platform event. Pick one and be consistent.",
+      "Callouts never run in the save. Async path, Queueable, or a platform event — pick one and be consistent.",
       "Above ~100k rows per run, it is Batch Apex. Scheduled flows at that volume fail on a timer.",
       "The real killer is mixing: five flows and two triggers on one object with no documented order. Keep an automation inventory per object.",
     ],
@@ -86,7 +86,7 @@ export const versusPages: Versus[] = [
       {
         criterion: "Child should survive if the parent is deleted",
         pick: "Lookup",
-        note: "Lookups are independent records with an optional pointer. Master-detail cascade-deletes the children. That is the feature, not a setting you can later regret your way out of.",
+        note: "Lookups are independent records with an optional pointer. Master-detail cascade-deletes the children — that is the feature, not a setting you can later regret your way out of.",
       },
       {
         criterion: "Need a roll-up summary (count, sum, min, max) on the parent",
@@ -96,7 +96,7 @@ export const versusPages: Versus[] = [
       {
         criterion: "Child should inherit the parent's sharing",
         pick: "Master-detail",
-        note: "Detail records have no owner of their own. They ride the master's sharing. If the child needs independent OWD, teams, or queues, it is a lookup.",
+        note: "Detail records have no owner of their own — they ride the master's sharing. If the child needs independent OWD, teams, or queues, it is a lookup.",
       },
       {
         criterion: "Relationship is optional, or the 'parent' might not exist yet",
@@ -158,7 +158,7 @@ export const versusPages: Versus[] = [
       {
         criterion: "A persona that is a bundle of job functions (AE = Core CRM + CPQ + Forecasts)",
         pick: "Permission set group",
-        note: "Compose existing permission sets. Muting permissions let you subtract one dangerous right from the bundle without forking the underlying sets.",
+        note: "Compose existing permission sets. Muting can suppress a selected permission within this group without forking the underlying sets. It does not remove the same permission granted by a profile or an unrelated set.",
       },
       {
         criterion: "One-off exception for a single person",
@@ -221,7 +221,7 @@ export const versusPages: Versus[] = [
       {
         criterion: "This will happen again tomorrow, from another system of record",
         pick: "Integration",
-        note: "A repeating Data Loader job is an integration you have not admitted to yet. Platform events, Bulk API from middleware, or a well-named ETL. Pick a pattern and monitor it.",
+        note: "A repeating Data Loader job is an integration you have not admitted to yet. Platform events, Bulk API from middleware, or a well-named ETL — pick a pattern and monitor it.",
       },
       {
         criterion: "Need to upsert on an External ID and keep parent-child order",
@@ -270,7 +270,7 @@ export const versusPages: Versus[] = [
       {
         criterion: "Admins who will not live in VS Code, but the team wants git and pull requests",
         pick: "DevOps Center",
-        note: "The clicky front-end on source-driven development. Work items, environments, promotions. Still git underneath. That is the point. Treat it as the on-ramp, not as a second source of truth beside change sets.",
+        note: "The clicky front-end on source-driven development. Work items, environments, promotions. Still git underneath — that is the point. Treat it as the on-ramp, not as a second source of truth beside change sets.",
       },
       {
         criterion: "Developers building features in isolation, CI on every commit",
@@ -280,7 +280,7 @@ export const versusPages: Versus[] = [
       {
         criterion: "A coherent set of metadata that should version, install, and upgrade as a unit",
         pick: "Unlocked packages",
-        note: "Second-generation packaging without the ISV ceremony of a managed package. Unlocked means the subscriber can still see and edit. Right for in-house modularization, wrong if you need IP protection.",
+        note: "Second-generation packaging without the ISV ceremony of a managed package. Unlocked means the subscriber can still see and edit — right for in-house modularization, wrong if you need IP protection.",
       },
       {
         criterion: "Need to delete metadata, or deploy a destructive change, as part of the release",
@@ -290,7 +290,7 @@ export const versusPages: Versus[] = [
       {
         criterion: "Multiple teams shipping into the same org on different cadences",
         pick: "Unlocked packages",
-        note: "This is the modularization case. One repo-monolith of all metadata is how teams block each other. Packages, or at least package directories, let you version and install independently, with the dependency graph as the tax.",
+        note: "This is the modularization case. One repo-monolith of all metadata is how teams block each other. Packages (or at least package directories) let you version and install independently — with the dependency graph as the tax.",
       },
       {
         criterion: "You have no version control today and a release is due this week",
@@ -302,7 +302,7 @@ export const versusPages: Versus[] = [
       "Change sets are a trap that looks like a process. Use them only as a stopgap, and write down the date you will stop.",
       "Source of truth is git, not an org. Every other choice (DevOps Center, CLI, packages) is a way to keep that honest.",
       "Scratch orgs are how developers stop contaminating shared sandboxes. If you cannot recreate an org from the repo, you do not have source-driven development yet.",
-      "Unlocked packages are for modularizing *your* org, not for pretending you are an ISV. Managed packages (2GP) are the AppExchange and IP-protection answer. Different job.",
+      "Unlocked packages are for modularizing *your* org, not for pretending you are an ISV. Managed packages (2GP) are the AppExchange / IP-protection answer — different job.",
       "If two tools are both 'the process,' you have no process. Pick one vehicle per pipeline.",
     ],
     relatedTopics: [
@@ -356,9 +356,9 @@ export const versusPages: Versus[] = [
       },
     ],
     ruleOfThumb: [
-      "If you can flowchart it, it is a Flow, with a prompt template only where language is the output. If you cannot flowchart it because the next step depends on the answer, it might be an agent.",
+      "If you can flowchart it, it is a Flow — with a prompt template only where language is the output. If you cannot flowchart it because the next step depends on the answer, it might be an agent.",
       "Prompt templates are cheap, testable, and boring. Start there. Agents are a product decision, not a checkbox.",
-      "An agent with no grounded data and no tightly scoped actions is a hallucination with a logo. Data 360 is not optional for the interesting cases, and it is not in the edition by default.",
+      "An agent with no grounded data and no tightly scoped actions is a hallucination with a logo. Choose the grounding architecture the use case needs, and verify current Data 360 entitlements rather than assuming a separate implementation is always required.",
       "Never let an agent do what a validation rule, a before-save flow, or a permission already does. Deterministic first; language second; planning last.",
       "Consumption pricing means a looping agent is a billing incident. Cap turns, log actions, and keep a human in the loop for anything that writes.",
     ],

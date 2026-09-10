@@ -20,7 +20,7 @@ export function makeTopic(overrides: Partial<Topic> & Pick<Topic, "slug">): Topi
         title: "Docs",
         url: "https://example.com/docs",
         source: "Docs",
-        level: "intro",
+        level: "intro", kind: "docs", official: true, verifiedOn: null,
       },
     ],
     updatedOn: "2026-01-01",

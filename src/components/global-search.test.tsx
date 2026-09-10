@@ -1,0 +1,70 @@
+import { fireEvent, render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { expect, it } from "vitest";
+import { GlobalSearch } from "./global-search";
+
+it("opens by keyboard, searches, closes on navigation, and restores focus", async () => {
+  const user = userEvent.setup();
+  const view = render(<GlobalSearch />);
+  expect(screen.getByRole("button", { name: "Search" })).toBeInTheDocument();
+  fireEvent.keyDown(document, { key: "k" });
+  expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  fireEvent.keyDown(document, { key: "x", ctrlKey: true });
+  fireEvent.keyDown(document, { key: "k", ctrlKey: true });
+  expect(screen.getByRole("dialog")).toBeInTheDocument();
+  await user.type(screen.getByLabelText("Search the field guide"), "zzzzz");
+  expect(screen.getByRole("status")).toHaveTextContent("0 topics");
+  await user.clear(screen.getByLabelText("Search the field guide"));
+  await user.type(screen.getByLabelText("Search the field guide"), "flow");
+  const link = screen.getByRole("link", { name: /^Flow / });
+  expect(link).toHaveAttribute("href", "/topics/flow");
+  await user.click(link);
+  expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  fireEvent.keyDown(document, { key: "K", metaKey: true });
+  await user.click(screen.getByRole("button", { name: "Close search" }));
+  view.unmount();
+});
+
+it("focuses search, moves between results with arrows, and opens the focused link with Enter", async () => {
+  const user = userEvent.setup();
+  render(<GlobalSearch />);
+  await user.click(screen.getByRole("button", { name: "Search" }));
+  const input = screen.getByLabelText("Search the field guide");
+  expect(input).toHaveFocus();
+  await user.type(input, "flow");
+  const links = screen.getAllByRole("link");
+  await user.keyboard("{ArrowDown}");
+  expect(links[0]).toHaveFocus();
+  await user.keyboard("{ArrowDown}");
+  expect(links[1]).toHaveFocus();
+  await user.keyboard("{ArrowUp}{ArrowUp}");
+  expect(input).toHaveFocus();
+  await user.keyboard("{ArrowUp}");
+  expect(links.at(-1)).toHaveFocus();
+  await user.keyboard("{ArrowDown}{ArrowDown}");
+  expect(links[0]).toHaveFocus();
+  expect(links[0]).toHaveAttribute("href", "/topics/data-loading");
+  await user.keyboard("{Enter}");
+  expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+});
+
+it("handles empty results, Enter from search, and shortcut dismissal", async () => {
+  const user = userEvent.setup();
+  render(<GlobalSearch />);
+  await user.keyboard("{Control>}k{/Control}");
+  const input = screen.getByLabelText("Search the field guide");
+  await user.type(input, "zzzzzz");
+  await user.keyboard("{ArrowDown}{ArrowUp}{Enter}");
+  expect(input).toHaveFocus();
+  expect(screen.getByRole("dialog")).toBeInTheDocument();
+  await user.clear(input);
+  await user.type(input, "flow");
+  fireEvent.keyDown(input, { key: "Enter", isComposing: true });
+  expect(screen.getByRole("dialog")).toBeInTheDocument();
+  await user.keyboard("{Enter}");
+  expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  await user.keyboard("{Control>}k{/Control}");
+  await user.keyboard("{Control>}k{/Control}");
+  expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  expect(screen.getByRole("button", { name: "Search" })).toHaveFocus();
+});

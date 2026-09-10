@@ -11,6 +11,7 @@ describe("packagingLabel", () => {
     expect(packagingLabel("edition-gated")).toBe("Edition-gated");
     expect(packagingLabel("add-on")).toBe("Add-on SKU");
     expect(packagingLabel("consumption")).toBe("Consumption-priced");
+    expect(packagingLabel("verify-terms")).toBe("Verify current terms");
   });
 });
 

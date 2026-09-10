@@ -47,7 +47,7 @@ export const categories: Category[] = [
     id: "ai",
     label: "AI & Agents",
     description:
-      "The 2025 to 2026 wave. Agentforce, Data 360, Headless 360 and MCP, and the Claudeforce partnership.",
+      "The 2025–26 wave: Agentforce, Data 360, Headless 360 and MCP, and the Claudeforce partnership.",
   },
   {
     id: "strategy",
