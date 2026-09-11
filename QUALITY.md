@@ -31,11 +31,11 @@ npm run quality
 npm run build:pages
 ```
 
-`npm run quality` runs the gates above, in that order. `npm run build:pages` is a separate static export for GitHub Pages. That export uses `basePath` `/BeforeSetup`.
+`npm run quality` runs the gates above, in that order. `npm run build:pages` is a separate static export for GitHub Pages. That export uses `basePath` `/BeforeSetup`, or `GITHUB_PAGES_BASE_PATH` when CI is publishing a per-PR preview.
 
 ## GitHub Pages
 
-The live site is the `gh-pages` branch. CI sets `GITHUB_PAGES=true`. Then `next.config.ts` uses static export, trailing slashes, and `basePath` `/BeforeSetup`. Pull requests only verify the export. Pushes to `main` publish after `npm run quality` passes. The workflow writes `out/.nojekyll` and uploads it with hidden files included, so GitHub's Jekyll step does not ignore `_next`.
+The live site is the `gh-pages` branch. CI sets `GITHUB_PAGES=true`. Then `next.config.ts` uses static export, trailing slashes, and `basePath` `/BeforeSetup`. Pull requests verify that production export. They also publish an isolated preview at `/BeforeSetup/previews/pr-<number>/` and a comparison dashboard at `/BeforeSetup/previews/`. Pushes to `main` publish production after `npm run quality` passes, and they leave the `previews/` folder intact. Closing a PR removes its preview. The workflow writes `out/.nojekyll` and uploads it with hidden files included, so GitHub's Jekyll step does not ignore `_next`.
 
 ## Scope notes
 

@@ -32,7 +32,7 @@ npm run dev -- --port 4780
 
 Then open http://localhost:4780.
 
-The production site is a static export on GitHub Pages at `/BeforeSetup/`. CI builds that export with `npm run build:pages`. On `main`, it publishes the `gh-pages` branch.
+The production site is a static export on GitHub Pages at `/BeforeSetup/`. CI builds that export with `npm run build:pages`. On `main`, it publishes the `gh-pages` branch. Website pull requests also get an isolated preview at `/BeforeSetup/previews/pr-<number>/`.
 
 To add a topic, a decision page, or a path, follow [CONTRIBUTING.md](CONTRIBUTING.md).
 
