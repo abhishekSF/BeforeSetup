@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://abhisheksf.github.io/BeforeSetup/previews/pr-6/sitemap.xml

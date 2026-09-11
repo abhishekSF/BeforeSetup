@@ -1,0 +1,32 @@
+1:"$Sreact.fragment"
+2:I[5014,["/BeforeSetup/previews/pr-6/_next/static/chunks/2ysutlox97l5d.js","/BeforeSetup/previews/pr-6/_next/static/chunks/3kipqczqlm_d8.js","/BeforeSetup/previews/pr-6/_next/static/chunks/1xg5v-her6j3p.js"],"default"]
+3:I[22016,["/BeforeSetup/previews/pr-6/_next/static/chunks/2ysutlox97l5d.js","/BeforeSetup/previews/pr-6/_next/static/chunks/3kipqczqlm_d8.js","/BeforeSetup/previews/pr-6/_next/static/chunks/1xg5v-her6j3p.js"],""]
+4:I[97367,["/BeforeSetup/previews/pr-6/_next/static/chunks/3fntmmi971322.js"],"OutletBoundary"]
+5:"$Sreact.suspense"
+9:I[97367,["/BeforeSetup/previews/pr-6/_next/static/chunks/3fntmmi971322.js"],"ViewportBoundary"]
+a:I[97367,["/BeforeSetup/previews/pr-6/_next/static/chunks/3fntmmi971322.js"],"MetadataBoundary"]
+8:X
+17:X
+17:C
+0:{"buildId":"Ob_pSHz66YMCp5lO1lqRo","data":[{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"mx-auto flex max-w-2xl flex-col items-center px-4 py-24 text-center","children":[["$","$L2",null,{"iconNode":[["circle",{"cx":"12","cy":"12","r":"10","key":"1mglay"}],["path",{"d":"m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z","key":"9ktpf1"}]],"className":"lucide-compass size-10 text-muted-foreground"}],["$","h1",null,{"className":"mt-4 text-2xl font-bold","children":"Off the map"}],["$","p",null,{"className":"mt-2 text-muted-foreground","children":"That page doesn't exist — but every topic we do cover is one click away."}],["$","div",null,{"className":"mt-6 flex gap-3","children":[["$","$L3",null,{"href":"/map","children":"Open the map","data-slot":"button","data-variant":"default","data-size":"default","className":"inline-flex shrink-0 items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3","ref":null}],["$","$L3",null,{"href":"/topics","children":"Browse all topics","data-slot":"button","data-variant":"outline","data-size":"default","className":"inline-flex shrink-0 items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50 h-9 px-4 py-2 has-[>svg]:px-3","ref":null}]]}]]}],null,["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":"$@7","staleTime":"$8","varyParams":null},{"rsc":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L9",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$La",null,{"children":["$","$5",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"BeforeSetup — the five minutes before you touch Setup"}],["$","meta","1",{"name":"description","content":"A field guide to the Salesforce platform: plain-English mental models, the recurring X-vs-Y decisions, common pitfalls, and the best resources — free, no sign-up."}],["$","meta","2",{"property":"og:title","content":"BeforeSetup — the five minutes before you touch Setup"}],["$","meta","3",{"property":"og:description","content":"A field guide to the Salesforce platform: plain-English mental models, the recurring X-vs-Y decisions, common pitfalls, and the best resources — free, no sign-up."}],["$","meta","4",{"property":"og:image","content":"https://abhisheksf.github.io/BeforeSetup/previews/pr-6/opengraph-image?c7d348a8c300ee59"}],["$","meta","5",{"property":"og:image:type","content":"image/png"}],["$","meta","6",{"property":"og:image:width","content":"1200"}],["$","meta","7",{"property":"og:image:height","content":"630"}],["$","meta","8",{"property":"og:image:alt","content":"BeforeSetup — the five minutes before you touch Setup"}],["$","meta","9",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","10",{"name":"twitter:title","content":"BeforeSetup — the five minutes before you touch Setup"}],"$Lb","$Lc","$Ld","$Le","$Lf","$L10","$L11","$L12"]}]}]}],"$L13"]}],"isPartial":"$@14","staleTime":"$8","varyParams":null},{"rsc":"$L15","isPartial":"$@16","staleTime":"$8","varyParams":"$17"}],"isUpgradeableISRFallback":false,"a":"$@18","rootVaryParams":null,"needsRuntimeRequest":"$@19"}
+1a:I[27201,["/BeforeSetup/previews/pr-6/_next/static/chunks/3fntmmi971322.js"],"IconMark"]
+1b:I[39756,["/BeforeSetup/previews/pr-6/_next/static/chunks/3fntmmi971322.js"],"default"]
+1c:I[37457,["/BeforeSetup/previews/pr-6/_next/static/chunks/3fntmmi971322.js"],"default"]
+6:null
+b:["$","meta","11",{"name":"twitter:description","content":"A field guide to the Salesforce platform: plain-English mental models, the recurring X-vs-Y decisions, common pitfalls, and the best resources — free, no sign-up."}]
+c:["$","meta","12",{"name":"twitter:image","content":"https://abhisheksf.github.io/BeforeSetup/previews/pr-6/opengraph-image?c7d348a8c300ee59"}]
+d:["$","meta","13",{"name":"twitter:image:alt","content":"BeforeSetup — the five minutes before you touch Setup"}]
+e:["$","meta","14",{"name":"twitter:image:type","content":"image/png"}]
+f:["$","meta","15",{"name":"twitter:image:width","content":"1200"}]
+10:["$","meta","16",{"name":"twitter:image:height","content":"630"}]
+11:["$","link","17",{"rel":"icon","href":"/BeforeSetup/previews/pr-6/icon.svg?icon.1lponp8o6jwzz.svg","sizes":"any","type":"image/svg+xml"}]
+12:["$","$L1a","18",{}]
+13:["$","meta",null,{"name":"next-size-adjust","content":""}]
+15:["$","$1","c",{"children":[null,["$","$L1b",null,{"parallelRouterKey":"children","template":["$","$L1c",null,{}]}]]}]
+19:true
+8:300
+8:C
+18:0
+14:"$undefined"
+16:"$undefined"
+7:"$undefined"
